@@ -79,11 +79,83 @@
                     <connections>
                         <outlet property="emailTextField" destination="jDn-cc-I8d" id="p0v-KO-vUa"/>
                         <outlet property="passwordTextField" destination="mGP-qE-hjo" id="lBe-wk-CA6"/>
+                        <segue destination="GMP-50-I8A" kind="presentation" identifier="LoginSegue" id="ZnX-Me-DnF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ml-wz-IFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-108" y="125"/>
+        </scene>
+        <!--Stats-->
+        <scene sceneID="OCB-Ao-e1g">
+            <objects>
+                <viewController id="X5P-2D-FcS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2VY-tn-2YF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="TRr-HF-ZhP"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Stats" id="m6h-VL-mtk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4MV-iy-CNE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1071" y="947"/>
+        </scene>
+        <!--Alarm-->
+        <scene sceneID="LDo-8N-m7a">
+            <objects>
+                <viewController id="lRn-9Q-slw" customClass="SleepTrackingViewController" customModule="Sleepsta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B7m-vi-VIW" customClass="GradientView" customModule="Sleepsta" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="oKo-6s-aTv">
+                                <rect key="frame" x="27.5" y="225.5" width="320" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="574811480.35864401">
+                                    <!--2019-03-20 21:51:20 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NeO-U5-Xhc">
+                                <rect key="frame" x="139" y="461.5" width="97" height="30"/>
+                                <state key="normal" title="Start Tracking"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="NeO-U5-Xhc" firstAttribute="top" secondItem="oKo-6s-aTv" secondAttribute="bottom" constant="20" id="3BV-03-CY3"/>
+                            <constraint firstItem="NeO-U5-Xhc" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="Nc1-KJ-Rkn"/>
+                            <constraint firstItem="oKo-6s-aTv" firstAttribute="centerY" secondItem="B7m-vi-VIW" secondAttribute="centerY" id="di7-aN-AEn"/>
+                            <constraint firstItem="oKo-6s-aTv" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="o87-qN-34U"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1Z3-mH-yhh"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Alarm" id="2a3-0O-lVu"/>
+                    <connections>
+                        <outlet property="alarmTimePicker" destination="oKo-6s-aTv" id="yjj-7M-KsE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xyG-vM-kKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="335" y="947"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="DCS-MT-5af">
+            <objects>
+                <tabBarController id="GMP-50-I8A" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="p08-6Y-gKT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="lRn-9Q-slw" kind="relationship" relationship="viewControllers" id="bM3-Au-7VB"/>
+                        <segue destination="X5P-2D-FcS" kind="relationship" relationship="viewControllers" id="S8S-Lz-d4w"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eR2-F6-IRM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="746" y="125"/>
         </scene>
     </scenes>
 </document>
