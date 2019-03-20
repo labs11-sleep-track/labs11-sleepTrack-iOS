@@ -12,6 +12,12 @@
 		343534762242B3CC00CCB1C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 343534752242B3CC00CCB1C5 /* Assets.xcassets */; };
 		343534792242B3CC00CCB1C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 343534772242B3CC00CCB1C5 /* LaunchScreen.storyboard */; };
 		343534842242B3CD00CCB1C5 /* SleepstaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343534832242B3CD00CCB1C5 /* SleepstaTests.swift */; };
+		345CE0912242CA7B005B5725 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0902242CA7B005B5725 /* LoginViewController.swift */; };
+		345CE0932242CB96005B5725 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0922242CB96005B5725 /* LoginManager.swift */; };
+		345CE0952242D0B4005B5725 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0942242D0B4005B5725 /* GradientView.swift */; };
+		345CE0972242D107005B5725 /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0962242D107005B5725 /* UIColor+CustomColors.swift */; };
+		345CE09B2242D3BD005B5725 /* SLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE09A2242D3BD005B5725 /* SLTextField.swift */; };
+		345CE09D2242DAC6005B5725 /* ShiftableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,12 @@
 		3435347F2242B3CD00CCB1C5 /* SleepstaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SleepstaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		343534832242B3CD00CCB1C5 /* SleepstaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepstaTests.swift; sourceTree = "<group>"; };
 		343534852242B3CD00CCB1C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		345CE0902242CA7B005B5725 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		345CE0922242CB96005B5725 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		345CE0942242D0B4005B5725 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		345CE0962242D107005B5725 /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
+		345CE09A2242D3BD005B5725 /* SLTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLTextField.swift; sourceTree = "<group>"; };
+		345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +88,11 @@
 			isa = PBXGroup;
 			children = (
 				343534722242B3CB00CCB1C5 /* Main.storyboard */,
+				345CE0902242CA7B005B5725 /* LoginViewController.swift */,
+				345CE0922242CB96005B5725 /* LoginManager.swift */,
+				345CE0962242D107005B5725 /* UIColor+CustomColors.swift */,
+				345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */,
+				345CE09E2242E0C2005B5725 /* View Subclasses */,
 				3435348E2242B41300CCB1C5 /* Resources */,
 			);
 			path = Sleepsta;
@@ -99,6 +116,15 @@
 				3435347A2242B3CD00CCB1C5 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		345CE09E2242E0C2005B5725 /* View Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				345CE0942242D0B4005B5725 /* GradientView.swift */,
+				345CE09A2242D3BD005B5725 /* SLTextField.swift */,
+			);
+			path = "View Subclasses";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +228,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				345CE0912242CA7B005B5725 /* LoginViewController.swift in Sources */,
+				345CE0972242D107005B5725 /* UIColor+CustomColors.swift in Sources */,
+				345CE09D2242DAC6005B5725 /* ShiftableViewController.swift in Sources */,
+				345CE09B2242D3BD005B5725 /* SLTextField.swift in Sources */,
+				345CE0932242CB96005B5725 /* LoginManager.swift in Sources */,
+				345CE0952242D0B4005B5725 /* GradientView.swift in Sources */,
 				3435346F2242B3CB00CCB1C5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
