@@ -11,6 +11,8 @@ import UIKit
 class LoginViewController: ShiftableViewController {
 
     // MARK: - Properties
+    let loginManager = LoginManager.shared
+    
     @IBOutlet weak var emailTextField: SLTextField!
     @IBOutlet weak var passwordTextField: SLTextField!
     @IBOutlet weak var firstNameTextField: SLTextField!
@@ -40,7 +42,12 @@ class LoginViewController: ShiftableViewController {
     
     
     @IBAction func signupUser(_ sender: Any) {
-        
+        guard let email = emailTextField.text, let password = passwordTextField.text, let firstName = firstNameTextField.text, let lastName = lastNameTextField.text else { return }
+        let user = User(email: email, password: password, firstName: firstName, lastName: lastName)
+     
+        loginManager.registerUser(user: user) {
+            
+        }
     }
     
     
@@ -58,6 +65,8 @@ class LoginViewController: ShiftableViewController {
     private func setupViews() {
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
         
         let gradientView = view as! GradientView
         gradientView.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)

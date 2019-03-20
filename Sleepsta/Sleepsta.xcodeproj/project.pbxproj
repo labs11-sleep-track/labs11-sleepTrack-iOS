@@ -20,6 +20,7 @@
 		345CE09D2242DAC6005B5725 /* ShiftableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */; };
 		345CE0A02242E568005B5725 /* SleepTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE09F2242E568005B5725 /* SleepTrackingViewController.swift */; };
 		345CE0A22242E9D2005B5725 /* SLDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0A12242E9D2005B5725 /* SLDatePickerView.swift */; };
+		345CE0A42242F80C005B5725 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0A32242F80C005B5725 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftableViewController.swift; sourceTree = "<group>"; };
 		345CE09F2242E568005B5725 /* SleepTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepTrackingViewController.swift; sourceTree = "<group>"; };
 		345CE0A12242E9D2005B5725 /* SLDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLDatePickerView.swift; sourceTree = "<group>"; };
+		345CE0A32242F80C005B5725 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				345CE09F2242E568005B5725 /* SleepTrackingViewController.swift */,
 				345CE0962242D107005B5725 /* UIColor+CustomColors.swift */,
 				345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */,
+				345CE0A52242F810005B5725 /* Model */,
 				345CE09E2242E0C2005B5725 /* View Subclasses */,
 				3435348E2242B41300CCB1C5 /* Resources */,
 			);
@@ -131,6 +134,14 @@
 				345CE0A12242E9D2005B5725 /* SLDatePickerView.swift */,
 			);
 			path = "View Subclasses";
+			sourceTree = "<group>";
+		};
+		345CE0A52242F810005B5725 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				345CE0A32242F80C005B5725 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +253,7 @@
 				345CE0A02242E568005B5725 /* SleepTrackingViewController.swift in Sources */,
 				345CE0A22242E9D2005B5725 /* SLDatePickerView.swift in Sources */,
 				345CE0952242D0B4005B5725 /* GradientView.swift in Sources */,
+				345CE0A42242F80C005B5725 /* User.swift in Sources */,
 				3435346F2242B3CB00CCB1C5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
