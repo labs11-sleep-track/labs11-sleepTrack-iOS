@@ -18,6 +18,8 @@
 		345CE0972242D107005B5725 /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0962242D107005B5725 /* UIColor+CustomColors.swift */; };
 		345CE09B2242D3BD005B5725 /* SLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE09A2242D3BD005B5725 /* SLTextField.swift */; };
 		345CE09D2242DAC6005B5725 /* ShiftableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */; };
+		345CE0A02242E568005B5725 /* SleepTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE09F2242E568005B5725 /* SleepTrackingViewController.swift */; };
+		345CE0A22242E9D2005B5725 /* SLDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0A12242E9D2005B5725 /* SLDatePickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		345CE0962242D107005B5725 /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
 		345CE09A2242D3BD005B5725 /* SLTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLTextField.swift; sourceTree = "<group>"; };
 		345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftableViewController.swift; sourceTree = "<group>"; };
+		345CE09F2242E568005B5725 /* SleepTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepTrackingViewController.swift; sourceTree = "<group>"; };
+		345CE0A12242E9D2005B5725 /* SLDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLDatePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 				343534722242B3CB00CCB1C5 /* Main.storyboard */,
 				345CE0902242CA7B005B5725 /* LoginViewController.swift */,
 				345CE0922242CB96005B5725 /* LoginManager.swift */,
+				345CE09F2242E568005B5725 /* SleepTrackingViewController.swift */,
 				345CE0962242D107005B5725 /* UIColor+CustomColors.swift */,
 				345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */,
 				345CE09E2242E0C2005B5725 /* View Subclasses */,
@@ -123,6 +128,7 @@
 			children = (
 				345CE0942242D0B4005B5725 /* GradientView.swift */,
 				345CE09A2242D3BD005B5725 /* SLTextField.swift */,
+				345CE0A12242E9D2005B5725 /* SLDatePickerView.swift */,
 			);
 			path = "View Subclasses";
 			sourceTree = "<group>";
@@ -233,6 +239,8 @@
 				345CE09D2242DAC6005B5725 /* ShiftableViewController.swift in Sources */,
 				345CE09B2242D3BD005B5725 /* SLTextField.swift in Sources */,
 				345CE0932242CB96005B5725 /* LoginManager.swift in Sources */,
+				345CE0A02242E568005B5725 /* SleepTrackingViewController.swift in Sources */,
+				345CE0A22242E9D2005B5725 /* SLDatePickerView.swift in Sources */,
 				345CE0952242D0B4005B5725 /* GradientView.swift in Sources */,
 				3435346F2242B3CB00CCB1C5 /* AppDelegate.swift in Sources */,
 			);

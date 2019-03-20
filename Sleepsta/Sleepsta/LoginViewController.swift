@@ -27,12 +27,12 @@ class LoginViewController: ShiftableViewController {
     
     // MARK: - UI Actions
     @IBAction func loginUser(_ sender: Any) {
-        
+        performSegue(withIdentifier: "LoginSegue", sender: self)
     }
     
     
     @IBAction func signupUser(_ sender: Any) {
-        
+        performSegue(withIdentifier: "LoginSegue", sender: self)
     }
     
     
