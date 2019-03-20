@@ -13,6 +13,10 @@ class LoginViewController: ShiftableViewController {
     // MARK: - Properties
     @IBOutlet weak var emailTextField: SLTextField!
     @IBOutlet weak var passwordTextField: SLTextField!
+    @IBOutlet weak var firstNameTextField: SLTextField!
+    @IBOutlet weak var lastNameTextField: SLTextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signupButton: UIButton!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -26,13 +30,17 @@ class LoginViewController: ShiftableViewController {
     }
     
     // MARK: - UI Actions
+    @IBAction func toggleLogin(_ sender: UISegmentedControl) {
+        setLoginButtons(to: sender.selectedSegmentIndex == 0)
+    }
+    
     @IBAction func loginUser(_ sender: Any) {
         performSegue(withIdentifier: "LoginSegue", sender: self)
     }
     
     
     @IBAction func signupUser(_ sender: Any) {
-        performSegue(withIdentifier: "LoginSegue", sender: self)
+        
     }
     
     
@@ -56,5 +64,16 @@ class LoginViewController: ShiftableViewController {
         
         emailTextField.setPlaceholder("Email")
         passwordTextField.setPlaceholder("Password")
+        firstNameTextField.setPlaceholder("First Name")
+        lastNameTextField.setPlaceholder("Last Name")
+        
+        setLoginButtons(to: true)
+    }
+    
+    private func setLoginButtons(to bool: Bool) {
+        loginButton.isHidden = !bool
+        signupButton.isHidden = bool
+        firstNameTextField.isHidden = bool
+        lastNameTextField.isHidden = bool
     }
 }

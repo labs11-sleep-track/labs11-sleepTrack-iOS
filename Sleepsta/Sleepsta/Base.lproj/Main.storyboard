@@ -20,22 +20,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-8r-Qp2">
-                                <rect key="frame" x="87.5" y="280.5" width="200" height="106"/>
+                                <rect key="frame" x="87.5" y="224.5" width="200" height="218"/>
                                 <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="x47-8k-8Nq">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="29"/>
+                                        <segments>
+                                            <segment title="Login"/>
+                                            <segment title="Sign-Up"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="toggleLogin:" destination="6V9-Jv-vbd" eventType="valueChanged" id="OHz-Xc-4u5"/>
+                                        </connections>
+                                    </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jDn-cc-I8d" customClass="SLTextField" customModule="Sleepsta" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
+                                        <rect key="frame" x="0.0" y="36" width="200" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mGP-qE-hjo" customClass="SLTextField" customModule="Sleepsta" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="38" width="200" height="30"/>
+                                        <rect key="frame" x="0.0" y="74" width="200" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6bz-TW-Ph6" customClass="SLTextField" customModule="Sleepsta" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="112" width="200" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bTq-lE-iEO" customClass="SLTextField" customModule="Sleepsta" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="150" width="200" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mTy-0v-PZC">
-                                        <rect key="frame" x="0.0" y="76" width="200" height="30"/>
+                                        <rect key="frame" x="0.0" y="188" width="200" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hO8-2F-6n8">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
@@ -78,7 +100,11 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="jDn-cc-I8d" id="p0v-KO-vUa"/>
+                        <outlet property="firstNameTextField" destination="6bz-TW-Ph6" id="TVe-iz-kgP"/>
+                        <outlet property="lastNameTextField" destination="bTq-lE-iEO" id="f61-8w-TGI"/>
+                        <outlet property="loginButton" destination="hO8-2F-6n8" id="BjG-HP-tnn"/>
                         <outlet property="passwordTextField" destination="mGP-qE-hjo" id="lBe-wk-CA6"/>
+                        <outlet property="signupButton" destination="9eQ-li-m2D" id="VY1-PX-ULg"/>
                         <segue destination="GMP-50-I8A" kind="presentation" identifier="LoginSegue" id="ZnX-Me-DnF"/>
                     </connections>
                 </viewController>
