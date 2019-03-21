@@ -10,14 +10,46 @@ import Foundation
 
 class LoginManager {
     
-    private let baseURL = URL(string: "")!
+    private let baseURL = URL(string: "https://sleepsta.herokuapp.com/api")!
+    private(set) var token: String = ""
     
-    func loginUser(username: String, password: String, completion: @escaping () -> Void) {
+    static let shared = LoginManager()
+    
+    func login(_ user: User, with loginType: LoginType = .login, completion: @escaping () -> Void) {
+        let requestURL = baseURL.appendingPathComponent(loginType.rawValue)
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "POST"
+        
+        do {
+            let requestData = try JSONEncoder().encode(user)
+            print(String(data: requestData, encoding: .utf8)!)
+            request.httpBody = requestData
+        } catch {
+            NSLog("Unable to encode user: \(user)\nWith error: \(error)")
+        }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error)
+            }
+            
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+            }
+            
+            if let response = response {
+                print(response)
+            }
+            
+            completion()
+        }.resume()
         
     }
     
-    func registerUser(username: String, password: String,  completion: @escaping () -> Void) {
-        
-    }
-    
+}
+
+enum LoginType: String {
+    case login
+    case register
 }
