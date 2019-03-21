@@ -16,8 +16,22 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
     private var minutes = ["00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"]
     private var modifiers = ["am", "pm"]
     private var titles: [[String]] = []
-    private(set) var date: Date = Date()
+    private(set) var date: Date = Date() {
+        didSet {
+            print("\(hoursFromNow) hours and \(minutesFromNow) minutes from now")
+        }
+    }
     let calendar = Calendar.current
+    
+    var hoursFromNow: Int {
+        let hours = calendar.dateComponents([.hour], from: Date(), to: date).hour!
+        return hours
+    }
+    var minutesFromNow: Int {
+        let newDate = calendar.date(byAdding: .hour, value: hoursFromNow, to: Date())!
+        let minutes = calendar.dateComponents([.minute], from: newDate, to: date).minute!
+        return minutes
+    }
 
     // MARK: - Initializers
     required init?(coder aDecoder: NSCoder) {
@@ -75,7 +89,7 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .long
-        print("alarm date: \(dateFormatter.string(from: date))\ncurrent date: \(dateFormatter.string(from: Date()))")
+//        print("alarm date: \(dateFormatter.string(from: date))\ncurrent date: \(dateFormatter.string(from: Date()))")
     }
     
     // MARK: - Utility Methods
@@ -124,6 +138,7 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         selectRow(hourIndex, inComponent: 0, animated: true)
         selectRow(minuteIndex, inComponent: 1, animated: true)
         selectRow(modifierIndex, inComponent: 2, animated: true)
+        self.date = dateFromComponents()
     }
     
     private func roundMinute(_ minute: Int) -> Int {

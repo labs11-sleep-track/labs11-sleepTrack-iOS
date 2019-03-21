@@ -26,7 +26,6 @@ class SleepTrackingViewController: UIViewController {
         gradientView.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)
         
         alarmTimePicker.setDateTo(8, component: .hour)
-        print(alarmTimePicker.date)
     }
     
     /*
