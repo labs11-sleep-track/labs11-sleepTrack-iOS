@@ -10,6 +10,7 @@ import UIKit
 
 class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    // MARK: - Properties
     private var textFontColor: UIColor = .black
     private var hours = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
     private var minutes = ["00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"]
@@ -18,12 +19,14 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
     private(set) var date: Date = Date()
     let calendar = Calendar.current
 
+    // MARK: - Initializers
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         dataSource = self
         delegate = self
         titles = [hours, minutes, modifiers]
+        date = dateFromComponents()
     }
     
     override init(frame: CGRect = .zero) {
@@ -32,8 +35,16 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         dataSource = self
         delegate = self
         titles = [hours, minutes, modifiers]
+        date = dateFromComponents()
     }
     
+    // MARK: - Public API
+    func setDateTo(_ value: Int, component: Calendar.Component, from date: Date = Date()) {
+        let date = calendar.date(byAdding: component, value: value, to: date)!
+        componentsToDate(date)
+    }
+    
+    // MARK: - Picker View Data Source
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
     }
@@ -52,6 +63,7 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         }
     }
     
+    // MARK: - Picker View Delegate
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let titleString = titles[component][row]
         let title = NSAttributedString(string: titleString, attributes: [.foregroundColor: UIColor.white])
@@ -66,6 +78,7 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         print("alarm date: \(dateFormatter.string(from: date))\ncurrent date: \(dateFormatter.string(from: Date()))")
     }
     
+    // MARK: - Utility Methods
     private func dateFromComponents() -> Date {
         // Get the current componenets, and adjust based on modifier
         var hour = Int(hours[selectedRow(inComponent: 0)])!
@@ -87,5 +100,37 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         }
         
         return date
+    }
+    
+    private func componentsToDate(_ date: Date) {
+        let components = calendar.dateComponents([.hour, .minute], from: date)
+        guard var hour = components.hour, var minute = components.minute else { return }
+        
+        minute = roundMinute(minute)
+        
+        let modifierIndex: Int
+        if hour < 12 {
+            modifierIndex = 0
+        } else {
+            hour -= 12
+            modifierIndex = 1
+        }
+        
+        let hourString = String(hour)
+        let minuteString = String(minute)
+        
+        guard let hourIndex = hours.index(of: hourString), let minuteIndex = minutes.index(of: minuteString) else { return }
+        
+        selectRow(hourIndex, inComponent: 0, animated: true)
+        selectRow(minuteIndex, inComponent: 1, animated: true)
+        selectRow(modifierIndex, inComponent: 2, animated: true)
+    }
+    
+    private func roundMinute(_ minute: Int) -> Int {
+        if minute % 5 == 0 {
+            return minute
+        } else {
+            return minute + (5 - minute % 5)
+        }
     }
 }
