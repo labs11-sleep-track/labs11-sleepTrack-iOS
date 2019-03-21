@@ -84,6 +84,10 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         return title
     }
     
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        return 60
+    }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         date = dateFromComponents()
         let dateFormatter = DateFormatter()
