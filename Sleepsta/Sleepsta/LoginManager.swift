@@ -10,35 +10,46 @@ import Foundation
 
 class LoginManager {
     
-    private let baseURL = URL(string: "https://sleepsta.herokuapp.com")!
+    private let baseURL = URL(string: "https://sleepsta.herokuapp.com/api")!
+    private(set) var token: String = ""
     
     static let shared = LoginManager()
     
-    func loginUser(username: String, password: String, completion: @escaping () -> Void) {
+    func login(_ user: User, with loginType: LoginType = .login, completion: @escaping () -> Void) {
+        let requestURL = baseURL.appendingPathComponent(loginType.rawValue)
         
-    }
-    
-    func registerUser(user: User, completion: @escaping () -> Void) {
-        
-        var request = URLRequest(url: baseURL)
+        var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
         
         do {
-            let jsonEncoder = JSONEncoder()
-            jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
-            let requestData = try jsonEncoder.encode(user)
+            let requestData = try JSONEncoder().encode(user)
+            print(String(data: requestData, encoding: .utf8)!)
             request.httpBody = requestData
         } catch {
             NSLog("Unable to encode user: \(user)\nWith error: \(error)")
         }
         
-        URLSession.shared.dataTask(with: request) { (data, _, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error)
+            }
+            
             if let data = data {
                 print(String(data: data, encoding: .utf8)!)
             }
+            
+            if let response = response {
+                print(response)
+            }
+            
+            completion()
         }.resume()
-        
         
     }
     
+}
+
+enum LoginType: String {
+    case login
+    case register
 }

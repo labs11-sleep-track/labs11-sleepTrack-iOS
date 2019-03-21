@@ -37,29 +37,21 @@ class LoginViewController: ShiftableViewController {
     }
     
     @IBAction func loginUser(_ sender: Any) {
-        performSegue(withIdentifier: "LoginSegue", sender: self)
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "LoginSegue", sender: self)
+        }
     }
-    
     
     @IBAction func signupUser(_ sender: Any) {
         guard let email = emailTextField.text, let password = passwordTextField.text, let firstName = firstNameTextField.text, let lastName = lastNameTextField.text else { return }
         let user = User(email: email, password: password, firstName: firstName, lastName: lastName)
      
-        loginManager.registerUser(user: user) {
-            
+        loginManager.login(user, with: .register) {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "LoginSegue", sender: self)
+            }
         }
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: - Utility Methods
     private func setupViews() {
