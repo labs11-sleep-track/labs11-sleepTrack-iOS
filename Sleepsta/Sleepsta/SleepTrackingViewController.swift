@@ -11,8 +11,8 @@ import UIKit
 class SleepTrackingViewController: UIViewController {
 
     // MARK: - Properties
-    @IBOutlet weak var alarmTimePicker: UIDatePicker!
-    let calendar = Calendar.current
+
+    @IBOutlet weak var alarmTimePicker: SLDatePickerView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -25,10 +25,7 @@ class SleepTrackingViewController: UIViewController {
         let gradientView = view as! GradientView
         gradientView.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)
         
-        alarmTimePicker.setValue(UIColor.accentColor, forKey: "textColor")
-        
-        let suggestedTime = calendar.date(byAdding: .hour, value: 8, to: Date())!
-        alarmTimePicker.setDate(suggestedTime, animated: true)
+        alarmTimePicker.setDateTo(8, component: .hour)
     }
     
     /*

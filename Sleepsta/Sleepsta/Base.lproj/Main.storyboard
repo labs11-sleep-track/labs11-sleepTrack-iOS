@@ -136,29 +136,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="oKo-6s-aTv">
-                                <rect key="frame" x="27.5" y="225.5" width="320" height="216"/>
-                                <date key="date" timeIntervalSinceReferenceDate="574811480.35864401">
-                                    <!--2019-03-20 21:51:20 +0000-->
-                                </date>
-                            </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NeO-U5-Xhc">
                                 <rect key="frame" x="139" y="461.5" width="97" height="30"/>
                                 <state key="normal" title="Start Tracking"/>
                             </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XKw-GN-L2t" customClass="SLDatePickerView" customModule="Sleepsta" customModuleProvider="target">
+                                <rect key="frame" x="27.5" y="225.5" width="320" height="216"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="NeO-U5-Xhc" firstAttribute="top" secondItem="oKo-6s-aTv" secondAttribute="bottom" constant="20" id="3BV-03-CY3"/>
                             <constraint firstItem="NeO-U5-Xhc" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="Nc1-KJ-Rkn"/>
-                            <constraint firstItem="oKo-6s-aTv" firstAttribute="centerY" secondItem="B7m-vi-VIW" secondAttribute="centerY" id="di7-aN-AEn"/>
-                            <constraint firstItem="oKo-6s-aTv" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="o87-qN-34U"/>
+                            <constraint firstItem="XKw-GN-L2t" firstAttribute="centerY" secondItem="B7m-vi-VIW" secondAttribute="centerY" id="byb-qc-Kv8"/>
+                            <constraint firstItem="NeO-U5-Xhc" firstAttribute="top" secondItem="XKw-GN-L2t" secondAttribute="bottom" constant="20" id="n22-io-bmS"/>
+                            <constraint firstItem="XKw-GN-L2t" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="sj4-uA-15J"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Z3-mH-yhh"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Alarm" id="2a3-0O-lVu"/>
                     <connections>
-                        <outlet property="alarmTimePicker" destination="oKo-6s-aTv" id="yjj-7M-KsE"/>
+                        <outlet property="alarmTimePicker" destination="XKw-GN-L2t" id="Alj-Qz-pYG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyG-vM-kKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
