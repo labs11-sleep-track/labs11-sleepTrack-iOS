@@ -139,6 +139,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NeO-U5-Xhc">
                                 <rect key="frame" x="139" y="461.5" width="97" height="30"/>
                                 <state key="normal" title="Start Tracking"/>
+                                <connections>
+                                    <action selector="toggleTracking:" destination="lRn-9Q-slw" eventType="touchUpInside" id="QyT-d7-Fr1"/>
+                                </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XKw-GN-L2t" customClass="SLDatePickerView" customModule="Sleepsta" customModuleProvider="target">
                                 <rect key="frame" x="27.5" y="225.5" width="320" height="216"/>
@@ -156,6 +159,7 @@
                     <tabBarItem key="tabBarItem" title="Alarm" id="2a3-0O-lVu"/>
                     <connections>
                         <outlet property="alarmTimePicker" destination="XKw-GN-L2t" id="Alj-Qz-pYG"/>
+                        <outlet property="toggleTrackingButton" destination="NeO-U5-Xhc" id="ELj-dH-fZF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyG-vM-kKo" userLabel="First Responder" sceneMemberID="firstResponder"/>

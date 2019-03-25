@@ -11,8 +11,11 @@ import UIKit
 class SleepTrackingViewController: UIViewController {
 
     // MARK: - Properties
+    
+    let motionManager = MotionManager.shared
 
     @IBOutlet weak var alarmTimePicker: SLDatePickerView!
+    @IBOutlet weak var toggleTrackingButton: UIButton!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -26,16 +29,17 @@ class SleepTrackingViewController: UIViewController {
         gradientView.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)
         
         alarmTimePicker.setDateTo(8, component: .hour)
+        updateTrackingButton()
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func toggleTracking(_ sender: Any) {
+        motionManager.toggleTracking()
+        updateTrackingButton()
     }
-    */
-
+    
+    private func updateTrackingButton() {
+        let title = motionManager.isTracking ? "Stop Tracking" : "Start Tracking"
+        toggleTrackingButton.setTitle(title, for: .normal)
+    }
+    
 }
