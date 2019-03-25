@@ -151,13 +151,29 @@
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XKw-GN-L2t" customClass="SLDatePickerView" customModule="Sleepsta" customModuleProvider="target">
                                 <rect key="frame" x="27.5" y="225.5" width="320" height="216"/>
                             </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWK-hg-D7k">
+                                <rect key="frame" x="24" y="68" width="254.5" height="43"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UID Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpa-la-1sb">
+                                <rect key="frame" x="24" y="111" width="75" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="YWK-hg-D7k" firstAttribute="top" secondItem="1Z3-mH-yhh" secondAttribute="top" constant="48" id="7aP-oi-Y5m"/>
                             <constraint firstItem="NeO-U5-Xhc" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="Nc1-KJ-Rkn"/>
+                            <constraint firstItem="YWK-hg-D7k" firstAttribute="leading" secondItem="1Z3-mH-yhh" secondAttribute="leading" constant="24" id="Sa0-Bh-jXu"/>
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="centerY" secondItem="B7m-vi-VIW" secondAttribute="centerY" id="byb-qc-Kv8"/>
+                            <constraint firstItem="wpa-la-1sb" firstAttribute="leading" secondItem="YWK-hg-D7k" secondAttribute="leading" id="cXx-YB-4yd"/>
                             <constraint firstItem="NeO-U5-Xhc" firstAttribute="top" secondItem="XKw-GN-L2t" secondAttribute="bottom" constant="20" id="n22-io-bmS"/>
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="sj4-uA-15J"/>
+                            <constraint firstItem="wpa-la-1sb" firstAttribute="top" secondItem="YWK-hg-D7k" secondAttribute="bottom" id="wTH-Eg-TpG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Z3-mH-yhh"/>
                     </view>
@@ -165,6 +181,8 @@
                     <connections>
                         <outlet property="alarmTimePicker" destination="XKw-GN-L2t" id="Alj-Qz-pYG"/>
                         <outlet property="toggleTrackingButton" destination="NeO-U5-Xhc" id="ELj-dH-fZF"/>
+                        <outlet property="userIDLabel" destination="wpa-la-1sb" id="3dW-fb-YwD"/>
+                        <outlet property="welcomeLabel" destination="YWK-hg-D7k" id="y1U-Um-Xb9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyG-vM-kKo" userLabel="First Responder" sceneMemberID="firstResponder"/>

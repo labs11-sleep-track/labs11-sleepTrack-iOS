@@ -14,6 +14,10 @@ class SleepTrackingViewController: UIViewController {
     
     let motionManager = MotionManager.shared
 
+    // These labels are mostly to show that I am getting data, won't be a part of the final design.
+    @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var userIDLabel: UILabel!
+    
     @IBOutlet weak var alarmTimePicker: SLDatePickerView!
     @IBOutlet weak var toggleTrackingButton: UIButton!
     
@@ -24,17 +28,26 @@ class SleepTrackingViewController: UIViewController {
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let gradientView = view as! GradientView
-        gradientView.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)
         
-        alarmTimePicker.setDateTo(8, component: .hour)
-        updateTrackingButton()
-        
+        setupViews()
     }
     
     @IBAction func toggleTracking(_ sender: Any) {
         motionManager.toggleTracking()
+        updateTrackingButton()
+    }
+    
+    private func setupViews() {
+        let gradientView = view as! GradientView
+        gradientView.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)
+        
+        welcomeLabel.textColor = .white
+        welcomeLabel.text = "Welcome \(User.current?.firstName ?? "")!"
+        
+        userIDLabel.textColor = .white
+        userIDLabel.text = "\(User.current?.email ?? "")"
+        
+        alarmTimePicker.setDateTo(8, component: .hour)
         updateTrackingButton()
     }
     
