@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SleepTrackingViewController: UIViewController {
+class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
 
     // MARK: - Properties
     
@@ -34,12 +34,19 @@ class SleepTrackingViewController: UIViewController {
     
     @IBAction func toggleTracking(_ sender: Any) {
         motionManager.toggleTracking()
+    }
+    
+    // MARK: - Motion Manager Delegate
+    func motionManager(_ motionManager: MotionManager, didChangeTrackingTo: Bool) {
         updateTrackingButton()
     }
     
+    // MARK: - Utility Methods
     private func setupViews() {
         let gradientView = view as! GradientView
         gradientView.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)
+        
+        motionManager.delegate = self
         
         welcomeLabel.textColor = .white
         welcomeLabel.text = "Welcome \(User.current?.firstName ?? "")!"
