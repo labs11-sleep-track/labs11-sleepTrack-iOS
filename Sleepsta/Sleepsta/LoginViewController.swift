@@ -12,7 +12,6 @@ import GoogleSignIn
 class LoginViewController: ShiftableViewController, GIDSignInUIDelegate {
 
     // MARK: - Properties
-    let loginManager = LoginManager.shared
     
     @IBOutlet weak var emailTextField: SLTextField!
     @IBOutlet weak var passwordTextField: SLTextField!
@@ -81,11 +80,13 @@ class LoginViewController: ShiftableViewController, GIDSignInUIDelegate {
         firstNameTextField.setPlaceholder("First Name")
         lastNameTextField.setPlaceholder("Last Name")
         
+        emailTextField.isHidden = true
+        passwordTextField.isHidden = true
         setLoginButtons(to: true)
     }
     
     private func setLoginButtons(to bool: Bool) {
-        loginButton.isHidden = !bool
+        loginButton.isHidden = bool
         signupButton.isHidden = bool
         firstNameTextField.isHidden = bool
         lastNameTextField.isHidden = bool
