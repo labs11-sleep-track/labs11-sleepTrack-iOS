@@ -98,7 +98,7 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
     
     // MARK: - Utility Methods
     private func dateFromComponents() -> Date {
-        // Get the current componenets, and adjust based on modifier
+        // Get the current components, and adjust based on modifier
         var hour = Int(hours[selectedRow(inComponent: 0)])!
         if hour == 12 { hour -= 12 }
         let minute = Int(minutes[selectedRow(inComponent: 1)])!
@@ -121,9 +121,11 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
     }
     
     private func componentsToDate(_ date: Date) {
+        // Get the components from the date
         let components = calendar.dateComponents([.hour, .minute], from: date)
         guard var hour = components.hour, var minute = components.minute else { return }
         
+        // Make adjustments
         minute = roundMinute(minute)
         
         let modifierIndex: Int
@@ -134,17 +136,20 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
             modifierIndex = 1
         }
         
+        // Turn them into strings and get their indexes
         let hourString = String(hour)
         let minuteString = String(minute)
         
         guard let hourIndex = hours.index(of: hourString), let minuteIndex = minutes.index(of: minuteString) else { return }
         
+        // Select the right rows and set the date
         selectRow(hourIndex, inComponent: 0, animated: true)
         selectRow(minuteIndex, inComponent: 1, animated: true)
         selectRow(modifierIndex, inComponent: 2, animated: true)
         self.date = dateFromComponents()
     }
     
+    // Rounds a minute (int) up to the nearest multiple of 5
     private func roundMinute(_ minute: Int) -> Int {
         if minute % 5 == 0 {
             return minute

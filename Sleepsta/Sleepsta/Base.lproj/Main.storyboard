@@ -20,10 +20,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-8r-Qp2">
-                                <rect key="frame" x="87.5" y="224.5" width="200" height="218"/>
+                                <rect key="frame" x="87.5" y="218.5" width="200" height="230"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="x47-8k-8Nq">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="29"/>
+                                    <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="x47-8k-8Nq">
+                                        <rect key="frame" x="0.0" y="-4" width="200" height="1"/>
                                         <segments>
                                             <segment title="Login"/>
                                             <segment title="Sign-Up"/>
@@ -33,31 +33,31 @@
                                         </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jDn-cc-I8d" customClass="SLTextField" customModule="Sleepsta" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="36" width="200" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mGP-qE-hjo" customClass="SLTextField" customModule="Sleepsta" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="74" width="200" height="30"/>
+                                        <rect key="frame" x="0.0" y="38" width="200" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6bz-TW-Ph6" customClass="SLTextField" customModule="Sleepsta" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="112" width="200" height="30"/>
+                                        <rect key="frame" x="0.0" y="76" width="200" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bTq-lE-iEO" customClass="SLTextField" customModule="Sleepsta" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="150" width="200" height="30"/>
+                                        <rect key="frame" x="0.0" y="114" width="200" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mTy-0v-PZC">
-                                        <rect key="frame" x="0.0" y="188" width="200" height="30"/>
+                                        <rect key="frame" x="0.0" y="152" width="200" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hO8-2F-6n8">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
@@ -77,6 +77,10 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="sMr-Ff-ntk" customClass="GIDSignInButton">
+                                        <rect key="frame" x="0.0" y="190" width="200" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="8XB-5N-ou5"/>
@@ -104,6 +108,7 @@
                         <outlet property="lastNameTextField" destination="bTq-lE-iEO" id="f61-8w-TGI"/>
                         <outlet property="loginButton" destination="hO8-2F-6n8" id="BjG-HP-tnn"/>
                         <outlet property="passwordTextField" destination="mGP-qE-hjo" id="lBe-wk-CA6"/>
+                        <outlet property="signInButton" destination="sMr-Ff-ntk" id="uZ8-BE-nLt"/>
                         <outlet property="signupButton" destination="9eQ-li-m2D" id="VY1-PX-ULg"/>
                         <segue destination="GMP-50-I8A" kind="presentation" identifier="LoginSegue" id="ZnX-Me-DnF"/>
                     </connections>
@@ -139,23 +144,45 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NeO-U5-Xhc">
                                 <rect key="frame" x="139" y="461.5" width="97" height="30"/>
                                 <state key="normal" title="Start Tracking"/>
+                                <connections>
+                                    <action selector="toggleTracking:" destination="lRn-9Q-slw" eventType="touchUpInside" id="QyT-d7-Fr1"/>
+                                </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XKw-GN-L2t" customClass="SLDatePickerView" customModule="Sleepsta" customModuleProvider="target">
                                 <rect key="frame" x="27.5" y="225.5" width="320" height="216"/>
                             </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWK-hg-D7k">
+                                <rect key="frame" x="24" y="68" width="254.5" height="43"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UID Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpa-la-1sb">
+                                <rect key="frame" x="24" y="111" width="75" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="YWK-hg-D7k" firstAttribute="top" secondItem="1Z3-mH-yhh" secondAttribute="top" constant="48" id="7aP-oi-Y5m"/>
                             <constraint firstItem="NeO-U5-Xhc" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="Nc1-KJ-Rkn"/>
+                            <constraint firstItem="YWK-hg-D7k" firstAttribute="leading" secondItem="1Z3-mH-yhh" secondAttribute="leading" constant="24" id="Sa0-Bh-jXu"/>
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="centerY" secondItem="B7m-vi-VIW" secondAttribute="centerY" id="byb-qc-Kv8"/>
+                            <constraint firstItem="wpa-la-1sb" firstAttribute="leading" secondItem="YWK-hg-D7k" secondAttribute="leading" id="cXx-YB-4yd"/>
                             <constraint firstItem="NeO-U5-Xhc" firstAttribute="top" secondItem="XKw-GN-L2t" secondAttribute="bottom" constant="20" id="n22-io-bmS"/>
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="sj4-uA-15J"/>
+                            <constraint firstItem="wpa-la-1sb" firstAttribute="top" secondItem="YWK-hg-D7k" secondAttribute="bottom" id="wTH-Eg-TpG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Z3-mH-yhh"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Alarm" id="2a3-0O-lVu"/>
                     <connections>
                         <outlet property="alarmTimePicker" destination="XKw-GN-L2t" id="Alj-Qz-pYG"/>
+                        <outlet property="toggleTrackingButton" destination="NeO-U5-Xhc" id="ELj-dH-fZF"/>
+                        <outlet property="userIDLabel" destination="wpa-la-1sb" id="3dW-fb-YwD"/>
+                        <outlet property="welcomeLabel" destination="YWK-hg-D7k" id="y1U-Um-Xb9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyG-vM-kKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -165,7 +192,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="DCS-MT-5af">
             <objects>
-                <tabBarController id="GMP-50-I8A" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="GMP-50-I8A" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="p08-6Y-gKT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
