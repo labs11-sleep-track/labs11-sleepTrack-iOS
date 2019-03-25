@@ -7,16 +7,26 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let signIn = GIDSignIn.sharedInstance()
+        signIn?.clientID = "923724344364-hani6pf71d8u9msnnbkab3egh5j9n8gm.apps.googleusercontent.com"
+        signIn?.delegate = self
+        signIn?.disconnect()
+//        signIn?.signInSilently()
+
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance()!.handle(url as URL?, sourceApplication: options[.sourceApplication] as? String, annotation: options[.annotation])
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -41,6 +51,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    // MARK: - GID Sign In Delegate
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("Error signing in: \(error.localizedDescription)")
+        } else {
+            let userID = user.userID!
+            let idToken = user.authentication.idToken!
+            let firstName = user.profile.givenName
+            let lastName = user.profile.familyName
+            let email = user.profile.email!
+            
+            User.current = User(identifier: userID, email: email, idToken: idToken, firstName: firstName, lastName: lastName)
+            if let rootVC = window?.rootViewController {
+                rootVC.performSegue(withIdentifier: "LoginSegue", sender: self)
+            } else {
+                presentLoggedInVC()
+            }
+        }
+    }
 
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        User.current = nil
+    }
+    
+    // MARK: - Utility Methods
+    private func presentLoggedInVC() {
+        if User.current != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
+            window?.rootViewController = tabBarController
+            window?.makeKeyAndVisible()
+        }
+    }
 }
 

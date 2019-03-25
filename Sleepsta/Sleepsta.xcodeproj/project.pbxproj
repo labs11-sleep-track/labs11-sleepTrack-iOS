@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CA149E3D22ACE2F20887BB8 /* Pods_Sleepsta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBFB566A31510DCB703AFC2 /* Pods_Sleepsta.framework */; };
 		3435346F2242B3CB00CCB1C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3435346E2242B3CB00CCB1C5 /* AppDelegate.swift */; };
 		343534742242B3CB00CCB1C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 343534722242B3CB00CCB1C5 /* Main.storyboard */; };
 		343534762242B3CC00CCB1C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 343534752242B3CC00CCB1C5 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		345CE0A42242F80C005B5725 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0A32242F80C005B5725 /* User.swift */; };
 		349947402249722700BE41B2 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499473F2249722700BE41B2 /* MotionManager.swift */; };
 		349947422249725E00BE41B2 /* MotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349947412249725E00BE41B2 /* MotionData.swift */; };
+		8AB93F105170F484AF100DDC /* Pods_SleepstaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076225E39480752D124ECCD9 /* Pods_SleepstaTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		076225E39480752D124ECCD9 /* Pods_SleepstaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepstaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3435346B2242B3CB00CCB1C5 /* Sleepsta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sleepsta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3435346E2242B3CB00CCB1C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		343534732242B3CB00CCB1C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -56,6 +59,11 @@
 		345CE0A32242F80C005B5725 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3499473F2249722700BE41B2 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		349947412249725E00BE41B2 /* MotionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionData.swift; sourceTree = "<group>"; };
+		3775738036A98945C6D7C5F1 /* Pods-Sleepsta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sleepsta.debug.xcconfig"; path = "Target Support Files/Pods-Sleepsta/Pods-Sleepsta.debug.xcconfig"; sourceTree = "<group>"; };
+		62A72A55B7E72B9E8ED8B9B4 /* Pods-Sleepsta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sleepsta.release.xcconfig"; path = "Target Support Files/Pods-Sleepsta/Pods-Sleepsta.release.xcconfig"; sourceTree = "<group>"; };
+		8D8983DCE380FBEB12116724 /* Pods-SleepstaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepstaTests.release.xcconfig"; path = "Target Support Files/Pods-SleepstaTests/Pods-SleepstaTests.release.xcconfig"; sourceTree = "<group>"; };
+		BB67BA4AC4BD7BAA38E45182 /* Pods-SleepstaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepstaTests.debug.xcconfig"; path = "Target Support Files/Pods-SleepstaTests/Pods-SleepstaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DBBFB566A31510DCB703AFC2 /* Pods_Sleepsta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sleepsta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CA149E3D22ACE2F20887BB8 /* Pods_Sleepsta.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AB93F105170F484AF100DDC /* Pods_SleepstaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +92,8 @@
 				3435346D2242B3CB00CCB1C5 /* Sleepsta */,
 				343534822242B3CD00CCB1C5 /* SleepstaTests */,
 				3435346C2242B3CB00CCB1C5 /* Products */,
+				509358ECE39ED79B190DBBA9 /* Pods */,
+				354B53D6FC9C32EA48C58C43 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +162,26 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		354B53D6FC9C32EA48C58C43 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DBBFB566A31510DCB703AFC2 /* Pods_Sleepsta.framework */,
+				076225E39480752D124ECCD9 /* Pods_SleepstaTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		509358ECE39ED79B190DBBA9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3775738036A98945C6D7C5F1 /* Pods-Sleepsta.debug.xcconfig */,
+				62A72A55B7E72B9E8ED8B9B4 /* Pods-Sleepsta.release.xcconfig */,
+				BB67BA4AC4BD7BAA38E45182 /* Pods-SleepstaTests.debug.xcconfig */,
+				8D8983DCE380FBEB12116724 /* Pods-SleepstaTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -157,9 +189,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 343534882242B3CD00CCB1C5 /* Build configuration list for PBXNativeTarget "Sleepsta" */;
 			buildPhases = (
+				F77F1AD5AFAF8F8A3257C0CE /* [CP] Check Pods Manifest.lock */,
 				343534672242B3CB00CCB1C5 /* Sources */,
 				343534682242B3CB00CCB1C5 /* Frameworks */,
 				343534692242B3CB00CCB1C5 /* Resources */,
+				5DCE0197A9E45B568EFFC802 /* [CP] Embed Pods Frameworks */,
+				5200B28602453DBA00A87B85 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -174,6 +209,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3435348B2242B3CD00CCB1C5 /* Build configuration list for PBXNativeTarget "SleepstaTests" */;
 			buildPhases = (
+				1914F57C0ADBA40DD00074EA /* [CP] Check Pods Manifest.lock */,
 				3435347B2242B3CD00CCB1C5 /* Sources */,
 				3435347C2242B3CD00CCB1C5 /* Frameworks */,
 				3435347D2242B3CD00CCB1C5 /* Resources */,
@@ -250,6 +286,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1914F57C0ADBA40DD00074EA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SleepstaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5200B28602453DBA00A87B85 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sleepsta/Pods-Sleepsta-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sleepsta/Pods-Sleepsta-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5DCE0197A9E45B568EFFC802 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sleepsta/Pods-Sleepsta-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sleepsta/Pods-Sleepsta-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F77F1AD5AFAF8F8A3257C0CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Sleepsta-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		343534672242B3CB00CCB1C5 /* Sources */ = {
@@ -427,6 +556,7 @@
 		};
 		343534892242B3CD00CCB1C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3775738036A98945C6D7C5F1 /* Pods-Sleepsta.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -445,6 +575,7 @@
 		};
 		3435348A2242B3CD00CCB1C5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62A72A55B7E72B9E8ED8B9B4 /* Pods-Sleepsta.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -463,6 +594,7 @@
 		};
 		3435348C2242B3CD00CCB1C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB67BA4AC4BD7BAA38E45182 /* Pods-SleepstaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -484,6 +616,7 @@
 		};
 		3435348D2242B3CD00CCB1C5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D8983DCE380FBEB12116724 /* Pods-SleepstaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

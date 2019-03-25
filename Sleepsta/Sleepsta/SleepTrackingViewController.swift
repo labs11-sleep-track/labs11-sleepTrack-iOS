@@ -30,6 +30,7 @@ class SleepTrackingViewController: UIViewController {
         
         alarmTimePicker.setDateTo(8, component: .hour)
         updateTrackingButton()
+        
     }
     
     @IBAction func toggleTracking(_ sender: Any) {

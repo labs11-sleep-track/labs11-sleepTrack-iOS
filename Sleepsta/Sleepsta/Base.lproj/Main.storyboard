@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-8r-Qp2">
-                                <rect key="frame" x="87.5" y="224.5" width="200" height="218"/>
+                                <rect key="frame" x="87.5" y="200.5" width="200" height="266"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="x47-8k-8Nq">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="29"/>
@@ -77,6 +77,10 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="sMr-Ff-ntk" customClass="GIDSignInButton">
+                                        <rect key="frame" x="0.0" y="226" width="200" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="8XB-5N-ou5"/>
@@ -104,6 +108,7 @@
                         <outlet property="lastNameTextField" destination="bTq-lE-iEO" id="f61-8w-TGI"/>
                         <outlet property="loginButton" destination="hO8-2F-6n8" id="BjG-HP-tnn"/>
                         <outlet property="passwordTextField" destination="mGP-qE-hjo" id="lBe-wk-CA6"/>
+                        <outlet property="signInButton" destination="sMr-Ff-ntk" id="uZ8-BE-nLt"/>
                         <outlet property="signupButton" destination="9eQ-li-m2D" id="VY1-PX-ULg"/>
                         <segue destination="GMP-50-I8A" kind="presentation" identifier="LoginSegue" id="ZnX-Me-DnF"/>
                     </connections>
@@ -169,7 +174,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="DCS-MT-5af">
             <objects>
-                <tabBarController id="GMP-50-I8A" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="GMP-50-I8A" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="p08-6Y-gKT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

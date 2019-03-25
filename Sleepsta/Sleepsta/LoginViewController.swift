@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import GoogleSignIn
 
-class LoginViewController: ShiftableViewController {
+class LoginViewController: ShiftableViewController, GIDSignInUIDelegate {
 
     // MARK: - Properties
     let loginManager = LoginManager.shared
@@ -19,6 +20,7 @@ class LoginViewController: ShiftableViewController {
     @IBOutlet weak var lastNameTextField: SLTextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var signInButton: GIDSignInButton!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -29,6 +31,12 @@ class LoginViewController: ShiftableViewController {
         super.viewDidLoad()
         
         setupViews()
+        
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if User.current != nil { performSegue(withIdentifier: "LoginSegue", sender: self)}
     }
     
     // MARK: - UI Actions
@@ -43,18 +51,23 @@ class LoginViewController: ShiftableViewController {
     }
     
     @IBAction func signupUser(_ sender: Any) {
-        guard let email = emailTextField.text, let password = passwordTextField.text, let firstName = firstNameTextField.text, let lastName = lastNameTextField.text else { return }
-        let user = User(email: email, password: password, firstName: firstName, lastName: lastName)
-     
-        loginManager.login(user, with: .register) {
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "LoginSegue", sender: self)
-            }
-        }
+//        guard let email = emailTextField.text, let password = passwordTextField.text, let firstName = firstNameTextField.text, let lastName = lastNameTextField.text else { return }
+//        let user = User(email: email, password: password, firstName: firstName, lastName: lastName)
+//
+//        loginManager.login(user, with: .register) {
+//            DispatchQueue.main.async {
+//                self.performSegue(withIdentifier: "LoginSegue", sender: self)
+//            }
+//        }
     }
 
     // MARK: - Utility Methods
     private func setupViews() {
+        GIDSignIn.sharedInstance()?.uiDelegate = self
+        
+        signInButton.colorScheme = .dark
+        
+        
         emailTextField.delegate = self
         passwordTextField.delegate = self
         firstNameTextField.delegate = self

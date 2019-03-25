@@ -9,22 +9,20 @@
 import Foundation
 
 class User: Codable {
+    static var current: User? = nil
+    
+    var identifier: String
     var firstName: String?
     var lastName: String?
     var email: String
-    var password: String?
+    var idToken: String
     
-    init(email: String, password: String, firstName: String? = nil, lastName: String? = nil) {
+    init(identifier: String, email: String, idToken: String, firstName: String? = nil, lastName: String? = nil) {
         self.email = email
-        self.password = password
+        self.idToken = idToken
+        self.identifier = identifier
         self.firstName = firstName
         self.lastName = lastName
     }
     
-    enum CodingKeys: String, CodingKey {
-        case firstName = "f_name"
-        case lastName = "l_name"
-        case email
-        case password
-    }
 }
