@@ -38,10 +38,6 @@ class LoginManager {
                 print(String(data: data, encoding: .utf8)!)
             }
             
-            if let response = response {
-                print(response)
-            }
-            
             completion()
         }.resume()
         
