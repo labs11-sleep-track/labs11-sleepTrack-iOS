@@ -13,6 +13,7 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
     // MARK: - Properties
     
     let motionManager = MotionManager.shared
+    let dailyDataController = DailyDataController()
 
     // These labels are mostly to show that I am getting data, won't be a part of the final design.
     @IBOutlet weak var welcomeLabel: UILabel!
@@ -34,6 +35,16 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
     
     @IBAction func toggleTracking(_ sender: Any) {
         motionManager.toggleTracking()
+        if motionManager.isTracking {
+            dailyDataController.addBedTime()
+        } else {
+            dailyDataController.addWakeTime()
+        }
+    }
+    
+    @IBAction func postData(_ sender: Any) {
+        dailyDataController.addSleepNotes(notes: "I guess I slept pretty well.")
+        dailyDataController.postDailyData()
     }
     
     // MARK: - Motion Manager Delegate
