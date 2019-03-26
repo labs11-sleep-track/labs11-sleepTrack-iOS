@@ -163,10 +163,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYY-OB-cTB">
+                                <rect key="frame" x="172" y="499.5" width="31" height="30"/>
+                                <state key="normal" title="Post"/>
+                                <connections>
+                                    <action selector="postData:" destination="lRn-9Q-slw" eventType="touchUpInside" id="NhL-a1-2Yu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YWK-hg-D7k" firstAttribute="top" secondItem="1Z3-mH-yhh" secondAttribute="top" constant="48" id="7aP-oi-Y5m"/>
+                            <constraint firstItem="rYY-OB-cTB" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="8V6-CW-S79"/>
+                            <constraint firstItem="rYY-OB-cTB" firstAttribute="top" secondItem="NeO-U5-Xhc" secondAttribute="bottom" constant="8" symbolic="YES" id="BP5-xg-Q5k"/>
                             <constraint firstItem="NeO-U5-Xhc" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="Nc1-KJ-Rkn"/>
                             <constraint firstItem="YWK-hg-D7k" firstAttribute="leading" secondItem="1Z3-mH-yhh" secondAttribute="leading" constant="24" id="Sa0-Bh-jXu"/>
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="centerY" secondItem="B7m-vi-VIW" secondAttribute="centerY" id="byb-qc-Kv8"/>

@@ -11,20 +11,17 @@ import Foundation
 class DailyDataController {
     static var current: DailyData = DailyData()
     
-    private let testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo1MDMsImVtYWlsIjoiaW9zdGVzdEBleGFtcGxlLmNvbSIsImlhdCI6MTU1MzYyOTczNiwiZXhwIjoxNTUzNzE2MTM2fQ.HjGmZDunKtlBu0Fp29lk_JQKHu86QrY2QiM-aTuN8VY"
-    private let testUserID = 503
-    
     private let baseURL = URL(string: .baseURLString)!
     
     // MARK: - CRUD Methods
     func addBedTime(to dailyData: DailyData = DailyDataController.current, bedTime: Date = Date()) {
-        dailyData.bedTime = bedTime.timeIntervalSince1970
-        dailyData.userID = testUserID
+        if dailyData.bedTime == nil { dailyData.bedTime = Int(bedTime.timeIntervalSince1970) }
+        if dailyData.userID == nil { dailyData.userID = LoginManager.shared.userID }
     }
     
     func addWakeTime(to dailyData: DailyData = DailyDataController.current, wakeTime: Date = Date() ) {
-        dailyData.wakeTime = wakeTime.timeIntervalSince1970
-        dailyData.motionData = MotionManager.shared.motionDataArray
+        if dailyData.wakeTime == nil { dailyData.wakeTime = Int(wakeTime.timeIntervalSince1970) }
+//        if dailyData.motionData.isEmpty { dailyData.motionData = MotionManager.shared.motionDataArray }
     }
     
     func addSleepNotes(to dailyData: DailyData = DailyDataController.current, notes: String = "") {
@@ -43,7 +40,8 @@ class DailyDataController {
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
-        request.addValue("Bearer \(testToken)", forHTTPHeaderField: "Authorization")
+        request.addValue("\(LoginManager.shared.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-type")
         
         do {
             let requestData = try JSONEncoder().encode(dailyData)
@@ -54,20 +52,24 @@ class DailyDataController {
             return
         }
         
-        URLSession.shared.dataTask(with: request) { (data, _, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print(error)
             }
             
-            if let data = data {
-                print(data)
+            if let response = response {
+                print(response)
             }
-        }
+            
+            if let data = data {
+                print(String(data: data, encoding: .utf8) ?? "Couldn't turn data into String")
+            }
+        }.resume()
     }
     
     // Utility Methods
-    private func calculateSleepQuality() -> Double {
-        return 100.0
+    private func calculateSleepQuality() -> Int {
+        return 100
     }
     
 }

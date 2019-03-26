@@ -10,13 +10,21 @@ import Foundation
 
 class DailyData: Codable {
     var userID: Int?
-    var quality: Double?
-    var bedTime: TimeInterval?
-    var wakeTime: TimeInterval?
+    var quality: Int?
+    var bedTime: Int?
+    var wakeTime: Int?
     var sleepNotes: String?
-    var motionData: [MotionData] = []
+//    var motionData: [MotionData] = []
     
     var hasRequiredValues: Bool {
         return userID != nil && quality != nil && bedTime != nil && wakeTime != nil && sleepNotes != nil
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case userID = "user_id"
+        case quality = "qos_score"
+        case bedTime = "sleeptime"
+        case wakeTime = "waketime"
+        case sleepNotes = "sleep_notes"
     }
 }
