@@ -9,9 +9,14 @@
 import Foundation
 
 class DailyData: Codable {
+    var userID: Int?
     var quality: Double?
     var bedTime: TimeInterval?
     var wakeTime: TimeInterval?
     var sleepNotes: String?
     var motionData: [MotionData] = []
+    
+    var hasRequiredValues: Bool {
+        return userID != nil && quality != nil && bedTime != nil && wakeTime != nil && sleepNotes != nil
+    }
 }
