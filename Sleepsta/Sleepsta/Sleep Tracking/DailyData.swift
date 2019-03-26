@@ -9,7 +9,7 @@
 import Foundation
 
 class DailyData: Codable {
-    var userID: Int?
+    var userID: Int
     var quality: Int?
     var bedTime: Int?
     var wakeTime: Int?
@@ -17,7 +17,7 @@ class DailyData: Codable {
 //    var motionData: [MotionData] = []
     
     var hasRequiredValues: Bool {
-        return userID != nil && quality != nil && bedTime != nil && wakeTime != nil && sleepNotes != nil
+        return quality != nil && bedTime != nil && wakeTime != nil && sleepNotes != nil
     }
     
     enum CodingKeys: String, CodingKey {
@@ -26,5 +26,9 @@ class DailyData: Codable {
         case bedTime = "sleeptime"
         case wakeTime = "waketime"
         case sleepNotes = "sleep_notes"
+    }
+    
+    init(userID: Int) {
+        self.userID = userID
     }
 }
