@@ -1,5 +1,5 @@
 //
-//  SleepData.swift
+//  DailyData.swift
 //  Sleepsta
 //
 //  Created by Dillon McElhinney on 3/25/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SleepData: Codable {
+class DailyData: Codable {
     var quality: Double?
     var bedTime: TimeInterval?
     var wakeTime: TimeInterval?

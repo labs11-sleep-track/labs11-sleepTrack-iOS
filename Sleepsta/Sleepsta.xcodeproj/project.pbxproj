@@ -24,8 +24,8 @@
 		345CE0A42242F80C005B5725 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0A32242F80C005B5725 /* User.swift */; };
 		349947402249722700BE41B2 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499473F2249722700BE41B2 /* MotionManager.swift */; };
 		349947422249725E00BE41B2 /* MotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349947412249725E00BE41B2 /* MotionData.swift */; };
-		34AA417622499DA200366391 /* SleepData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AA417522499DA200366391 /* SleepData.swift */; };
-		34F89F0D224AA43C0070A5A0 /* SleepDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F89F0C224AA43C0070A5A0 /* SleepDataController.swift */; };
+		34AA417622499DA200366391 /* DailyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AA417522499DA200366391 /* DailyData.swift */; };
+		34F89F0D224AA43C0070A5A0 /* DailyDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */; };
 		8AB93F105170F484AF100DDC /* Pods_SleepstaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076225E39480752D124ECCD9 /* Pods_SleepstaTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,8 +61,8 @@
 		345CE0A32242F80C005B5725 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3499473F2249722700BE41B2 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		349947412249725E00BE41B2 /* MotionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionData.swift; sourceTree = "<group>"; };
-		34AA417522499DA200366391 /* SleepData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepData.swift; sourceTree = "<group>"; };
-		34F89F0C224AA43C0070A5A0 /* SleepDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDataController.swift; sourceTree = "<group>"; };
+		34AA417522499DA200366391 /* DailyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyData.swift; sourceTree = "<group>"; };
+		34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDataController.swift; sourceTree = "<group>"; };
 		3775738036A98945C6D7C5F1 /* Pods-Sleepsta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sleepsta.debug.xcconfig"; path = "Target Support Files/Pods-Sleepsta/Pods-Sleepsta.debug.xcconfig"; sourceTree = "<group>"; };
 		62A72A55B7E72B9E8ED8B9B4 /* Pods-Sleepsta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sleepsta.release.xcconfig"; path = "Target Support Files/Pods-Sleepsta/Pods-Sleepsta.release.xcconfig"; sourceTree = "<group>"; };
 		8D8983DCE380FBEB12116724 /* Pods-SleepstaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepstaTests.release.xcconfig"; path = "Target Support Files/Pods-SleepstaTests/Pods-SleepstaTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 				345CE0962242D107005B5725 /* UIColor+CustomColors.swift */,
 				345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */,
 				3499473F2249722700BE41B2 /* MotionManager.swift */,
-				34F89F0C224AA43C0070A5A0 /* SleepDataController.swift */,
+				34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */,
 				345CE0A52242F810005B5725 /* Model */,
 				345CE09E2242E0C2005B5725 /* View Subclasses */,
 				3435348E2242B41300CCB1C5 /* Resources */,
@@ -163,7 +163,7 @@
 			children = (
 				345CE0A32242F80C005B5725 /* User.swift */,
 				349947412249725E00BE41B2 /* MotionData.swift */,
-				34AA417522499DA200366391 /* SleepData.swift */,
+				34AA417522499DA200366391 /* DailyData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -394,10 +394,10 @@
 				345CE0912242CA7B005B5725 /* LoginViewController.swift in Sources */,
 				345CE0972242D107005B5725 /* UIColor+CustomColors.swift in Sources */,
 				345CE09D2242DAC6005B5725 /* ShiftableViewController.swift in Sources */,
-				34F89F0D224AA43C0070A5A0 /* SleepDataController.swift in Sources */,
+				34F89F0D224AA43C0070A5A0 /* DailyDataController.swift in Sources */,
 				345CE09B2242D3BD005B5725 /* SLTextField.swift in Sources */,
 				345CE0932242CB96005B5725 /* LoginManager.swift in Sources */,
-				34AA417622499DA200366391 /* SleepData.swift in Sources */,
+				34AA417622499DA200366391 /* DailyData.swift in Sources */,
 				349947402249722700BE41B2 /* MotionManager.swift in Sources */,
 				345CE0A02242E568005B5725 /* SleepTrackingViewController.swift in Sources */,
 				349947422249725E00BE41B2 /* MotionData.swift in Sources */,
