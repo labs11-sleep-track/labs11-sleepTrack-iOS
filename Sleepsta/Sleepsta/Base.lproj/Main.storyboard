@@ -127,7 +127,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="TRr-HF-ZhP"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Stats" id="m6h-VL-mtk"/>
+                    <tabBarItem key="tabBarItem" title="Stats" image="bar_chart" id="m6h-VL-mtk"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4MV-iy-CNE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -177,7 +177,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Z3-mH-yhh"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Alarm" id="2a3-0O-lVu"/>
+                    <tabBarItem key="tabBarItem" title="Alarm" image="alarm_clock" id="2a3-0O-lVu"/>
                     <connections>
                         <outlet property="alarmTimePicker" destination="XKw-GN-L2t" id="Alj-Qz-pYG"/>
                         <outlet property="toggleTrackingButton" destination="NeO-U5-Xhc" id="ELj-dH-fZF"/>
@@ -208,4 +208,8 @@
             <point key="canvasLocation" x="746" y="125"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="alarm_clock" width="30" height="30"/>
+        <image name="bar_chart" width="30" height="30"/>
+    </resources>
 </document>

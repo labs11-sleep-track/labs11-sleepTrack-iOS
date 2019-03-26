@@ -13,5 +13,5 @@ class SleepData: Codable {
     var bedTime: TimeInterval?
     var wakeTime: TimeInterval?
     var sleepNotes: String?
-    var motionData: [MotionData]
+    var motionData: [MotionData] = []
 }

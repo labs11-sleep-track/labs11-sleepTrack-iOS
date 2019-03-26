@@ -26,7 +26,7 @@ class MotionManager {
     private var intervalTimer: Timer?
     private var readTimer: Timer?
     private var accumulator: Double = 0
-    private var motionDataArray: [MotionData] = []
+    private(set) var motionDataArray: [MotionData] = []
     private let dateFormatter = ISO8601DateFormatter()
     
     
