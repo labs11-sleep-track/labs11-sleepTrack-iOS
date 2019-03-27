@@ -20,9 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         let signIn = GIDSignIn.sharedInstance()
         signIn?.clientID = "923724344364-hani6pf71d8u9msnnbkab3egh5j9n8gm.apps.googleusercontent.com"
+        signIn?.shouldFetchBasicProfile = true
         signIn?.delegate = self
-        signIn?.disconnect()
-//        signIn?.signInSilently()
+//        signIn?.disconnect()
+        signIn?.signInSilently()
 
         return true
     }
@@ -36,19 +37,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         if let error = error {
             print("Error signing in: \(error.localizedDescription)")
         } else {
-            let userID = user.userID!
             let idToken = user.authentication.idToken!
-            let firstName = user.profile.givenName
-            let lastName = user.profile.familyName
-            let email = user.profile.email!
             
-            signInWithSleepsta(idToken)
-            
-            User.current = User(googleID: userID, email: email, idToken: idToken, firstName: firstName, lastName: lastName)
-            if let rootVC = window?.rootViewController {
-                rootVC.performSegue(withIdentifier: "LoginSegue", sender: self)
-            } else {
-                presentLoggedInVC()
+            User.sleepstaSignIn(idToken) { (error) in
+                if error == nil {
+                    DispatchQueue.main.async {
+                        if let rootVC = self.window?.rootViewController {
+                            rootVC.performSegue(withIdentifier: "LoginSegue", sender: self)
+                        } else {
+                            self.presentLoggedInVC()
+                        }
+                    }
+                }
             }
         }
     }
@@ -67,37 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }
     }
     
-    private func signInWithSleepsta(_ idToken: String) {
-        // Build the request
-        let requestURL = URL(string: "https://sleepsta.herokuapp.com/auth/google/tokenSignIn")!
-        
-        var request = URLRequest(url: requestURL)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-type")
-        
-        let data = ["token": idToken]
-        
-        do {
-            let requestData = try JSONSerialization.data(withJSONObject: data)
-            print(String(data: requestData, encoding: .utf8)!)
-            request.httpBody = requestData
-        } catch {
-            NSLog("Unable to encode user: \(data)\nWith error: \(error)")
-            return
-        }
-        
-        // Make a datatask
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            // Check for errors
-            if let error = error {
-                print(error)
-            }
-            
-            // Check if any data was returned
-            if let data = data {
-                print(String(data: data, encoding: .utf8) ?? "Couldn't turn data into String")
-            }
-            }.resume()
+    private func signInWithSleepsta() {
+       
     }
 }
 
