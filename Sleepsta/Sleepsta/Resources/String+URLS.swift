@@ -10,4 +10,5 @@ import Foundation
 
 extension String {
     static let baseURLString = "https://sleepsta.herokuapp.com/api"
+    static let authURLString = "https://sleepsta.herokuapp.com/auth"
 }

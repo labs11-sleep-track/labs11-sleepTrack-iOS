@@ -14,7 +14,7 @@ class DailyData: Codable {
     var bedTime: Int?
     var wakeTime: Int?
     var sleepNotes: String?
-//    var motionData: [MotionData] = []
+    var motionData: [MotionData] = []
     
     var hasRequiredValues: Bool {
         return quality != nil && bedTime != nil && wakeTime != nil && sleepNotes != nil
@@ -26,6 +26,7 @@ class DailyData: Codable {
         case bedTime = "sleeptime"
         case wakeTime = "waketime"
         case sleepNotes = "sleep_notes"
+        case motionData = "night_data"
     }
     
     init(userID: Int) {
