@@ -10,7 +10,7 @@ import Foundation
 import GoogleSignIn
 
 class DailyDataController {
-    static var current: DailyData = DailyData(userID: 503)
+    static var current: DailyData = DailyData(userID: User.current!.sleepstaID)
     
     private let baseURL = URL(string: .baseURLString)!
     
@@ -44,9 +44,11 @@ class DailyDataController {
         // Build the request
         let requestURL = baseURL.appendingPathComponent("daily")
         
+        guard let token = User.current?.sleepstaToken else { return }
+        
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
-        request.addValue("\(GIDSignIn.sharedInstance()?.currentUser.authentication.accessToken ?? "")", forHTTPHeaderField: "Authorization")
+        request.addValue("\(token)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-type")
         
         do {
@@ -81,7 +83,8 @@ class DailyDataController {
     }
     
     private func resetCurrentDailyData() {
-        DailyDataController.current = DailyData(userID: 503)
+        guard let currentUser = User.current else { return }
+        DailyDataController.current = DailyData(userID: currentUser.sleepstaID)
     }
     
 }
