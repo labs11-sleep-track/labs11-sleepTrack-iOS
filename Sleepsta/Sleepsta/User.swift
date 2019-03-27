@@ -69,18 +69,20 @@ class User: Codable {
         }.resume()
     }
     
-    var sleepstaID: Int
-    var firstName: String?
-    var lastName: String?
-    var email: String
-    var idToken: String
-    var sleepstaToken: String
+    let sleepstaID: Int
+    let firstName: String?
+    let lastName: String?
+    let email: String
+    let idToken: String
+    let sleepstaToken: String
+    let accountType: String
     
-    init(sleepstaID: Int, sleepstaToken: String, email: String, idToken: String, firstName: String? = nil, lastName: String? = nil) {
+    init(sleepstaID: Int, sleepstaToken: String, email: String, idToken: String, accountType: String, firstName: String? = nil, lastName: String? = nil) {
         self.sleepstaID = sleepstaID
         self.sleepstaToken = sleepstaToken
         self.email = email
         self.idToken = idToken
+        self.accountType = accountType
         self.firstName = firstName
         self.lastName = lastName
     }
@@ -91,9 +93,10 @@ class User: Codable {
             let lastName = user["l_name"] as? String,
             let sleepstaID = user["id"] as? Int,
             let email = user["email"] as? String,
+            let accountType = user["account_type"] as? String,
             let sleepstaToken = jsonDict["token"] as? String else { return nil }
         
-        self.init(sleepstaID: sleepstaID, sleepstaToken: sleepstaToken, email: email, idToken: idToken, firstName: firstName, lastName: lastName)
+        self.init(sleepstaID: sleepstaID, sleepstaToken: sleepstaToken, email: email, idToken: idToken, accountType: accountType, firstName: firstName, lastName: lastName)
     }
     
 }
