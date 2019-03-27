@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MediaPlayer
 
 class AlarmManager: AudioPlayerDelegate {
 
@@ -21,15 +22,17 @@ class AlarmManager: AudioPlayerDelegate {
     func setAlarm(for date: Date) {
         // Get rid of existing alarm
         turnOffAlarm()
+        
         // Make a new timer to sound the alarm
         timer = Timer(fireAt: date, interval: 0, target: self, selector: #selector(soundAlarm), userInfo: nil, repeats: false)
         // Add the timer to the current run loop.
         RunLoop.current.add(timer!, forMode: RunLoop.Mode.default)
+        
     }
     
     func snoozeAlarm() {
         // Get a new date that is 5 minutes from now
-        let date = Date(timeIntervalSinceNow: 60 * 5)
+        let date = Date(timeIntervalSinceNow: 5 * 60)
         // Set a new alarm with that date
         setAlarm(for: date)
     }
@@ -37,6 +40,7 @@ class AlarmManager: AudioPlayerDelegate {
     func turnOffAlarm() {
         // Stop the currently playing sound
         player.pause()
+        AVSessionHelper.shared.endPlaying()
         
         // Reset the alarm is sounding bool
         isAlarmSounding = false
@@ -49,18 +53,39 @@ class AlarmManager: AudioPlayerDelegate {
     // MARK: - Audio Player Delegate
     func playerDidChangeState(_ player: AudioPlayer) {
         if !player.isPlaying && isAlarmSounding {
-            playSound()
+            player.play()
         }
     }
     
     // MARK: - Utility Methods
     @objc private func soundAlarm() {
+        AVSessionHelper.shared.setupSessionForAudioPlayback()
+        // Load the audio file
+        let url = Bundle.main.url(forResource: "shipBell", withExtension: "wav")!
+        player.load(file: url)
+        
         isAlarmSounding = true
-        playSound()
+        player.play()
     }
     
     private func playSound() {
-        let url = Bundle.main.url(forResource: "shipBell", withExtension: "wav")!
-        player.play(file: url)
+        
     }
 }
+
+//private extension MPVolumeView {
+//    var volumeSlider: UISlider {
+//        self.showsRouteButton = false
+//        self.showsVolumeSlider = false
+//        self.isHidden = true
+//        let slider = UISlider()
+//        for subview in self.subviews {
+//            if let slider = subview as? UISlider {
+//                slider.isContinuous = false
+//                slider.value = 1
+//                return slider
+//            }
+//        }
+//        return slider
+//    }
+//}

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MediaPlayer
+
 
 class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
 
@@ -14,13 +16,15 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
     
     let motionManager = MotionManager.shared
     let dailyDataController = DailyDataController()
-
+    let alarmManager = AlarmManager()
+    
     // These labels are mostly to show that I am getting data, won't be a part of the final design.
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var userIDLabel: UILabel!
     
     @IBOutlet weak var alarmTimePicker: SLDatePickerView!
     @IBOutlet weak var toggleTrackingButton: UIButton!
+    @IBOutlet weak var volumeControlContainer: UIView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -64,6 +68,10 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
         
         userIDLabel.textColor = .white
         userIDLabel.text = "\(User.current?.email ?? "")"
+        
+        let volumeControl = MPVolumeView(frame: volumeControlContainer.bounds)
+        volumeControl.showsRouteButton = false
+        volumeControlContainer.addSubview(volumeControl)
         
         alarmTimePicker.setDateTo(8, component: .hour)
         updateTrackingButton()
