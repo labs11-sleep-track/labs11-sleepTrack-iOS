@@ -72,20 +72,3 @@ class AlarmManager: AudioPlayerDelegate {
         
     }
 }
-
-//private extension MPVolumeView {
-//    var volumeSlider: UISlider {
-//        self.showsRouteButton = false
-//        self.showsVolumeSlider = false
-//        self.isHidden = true
-//        let slider = UISlider()
-//        for subview in self.subviews {
-//            if let slider = subview as? UISlider {
-//                slider.isContinuous = false
-//                slider.value = 1
-//                return slider
-//            }
-//        }
-//        return slider
-//    }
-//}

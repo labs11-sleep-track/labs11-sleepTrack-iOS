@@ -23,7 +23,8 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
     @IBOutlet weak var userIDLabel: UILabel!
     
     @IBOutlet weak var alarmTimePicker: SLDatePickerView!
-    @IBOutlet weak var toggleTrackingButton: UIButton!
+    @IBOutlet weak var goToSleepButton: UIButton!
+    @IBOutlet weak var wakeUpButton: UIButton!
     @IBOutlet weak var volumeControlContainer: UIView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -37,13 +38,17 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
         setupViews()
     }
     
-    @IBAction func toggleTracking(_ sender: Any) {
-        motionManager.toggleTracking()
-        if motionManager.isTracking {
-            dailyDataController.addBedTime()
-        } else {
-            dailyDataController.addWakeTime()
-        }
+    @IBAction func goToSleep(_ sender: Any) {
+        motionManager.startTracking()
+        dailyDataController.addBedTime()
+        alarmManager.setAlarm(for: Date(timeIntervalSinceNow: 5))
+    }
+    
+    @IBAction func wakeUp(_ sender: Any) {
+        alarmManager.turnOffAlarm()
+        motionManager.stopTracking()
+        dailyDataController.addWakeTime()
+        
     }
     
     @IBAction func postData(_ sender: Any) {
@@ -53,7 +58,7 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
     
     // MARK: - Motion Manager Delegate
     func motionManager(_ motionManager: MotionManager, didChangeTrackingTo: Bool) {
-        updateTrackingButton()
+        updateButtons()
     }
     
     // MARK: - Utility Methods
@@ -74,12 +79,12 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
         volumeControlContainer.addSubview(volumeControl)
         
         alarmTimePicker.setDateTo(8, component: .hour)
-        updateTrackingButton()
+        updateButtons()
     }
     
-    private func updateTrackingButton() {
-        let title = motionManager.isTracking ? "Stop Tracking" : "Start Tracking"
-        toggleTrackingButton.setTitle(title, for: .normal)
+    private func updateButtons() {
+        let tracking = motionManager.isTracking
+        goToSleepButton.isHidden = tracking
+        wakeUpButton.isHidden = !tracking
     }
-    
 }

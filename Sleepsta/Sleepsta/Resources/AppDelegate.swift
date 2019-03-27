@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let signIn = GIDSignIn.sharedInstance()
         signIn?.clientID = "923724344364-hani6pf71d8u9msnnbkab3egh5j9n8gm.apps.googleusercontent.com"
         signIn?.delegate = self
-//        signIn?.disconnect()
-        signIn?.signInSilently()
+        signIn?.disconnect()
+//        signIn?.signInSilently()
 
         return true
     }
@@ -73,9 +73,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
-        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-type")
+        request.addValue("application/json", forHTTPHeaderField: "Content-type")
         
-        let data = ["idToken": idToken]
+        let data = ["token": idToken]
         
         do {
             let requestData = try JSONSerialization.data(withJSONObject: data)
