@@ -31,28 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         return GIDSignIn.sharedInstance()!.handle(url as URL?, sourceApplication: options[.sourceApplication] as? String, annotation: options[.annotation])
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
     // MARK: - GID Sign In Delegate
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
@@ -64,7 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             let lastName = user.profile.familyName
             let email = user.profile.email!
             
-            User.current = User(identifier: userID, email: email, idToken: idToken, firstName: firstName, lastName: lastName)
+            signInWithSleepsta(idToken)
+            
+            User.current = User(googleID: userID, email: email, idToken: idToken, firstName: firstName, lastName: lastName)
             if let rootVC = window?.rootViewController {
                 rootVC.performSegue(withIdentifier: "LoginSegue", sender: self)
             } else {
@@ -85,6 +65,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             window?.rootViewController = tabBarController
             window?.makeKeyAndVisible()
         }
+    }
+    
+    private func signInWithSleepsta(_ idToken: String) {
+        // Build the request
+        let requestURL = URL(string: "https://sleepsta.herokuapp.com/auth/google/tokenSignIn")!
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-type")
+        
+        let data = ["token": idToken]
+        
+        do {
+            let requestData = try JSONSerialization.data(withJSONObject: data)
+            print(String(data: requestData, encoding: .utf8)!)
+            request.httpBody = requestData
+        } catch {
+            NSLog("Unable to encode user: \(data)\nWith error: \(error)")
+            return
+        }
+        
+        // Make a datatask
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            // Check for errors
+            if let error = error {
+                print(error)
+            }
+            
+            // Check if any data was returned
+            if let data = data {
+                print(String(data: data, encoding: .utf8) ?? "Couldn't turn data into String")
+            }
+            }.resume()
     }
 }
 

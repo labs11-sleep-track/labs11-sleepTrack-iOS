@@ -20,65 +20,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-8r-Qp2">
-                                <rect key="frame" x="87.5" y="200.5" width="200" height="266"/>
+                                <rect key="frame" x="87.5" y="313.5" width="200" height="40"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="x47-8k-8Nq">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="29"/>
-                                        <segments>
-                                            <segment title="Login"/>
-                                            <segment title="Sign-Up"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="toggleLogin:" destination="6V9-Jv-vbd" eventType="valueChanged" id="OHz-Xc-4u5"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jDn-cc-I8d" customClass="SLTextField" customModule="Sleepsta" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="36" width="200" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mGP-qE-hjo" customClass="SLTextField" customModule="Sleepsta" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="74" width="200" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6bz-TW-Ph6" customClass="SLTextField" customModule="Sleepsta" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="112" width="200" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bTq-lE-iEO" customClass="SLTextField" customModule="Sleepsta" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="150" width="200" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mTy-0v-PZC">
-                                        <rect key="frame" x="0.0" y="188" width="200" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hO8-2F-6n8">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Login"/>
-                                                <connections>
-                                                    <action selector="loginUser:" destination="6V9-Jv-vbd" eventType="touchUpInside" id="HHp-gE-xmv"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9eQ-li-m2D">
-                                                <rect key="frame" x="100" y="0.0" width="100" height="30"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Sign-up"/>
-                                                <connections>
-                                                    <action selector="signupUser:" destination="6V9-Jv-vbd" eventType="touchUpInside" id="mME-9N-DqE"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="sMr-Ff-ntk" customClass="GIDSignInButton">
-                                        <rect key="frame" x="0.0" y="226" width="200" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -103,13 +48,7 @@
                         <viewLayoutGuide key="safeArea" id="6QF-aB-2BW"/>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="jDn-cc-I8d" id="p0v-KO-vUa"/>
-                        <outlet property="firstNameTextField" destination="6bz-TW-Ph6" id="TVe-iz-kgP"/>
-                        <outlet property="lastNameTextField" destination="bTq-lE-iEO" id="f61-8w-TGI"/>
-                        <outlet property="loginButton" destination="hO8-2F-6n8" id="BjG-HP-tnn"/>
-                        <outlet property="passwordTextField" destination="mGP-qE-hjo" id="lBe-wk-CA6"/>
                         <outlet property="signInButton" destination="sMr-Ff-ntk" id="uZ8-BE-nLt"/>
-                        <outlet property="signupButton" destination="9eQ-li-m2D" id="VY1-PX-ULg"/>
                         <segue destination="GMP-50-I8A" kind="presentation" identifier="LoginSegue" id="ZnX-Me-DnF"/>
                     </connections>
                 </viewController>
@@ -141,13 +80,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NeO-U5-Xhc">
-                                <rect key="frame" x="139" y="461.5" width="97" height="30"/>
-                                <state key="normal" title="Start Tracking"/>
-                                <connections>
-                                    <action selector="toggleTracking:" destination="lRn-9Q-slw" eventType="touchUpInside" id="QyT-d7-Fr1"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BmG-9W-wzY">
+                                <rect key="frame" x="100.5" y="449.5" width="174" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NeO-U5-Xhc">
+                                        <rect key="frame" x="0.0" y="0.0" width="83" height="30"/>
+                                        <state key="normal" title="Go To Sleep"/>
+                                        <connections>
+                                            <action selector="goToSleep:" destination="lRn-9Q-slw" eventType="touchUpInside" id="heA-a8-d0V"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYY-OB-cTB">
+                                        <rect key="frame" x="91" y="0.0" width="83" height="30"/>
+                                        <state key="normal" title="Wake Up"/>
+                                        <connections>
+                                            <action selector="wakeUp:" destination="lRn-9Q-slw" eventType="touchUpInside" id="1OY-fr-VLr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XKw-GN-L2t" customClass="SLDatePickerView" customModule="Sleepsta" customModuleProvider="target">
                                 <rect key="frame" x="27.5" y="225.5" width="320" height="216"/>
                             </pickerView>
@@ -158,29 +109,30 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UID Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpa-la-1sb">
-                                <rect key="frame" x="24" y="111" width="75" height="21"/>
+                                <rect key="frame" x="24" y="111" width="74.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYY-OB-cTB">
-                                <rect key="frame" x="172" y="499.5" width="31" height="30"/>
-                                <state key="normal" title="Post"/>
-                                <connections>
-                                    <action selector="postData:" destination="lRn-9Q-slw" eventType="touchUpInside" id="NhL-a1-2Yu"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9e4-8Q-jFA">
+                                <rect key="frame" x="67.5" y="568" width="240" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="4Oe-mh-MBe"/>
+                                    <constraint firstAttribute="height" constant="30" id="Dxn-GI-lTF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YWK-hg-D7k" firstAttribute="top" secondItem="1Z3-mH-yhh" secondAttribute="top" constant="48" id="7aP-oi-Y5m"/>
-                            <constraint firstItem="rYY-OB-cTB" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="8V6-CW-S79"/>
-                            <constraint firstItem="rYY-OB-cTB" firstAttribute="top" secondItem="NeO-U5-Xhc" secondAttribute="bottom" constant="8" symbolic="YES" id="BP5-xg-Q5k"/>
-                            <constraint firstItem="NeO-U5-Xhc" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="Nc1-KJ-Rkn"/>
+                            <constraint firstItem="9e4-8Q-jFA" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="A0Z-S5-JQr"/>
                             <constraint firstItem="YWK-hg-D7k" firstAttribute="leading" secondItem="1Z3-mH-yhh" secondAttribute="leading" constant="24" id="Sa0-Bh-jXu"/>
+                            <constraint firstItem="1Z3-mH-yhh" firstAttribute="bottom" secondItem="9e4-8Q-jFA" secondAttribute="bottom" constant="20" id="Yji-iT-FvX"/>
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="centerY" secondItem="B7m-vi-VIW" secondAttribute="centerY" id="byb-qc-Kv8"/>
                             <constraint firstItem="wpa-la-1sb" firstAttribute="leading" secondItem="YWK-hg-D7k" secondAttribute="leading" id="cXx-YB-4yd"/>
-                            <constraint firstItem="NeO-U5-Xhc" firstAttribute="top" secondItem="XKw-GN-L2t" secondAttribute="bottom" constant="20" id="n22-io-bmS"/>
+                            <constraint firstItem="BmG-9W-wzY" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="gwI-Kl-tIW"/>
+                            <constraint firstItem="BmG-9W-wzY" firstAttribute="top" secondItem="XKw-GN-L2t" secondAttribute="bottom" constant="8" symbolic="YES" id="sh3-za-iuP"/>
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="sj4-uA-15J"/>
                             <constraint firstItem="wpa-la-1sb" firstAttribute="top" secondItem="YWK-hg-D7k" secondAttribute="bottom" id="wTH-Eg-TpG"/>
                         </constraints>
@@ -189,14 +141,16 @@
                     <tabBarItem key="tabBarItem" title="Alarm" image="alarm_clock" id="2a3-0O-lVu"/>
                     <connections>
                         <outlet property="alarmTimePicker" destination="XKw-GN-L2t" id="Alj-Qz-pYG"/>
-                        <outlet property="toggleTrackingButton" destination="NeO-U5-Xhc" id="ELj-dH-fZF"/>
+                        <outlet property="goToSleepButton" destination="NeO-U5-Xhc" id="ELj-dH-fZF"/>
                         <outlet property="userIDLabel" destination="wpa-la-1sb" id="3dW-fb-YwD"/>
+                        <outlet property="volumeControlContainer" destination="9e4-8Q-jFA" id="5o4-6Z-Oyt"/>
+                        <outlet property="wakeUpButton" destination="rYY-OB-cTB" id="hNL-tB-NPD"/>
                         <outlet property="welcomeLabel" destination="YWK-hg-D7k" id="y1U-Um-Xb9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyG-vM-kKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="335" y="947"/>
+            <point key="canvasLocation" x="333.60000000000002" y="946.77661169415296"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DCS-MT-5af">

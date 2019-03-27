@@ -14,7 +14,6 @@
 		343534792242B3CC00CCB1C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 343534772242B3CC00CCB1C5 /* LaunchScreen.storyboard */; };
 		343534842242B3CD00CCB1C5 /* SleepstaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343534832242B3CD00CCB1C5 /* SleepstaTests.swift */; };
 		345CE0912242CA7B005B5725 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0902242CA7B005B5725 /* LoginViewController.swift */; };
-		345CE0932242CB96005B5725 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0922242CB96005B5725 /* LoginManager.swift */; };
 		345CE0952242D0B4005B5725 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0942242D0B4005B5725 /* GradientView.swift */; };
 		345CE0972242D107005B5725 /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0962242D107005B5725 /* UIColor+CustomColors.swift */; };
 		345CE09B2242D3BD005B5725 /* SLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE09A2242D3BD005B5725 /* SLTextField.swift */; };
@@ -27,6 +26,11 @@
 		34AA417622499DA200366391 /* DailyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AA417522499DA200366391 /* DailyData.swift */; };
 		34F89F0D224AA43C0070A5A0 /* DailyDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */; };
 		34F89F0F224AAF900070A5A0 /* String+URLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F89F0E224AAF900070A5A0 /* String+URLS.swift */; };
+		34FD331D224BD9E400A0EFC6 /* UIAlertController+InformationalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FD331C224BD9E400A0EFC6 /* UIAlertController+InformationalAlert.swift */; };
+		34FD331F224BDB4B00A0EFC6 /* AVSessionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FD331E224BDB4B00A0EFC6 /* AVSessionHelper.swift */; };
+		34FD3321224BE31000A0EFC6 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FD3320224BE31000A0EFC6 /* AudioPlayer.swift */; };
+		34FD3323224BE37C00A0EFC6 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FD3322224BE37C00A0EFC6 /* AlarmManager.swift */; };
+		34FD3325224BE88D00A0EFC6 /* shipBell.wav in Resources */ = {isa = PBXBuildFile; fileRef = 34FD3324224BE88D00A0EFC6 /* shipBell.wav */; };
 		8AB93F105170F484AF100DDC /* Pods_SleepstaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076225E39480752D124ECCD9 /* Pods_SleepstaTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +56,6 @@
 		343534832242B3CD00CCB1C5 /* SleepstaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepstaTests.swift; sourceTree = "<group>"; };
 		343534852242B3CD00CCB1C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		345CE0902242CA7B005B5725 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		345CE0922242CB96005B5725 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		345CE0942242D0B4005B5725 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		345CE0962242D107005B5725 /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
 		345CE09A2242D3BD005B5725 /* SLTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLTextField.swift; sourceTree = "<group>"; };
@@ -65,6 +68,11 @@
 		34AA417522499DA200366391 /* DailyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyData.swift; sourceTree = "<group>"; };
 		34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDataController.swift; sourceTree = "<group>"; };
 		34F89F0E224AAF900070A5A0 /* String+URLS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+URLS.swift"; sourceTree = "<group>"; };
+		34FD331C224BD9E400A0EFC6 /* UIAlertController+InformationalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+InformationalAlert.swift"; sourceTree = "<group>"; };
+		34FD331E224BDB4B00A0EFC6 /* AVSessionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVSessionHelper.swift; sourceTree = "<group>"; };
+		34FD3320224BE31000A0EFC6 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		34FD3322224BE37C00A0EFC6 /* AlarmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
+		34FD3324224BE88D00A0EFC6 /* shipBell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shipBell.wav; sourceTree = "<group>"; };
 		3775738036A98945C6D7C5F1 /* Pods-Sleepsta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sleepsta.debug.xcconfig"; path = "Target Support Files/Pods-Sleepsta/Pods-Sleepsta.debug.xcconfig"; sourceTree = "<group>"; };
 		62A72A55B7E72B9E8ED8B9B4 /* Pods-Sleepsta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sleepsta.release.xcconfig"; path = "Target Support Files/Pods-Sleepsta/Pods-Sleepsta.release.xcconfig"; sourceTree = "<group>"; };
 		8D8983DCE380FBEB12116724 /* Pods-SleepstaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepstaTests.release.xcconfig"; path = "Target Support Files/Pods-SleepstaTests/Pods-SleepstaTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,12 +123,13 @@
 		3435346D2242B3CB00CCB1C5 /* Sleepsta */ = {
 			isa = PBXGroup;
 			children = (
+				34FD3324224BE88D00A0EFC6 /* shipBell.wav */,
 				343534722242B3CB00CCB1C5 /* Main.storyboard */,
 				345CE0902242CA7B005B5725 /* LoginViewController.swift */,
-				345CE0922242CB96005B5725 /* LoginManager.swift */,
 				345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */,
-				345CE0A12242E9D2005B5725 /* SLDatePickerView.swift */,
 				345CE0A32242F80C005B5725 /* User.swift */,
+				34FD331C224BD9E400A0EFC6 /* UIAlertController+InformationalAlert.swift */,
+				34FD331B224BD92200A0EFC6 /* Alarms and Notifications */,
 				34F89F10224AB5270070A5A0 /* Sleep Tracking */,
 				345CE09E2242E0C2005B5725 /* UI Styling */,
 				3435348E2242B41300CCB1C5 /* Resources */,
@@ -140,6 +149,7 @@
 		3435348E2242B41300CCB1C5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				34F89F0E224AAF900070A5A0 /* String+URLS.swift */,
 				3435346E2242B3CB00CCB1C5 /* AppDelegate.swift */,
 				343534752242B3CC00CCB1C5 /* Assets.xcassets */,
 				343534772242B3CC00CCB1C5 /* LaunchScreen.storyboard */,
@@ -162,13 +172,23 @@
 			isa = PBXGroup;
 			children = (
 				345CE09F2242E568005B5725 /* SleepTrackingViewController.swift */,
-				34F89F0E224AAF900070A5A0 /* String+URLS.swift */,
 				3499473F2249722700BE41B2 /* MotionManager.swift */,
 				349947412249725E00BE41B2 /* MotionData.swift */,
 				34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */,
 				34AA417522499DA200366391 /* DailyData.swift */,
 			);
 			path = "Sleep Tracking";
+			sourceTree = "<group>";
+		};
+		34FD331B224BD92200A0EFC6 /* Alarms and Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				345CE0A12242E9D2005B5725 /* SLDatePickerView.swift */,
+				34FD3322224BE37C00A0EFC6 /* AlarmManager.swift */,
+				34FD331E224BDB4B00A0EFC6 /* AVSessionHelper.swift */,
+				34FD3320224BE31000A0EFC6 /* AudioPlayer.swift */,
+			);
+			path = "Alarms and Notifications";
 			sourceTree = "<group>";
 		};
 		354B53D6FC9C32EA48C58C43 /* Frameworks */ = {
@@ -285,6 +305,7 @@
 				343534792242B3CC00CCB1C5 /* LaunchScreen.storyboard in Resources */,
 				343534762242B3CC00CCB1C5 /* Assets.xcassets in Resources */,
 				343534742242B3CB00CCB1C5 /* Main.storyboard in Resources */,
+				34FD3325224BE88D00A0EFC6 /* shipBell.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,16 +438,19 @@
 				345CE09D2242DAC6005B5725 /* ShiftableViewController.swift in Sources */,
 				34F89F0D224AA43C0070A5A0 /* DailyDataController.swift in Sources */,
 				345CE09B2242D3BD005B5725 /* SLTextField.swift in Sources */,
-				345CE0932242CB96005B5725 /* LoginManager.swift in Sources */,
 				34F89F0F224AAF900070A5A0 /* String+URLS.swift in Sources */,
+				34FD331D224BD9E400A0EFC6 /* UIAlertController+InformationalAlert.swift in Sources */,
 				34AA417622499DA200366391 /* DailyData.swift in Sources */,
 				349947402249722700BE41B2 /* MotionManager.swift in Sources */,
 				345CE0A02242E568005B5725 /* SleepTrackingViewController.swift in Sources */,
+				34FD3321224BE31000A0EFC6 /* AudioPlayer.swift in Sources */,
 				349947422249725E00BE41B2 /* MotionData.swift in Sources */,
+				34FD331F224BDB4B00A0EFC6 /* AVSessionHelper.swift in Sources */,
 				345CE0A22242E9D2005B5725 /* SLDatePickerView.swift in Sources */,
 				345CE0952242D0B4005B5725 /* GradientView.swift in Sources */,
 				345CE0A42242F80C005B5725 /* User.swift in Sources */,
 				3435346F2242B3CB00CCB1C5 /* AppDelegate.swift in Sources */,
+				34FD3323224BE37C00A0EFC6 /* AlarmManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
