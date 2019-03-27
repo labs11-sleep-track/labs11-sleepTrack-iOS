@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             let lastName = user.profile.familyName
             let email = user.profile.email!
             
-            User.current = User(identifier: userID, email: email, idToken: idToken, firstName: firstName, lastName: lastName)
+            User.current = User(googleID: userID, email: email, idToken: idToken, firstName: firstName, lastName: lastName)
             if let rootVC = window?.rootViewController {
                 rootVC.performSegue(withIdentifier: "LoginSegue", sender: self)
             } else {

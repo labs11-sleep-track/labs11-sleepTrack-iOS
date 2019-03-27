@@ -11,16 +11,17 @@ import Foundation
 class User: Codable {
     static var current: User? = nil
     
-    var identifier: String
+    var googleID: String
+    var sleepstaID: String?
     var firstName: String?
     var lastName: String?
     var email: String
     var idToken: String
     
-    init(identifier: String, email: String, idToken: String, firstName: String? = nil, lastName: String? = nil) {
+    init(googleID: String, email: String, idToken: String, firstName: String? = nil, lastName: String? = nil) {
         self.email = email
         self.idToken = idToken
-        self.identifier = identifier
+        self.googleID = googleID
         self.firstName = firstName
         self.lastName = lastName
     }

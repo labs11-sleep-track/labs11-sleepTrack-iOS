@@ -14,7 +14,6 @@
 		343534792242B3CC00CCB1C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 343534772242B3CC00CCB1C5 /* LaunchScreen.storyboard */; };
 		343534842242B3CD00CCB1C5 /* SleepstaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343534832242B3CD00CCB1C5 /* SleepstaTests.swift */; };
 		345CE0912242CA7B005B5725 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0902242CA7B005B5725 /* LoginViewController.swift */; };
-		345CE0932242CB96005B5725 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0922242CB96005B5725 /* LoginManager.swift */; };
 		345CE0952242D0B4005B5725 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0942242D0B4005B5725 /* GradientView.swift */; };
 		345CE0972242D107005B5725 /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0962242D107005B5725 /* UIColor+CustomColors.swift */; };
 		345CE09B2242D3BD005B5725 /* SLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE09A2242D3BD005B5725 /* SLTextField.swift */; };
@@ -52,7 +51,6 @@
 		343534832242B3CD00CCB1C5 /* SleepstaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepstaTests.swift; sourceTree = "<group>"; };
 		343534852242B3CD00CCB1C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		345CE0902242CA7B005B5725 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		345CE0922242CB96005B5725 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		345CE0942242D0B4005B5725 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		345CE0962242D107005B5725 /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
 		345CE09A2242D3BD005B5725 /* SLTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLTextField.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 			children = (
 				343534722242B3CB00CCB1C5 /* Main.storyboard */,
 				345CE0902242CA7B005B5725 /* LoginViewController.swift */,
-				345CE0922242CB96005B5725 /* LoginManager.swift */,
 				345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */,
 				345CE0A12242E9D2005B5725 /* SLDatePickerView.swift */,
 				345CE0A32242F80C005B5725 /* User.swift */,
@@ -140,6 +137,7 @@
 		3435348E2242B41300CCB1C5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				34F89F0E224AAF900070A5A0 /* String+URLS.swift */,
 				3435346E2242B3CB00CCB1C5 /* AppDelegate.swift */,
 				343534752242B3CC00CCB1C5 /* Assets.xcassets */,
 				343534772242B3CC00CCB1C5 /* LaunchScreen.storyboard */,
@@ -162,7 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				345CE09F2242E568005B5725 /* SleepTrackingViewController.swift */,
-				34F89F0E224AAF900070A5A0 /* String+URLS.swift */,
 				3499473F2249722700BE41B2 /* MotionManager.swift */,
 				349947412249725E00BE41B2 /* MotionData.swift */,
 				34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */,
@@ -417,7 +414,6 @@
 				345CE09D2242DAC6005B5725 /* ShiftableViewController.swift in Sources */,
 				34F89F0D224AA43C0070A5A0 /* DailyDataController.swift in Sources */,
 				345CE09B2242D3BD005B5725 /* SLTextField.swift in Sources */,
-				345CE0932242CB96005B5725 /* LoginManager.swift in Sources */,
 				34F89F0F224AAF900070A5A0 /* String+URLS.swift in Sources */,
 				34AA417622499DA200366391 /* DailyData.swift in Sources */,
 				349947402249722700BE41B2 /* MotionManager.swift in Sources */,
