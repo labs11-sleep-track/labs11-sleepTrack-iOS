@@ -10,7 +10,7 @@ import UIKit
 import Charts
 
 class StatsViewController: UIViewController {
-    var motionData: [MotionData] = []
+    var dailyData: DailyData?
 
     @IBOutlet weak var lineChart: LineChartView!
     
@@ -24,16 +24,15 @@ class StatsViewController: UIViewController {
         let gradientView = view as! GradientView
         gradientView.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)
         
-        loadData()
+        loadSampleData()
         setupChart()
         updateChart()
     }
 
-    private func loadData() {
-        let url = Bundle.main.url(forResource: "sample-motion-data", withExtension: ".json")!
+    private func loadSampleData() {
+        let url = Bundle.main.url(forResource: "sample-data", withExtension: ".json")!
         let data = try! Data(contentsOf: url)
-        let array = try! JSONDecoder().decode([MotionData].self, from: data)
-        motionData = array
+        dailyData = try! JSONDecoder().decode(DailyData.self, from: data)
     }
     
     private func setupChart() {
@@ -48,7 +47,7 @@ class StatsViewController: UIViewController {
         let rightAxis = lineChart.getAxis(.right)
         rightAxis.drawLabelsEnabled = false
         leftAxis.drawLabelsEnabled = false
-//        leftAxis.gridColor = .darkBlue
+        leftAxis.gridColor = .darkBlue
         rightAxis.gridColor = .darkBlue
         lineChart.legend.enabled = false
         lineChart.drawGridBackgroundEnabled = false
@@ -68,7 +67,7 @@ class StatsViewController: UIViewController {
     }
     
     private func updateChart() {
-        guard !motionData.isEmpty else { return }
+        guard let motionData = dailyData?.motionData, !motionData.isEmpty else { return }
         var entries: [ChartDataEntry] = []
         for dataPoint in motionData {
             let entry = ChartDataEntry(x: Double(dataPoint.timestamp), y: dataPoint.motion)
