@@ -68,7 +68,7 @@ class MotionManager {
         readTimer = nil
         
         // Add the accumulated data to the array and reset
-        let motionData = MotionData(motion: accumulator, timestamp: Date().timeIntervalSince1970)
+        let motionData = MotionData(motion: accumulator, timestamp: Int(Date().timeIntervalSince1970))
         motionDataArray.append(motionData)
         accumulator = 0
         

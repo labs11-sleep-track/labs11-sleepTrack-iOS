@@ -59,14 +59,31 @@
         <!--Stats-->
         <scene sceneID="OCB-Ao-e1g">
             <objects>
-                <viewController id="X5P-2D-FcS" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2VY-tn-2YF">
+                <viewController id="X5P-2D-FcS" customClass="StatsViewController" customModule="Sleepsta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2VY-tn-2YF" customClass="GradientView" customModule="Sleepsta" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="84k-1b-N6R" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="40" width="335" height="251.5"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="84k-1b-N6R" secondAttribute="height" multiplier="4:3" id="9RA-Iq-Jf2"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TRr-HF-ZhP" firstAttribute="trailing" secondItem="84k-1b-N6R" secondAttribute="trailing" constant="20" id="0dD-R3-Y85"/>
+                            <constraint firstItem="84k-1b-N6R" firstAttribute="top" secondItem="TRr-HF-ZhP" secondAttribute="top" constant="20" id="Cst-1V-VGG"/>
+                            <constraint firstItem="84k-1b-N6R" firstAttribute="leading" secondItem="TRr-HF-ZhP" secondAttribute="leading" constant="20" id="fja-Jz-4ME"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="TRr-HF-ZhP"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Stats" image="bar_chart" id="m6h-VL-mtk"/>
+                    <connections>
+                        <outlet property="lineChart" destination="84k-1b-N6R" id="5Me-jP-QsT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4MV-iy-CNE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

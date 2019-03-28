@@ -41,7 +41,7 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
     @IBAction func goToSleep(_ sender: Any) {
         motionManager.startTracking()
         dailyDataController.addBedTime()
-        alarmManager.setAlarm(for: Date(timeIntervalSinceNow: 5))
+        alarmManager.setAlarm(for: alarmTimePicker.date)
     }
     
     @IBAction func wakeUp(_ sender: Any) {
