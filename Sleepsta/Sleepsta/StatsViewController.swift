@@ -37,22 +37,30 @@ class StatsViewController: UIViewController {
     }
     
     private func setupChart() {
-        lineChart.xAxis.labelTextColor = .white
+        lineChart.xAxis.labelTextColor = .customWhite
+        lineChart.xAxis.gridColor = .darkBlue
         lineChart.xAxis.labelFont = UIFont.preferredFont(forTextStyle: .caption1)
         lineChart.xAxis.labelRotationAngle = 45
         lineChart.xAxis.labelPosition = .bottom
         lineChart.xAxis.valueFormatter = TimeXAxisValueFormatter()
+        
+        let leftAxis = lineChart.getAxis(.left)
+        let rightAxis = lineChart.getAxis(.right)
+        rightAxis.drawLabelsEnabled = false
+        leftAxis.drawLabelsEnabled = false
+//        leftAxis.gridColor = .darkBlue
+        rightAxis.gridColor = .darkBlue
         lineChart.legend.enabled = false
         lineChart.drawGridBackgroundEnabled = false
         lineChart.backgroundColor = .clear
-        lineChart.chartDescription?.textColor = .white
+        lineChart.chartDescription?.textColor = .customWhite
         lineChart.highlightPerTapEnabled = false
         lineChart.highlightPerDragEnabled = false
         lineChart.pinchZoomEnabled = false
         lineChart.doubleTapToZoomEnabled = false
         lineChart.scaleYEnabled = false
         lineChart.drawBordersEnabled = true
-        lineChart.borderColor = .darkGray
+        lineChart.borderColor = .darkBlue
         
         lineChart.noDataText = "No motion data for this day"
         lineChart.noDataTextColor = .white
@@ -69,7 +77,9 @@ class StatsViewController: UIViewController {
         let dataSet = LineChartDataSet(values: entries, label: nil)
         dataSet.setColor(.accentColor, alpha: 1.0)
         dataSet.drawCirclesEnabled = false
+        dataSet.lineWidth = 2
         dataSet.fillColor = .accentColor
+        dataSet.fillAlpha = 0.5
         dataSet.drawFilledEnabled = true
         dataSet.drawValuesEnabled = false
         dataSet.mode = .cubicBezier

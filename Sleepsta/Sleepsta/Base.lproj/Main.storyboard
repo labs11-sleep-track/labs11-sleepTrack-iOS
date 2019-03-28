@@ -34,7 +34,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sleepsta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JP9-48-6Nc">
                                 <rect key="frame" x="24" y="68" width="194.5" height="57.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -49,6 +48,7 @@
                     </view>
                     <connections>
                         <outlet property="signInButton" destination="sMr-Ff-ntk" id="uZ8-BE-nLt"/>
+                        <outlet property="titleLabel" destination="JP9-48-6Nc" id="zcY-lY-jar"/>
                         <segue destination="GMP-50-I8A" kind="presentation" identifier="LoginSegue" id="ZnX-Me-DnF"/>
                     </connections>
                 </viewController>
@@ -169,10 +169,10 @@
             </objects>
             <point key="canvasLocation" x="333.60000000000002" y="946.77661169415296"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="DCS-MT-5af">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarController" id="GMP-50-I8A" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="GMP-50-I8A" customClass="MainTabBarController" customModule="Sleepsta" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="p08-6Y-gKT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

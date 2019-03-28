@@ -52,6 +52,13 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         date = dateFromComponents()
     }
     
+    override func didAddSubview(_ subview: UIView) {
+        super.didAddSubview(subview)
+        if subview.bounds.height <= 1.0 {
+            subview.backgroundColor = .darkBlue
+        }
+    }
+    
     // MARK: - Public API
     func setDateTo(_ value: Int, component: Calendar.Component, from date: Date = Date()) {
         let date = calendar.date(byAdding: component, value: value, to: date)!
@@ -80,7 +87,7 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
     // MARK: - Picker View Delegate
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let titleString = titles[component][row]
-        let title = NSAttributedString(string: titleString, attributes: [.foregroundColor: UIColor.white])
+        let title = NSAttributedString(string: titleString, attributes: [.foregroundColor: UIColor.customWhite])
         return title
     }
     
