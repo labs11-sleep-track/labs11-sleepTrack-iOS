@@ -9,6 +9,12 @@
 import Foundation
 
 class DailyData: Codable {
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        return dateFormatter
+    }()
+    
     var userID: Int
     var quality: Int?
     var bedTime: Int?
@@ -18,6 +24,21 @@ class DailyData: Codable {
     
     var hasRequiredValues: Bool {
         return quality != nil && bedTime != nil && wakeTime != nil && sleepNotes != nil
+    }
+    
+    var bedDate: Date? {
+        guard let bedTime = bedTime else { return nil }
+        return Date(timeIntervalSince1970: Double(bedTime))
+    }
+    
+    var wakeDate: Date? {
+        guard let wakeTime = wakeTime else { return nil }
+        return Date(timeIntervalSince1970: Double(wakeTime))
+    }
+    
+    var dateRangeString: String {
+        guard let bedDate = bedDate, let wakeDate = wakeDate else { return "" }
+        return "\(DailyData.dateFormatter.string(from: bedDate)) - \(DailyData.dateFormatter.string(from: wakeDate))"
     }
     
     enum CodingKeys: String, CodingKey {

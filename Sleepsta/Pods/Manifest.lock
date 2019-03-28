@@ -1,4 +1,7 @@
 PODS:
+  - Charts (3.2.2):
+    - Charts/Core (= 3.2.2)
+  - Charts/Core (3.2.2)
   - GoogleSignIn (4.4.0):
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
@@ -14,19 +17,22 @@ PODS:
   - GTMSessionFetcher/Core (1.2.1)
 
 DEPENDENCIES:
+  - Charts
   - GoogleSignIn
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Charts
     - GoogleSignIn
     - GoogleToolboxForMac
     - GTMSessionFetcher
 
 SPEC CHECKSUMS:
+  Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
 
-PODFILE CHECKSUM: bc7df9171e41a62b5028f78214e8d0f52449a5ed
+PODFILE CHECKSUM: 9e6efc7ffcaa92b08d2d205701072cd62502f3d9
 
 COCOAPODS: 1.6.0

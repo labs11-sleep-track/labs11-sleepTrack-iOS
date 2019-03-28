@@ -11,6 +11,9 @@ import Foundation
 struct MotionData: Codable {
     
     let motion: Double
-    let timestamp: TimeInterval
+    let timestamp: Int
     
+    var date: Date {
+        return Date(timeIntervalSince1970: Double(timestamp))
+    }
 }

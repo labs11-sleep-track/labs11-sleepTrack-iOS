@@ -41,7 +41,7 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
     @IBAction func goToSleep(_ sender: Any) {
         motionManager.startTracking()
         dailyDataController.addBedTime()
-        alarmManager.setAlarm(for: Date(timeIntervalSinceNow: 5))
+        alarmManager.setAlarm(for: alarmTimePicker.date)
     }
     
     @IBAction func wakeUp(_ sender: Any) {
@@ -68,18 +68,23 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
         
         motionManager.delegate = self
         
-        welcomeLabel.textColor = .white
+        welcomeLabel.textColor = .customWhite
         welcomeLabel.text = "Welcome \(User.current?.firstName ?? "")!"
         
-        userIDLabel.textColor = .white
+        userIDLabel.textColor = .customWhite
         userIDLabel.text = "\(User.current?.email ?? "")"
+        
+        goToSleepButton.setTitleColor(.accentColor, for: .normal)
+        wakeUpButton.setTitleColor(.accentColor, for: .normal)
         
         let volumeControl = MPVolumeView(frame: volumeControlContainer.bounds)
         volumeControl.showsRouteButton = false
+        volumeControl.tintColor = .accentColor
         volumeControlContainer.addSubview(volumeControl)
         
         alarmTimePicker.setDateTo(8, component: .hour)
         updateButtons()
+        
     }
     
     private func updateButtons() {

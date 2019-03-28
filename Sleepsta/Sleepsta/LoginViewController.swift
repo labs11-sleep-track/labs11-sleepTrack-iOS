@@ -13,6 +13,7 @@ class LoginViewController: ShiftableViewController, GIDSignInUIDelegate {
 
     // MARK: - Properties
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var signInButton: GIDSignInButton!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -34,6 +35,8 @@ class LoginViewController: ShiftableViewController, GIDSignInUIDelegate {
     // MARK: - Utility Methods
     private func setupViews() {
         GIDSignIn.sharedInstance()?.uiDelegate = self
+        
+        titleLabel.textColor = .customWhite
         
         signInButton.colorScheme = .dark
         
