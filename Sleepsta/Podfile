@@ -7,6 +7,7 @@ target 'Sleepsta' do
 
   # Pods for Sleepsta
   pod 'GoogleSignIn'
+  pod 'Charts'
 
   target 'SleepstaTests' do
     inherit! :search_paths
