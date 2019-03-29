@@ -83,6 +83,7 @@ class StatsViewController: UIViewController {
         // Set up notes text view
         notesTextView.textColor = .customWhite
         notesTextView.backgroundColor = .clear
+        notesTextView.text = ""
     }
     
     private func updateLabels() {

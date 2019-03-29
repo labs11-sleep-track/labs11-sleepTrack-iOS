@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SLDatePickerViewDelegate: class {
+    func datePicker(_ datePicker: SLDatePickerView, didChangeDate: Bool)
+}
+
 class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     
     // MARK: - Properties
@@ -18,10 +22,16 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
     private var titles: [[String]] = []
     private(set) var date: Date = Date() {
         didSet {
-            print("\(hoursFromNow) hours and \(minutesFromNow) minutes from now")
+            datePickerDelegate?.datePicker(self, didChangeDate: true)
         }
     }
     let calendar = Calendar.current
+    weak var datePickerDelegate: SLDatePickerViewDelegate?
+    var isEnabled: Bool = true {
+        didSet {
+            updateIsEnabled()
+        }
+    }
     
     var hoursFromNow: Int {
         let hours = calendar.dateComponents([.hour], from: Date(), to: date).hour!
@@ -89,7 +99,6 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
             return modifiers.count
         default:
             fatalError("What happened? There should only be three components")
-            
         }
     }
     
@@ -109,7 +118,6 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .long
-//        print("alarm date: \(dateFormatter.string(from: date))\ncurrent date: \(dateFormatter.string(from: Date()))")
     }
     
     // MARK: - Utility Methods
@@ -172,5 +180,11 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         } else {
             return minute + (5 - minute % 5)
         }
+    }
+    
+    private func updateIsEnabled() {
+        isUserInteractionEnabled = isEnabled
+        let newAlpha: CGFloat = isEnabled ? 1.0 : 0.5
+        alpha = newAlpha
     }
 }
