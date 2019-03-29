@@ -20,7 +20,7 @@ class DailyData: Codable {
     var bedTime: Int?
     var wakeTime: Int?
     var sleepNotes: String?
-    var motionData: [MotionData] = []
+    var nightData: NightData
     
     var hasRequiredValues: Bool {
         return quality != nil && bedTime != nil && wakeTime != nil && sleepNotes != nil
@@ -37,6 +37,7 @@ class DailyData: Codable {
     }
     
     var dateRangeString: String {
+        // TODO: Change this to only display one date if the bedDate and wakeDate are the same
         guard let bedDate = bedDate, let wakeDate = wakeDate else { return "" }
         return "\(DailyData.dateFormatter.string(from: bedDate)) - \(DailyData.dateFormatter.string(from: wakeDate))"
     }
@@ -47,10 +48,19 @@ class DailyData: Codable {
         case bedTime = "sleeptime"
         case wakeTime = "waketime"
         case sleepNotes = "sleep_notes"
-        case motionData = "night_data"
+        case nightData = "night_data"
     }
     
     init(userID: Int) {
         self.userID = userID
+        self.nightData = NightData()
+    }
+}
+
+class NightData: Codable {
+    var motionData: [MotionData] = []
+    
+    enum CodingKeys: String, CodingKey {
+        case motionData = "motion_data"
     }
 }

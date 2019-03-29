@@ -59,6 +59,15 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         }
     }
     
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        for subview in subviews {
+            if subview.bounds.height <= 1.0 {
+                subview.backgroundColor = .darkBlue
+            }
+        }
+    }
+    
     // MARK: - Public API
     func setDateTo(_ value: Int, component: Calendar.Component, from date: Date = Date()) {
         let date = calendar.date(byAdding: component, value: value, to: date)!

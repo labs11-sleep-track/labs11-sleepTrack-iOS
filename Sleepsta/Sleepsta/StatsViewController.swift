@@ -98,7 +98,7 @@ class StatsViewController: UIViewController {
     }
     
     private func updateLineChart() {
-        guard let motionData = dailyData?.motionData, !motionData.isEmpty else { return }
+        guard let motionData = dailyData?.nightData.motionData, !motionData.isEmpty else { return }
         var entries: [ChartDataEntry] = []
         for dataPoint in motionData {
             let entry = ChartDataEntry(x: Double(dataPoint.timestamp), y: dataPoint.motion)
