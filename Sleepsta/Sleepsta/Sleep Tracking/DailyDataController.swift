@@ -99,7 +99,7 @@ class DailyDataController {
             
             do {
                 let dailyDatas = try JSONDecoder().decode([DailyData].self, from: data)
-                self.dailyDatas = dailyDatas
+                self.dailyDatas = dailyDatas.sorted(by: { ($0.bedTime ?? 0) < ($1.bedTime ?? 1) })
             } catch {
                 NSLog("Error decoding daily datas: \(error)")
             }
