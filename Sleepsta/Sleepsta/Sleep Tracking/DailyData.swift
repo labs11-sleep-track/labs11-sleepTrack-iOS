@@ -8,14 +8,25 @@
 
 import Foundation
 
-class DailyData: Codable {
+class DailyData: Codable, Equatable {
+    static func == (lhs: DailyData, rhs: DailyData) -> Bool {
+        return lhs.userID == rhs.userID && lhs.bedTime == rhs.bedTime && lhs.wakeTime == rhs.wakeTime
+    }
+    
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         return dateFormatter
     }()
     
+    static let timeFormatter: DateFormatter = {
+        let timeFormatter = DateFormatter()
+        timeFormatter.timeStyle = .short
+        return timeFormatter
+    }()
+    
     var userID: Int
+    var identifier: Int?
     var quality: Int?
     var bedTime: Int?
     var wakeTime: Int?
@@ -36,6 +47,16 @@ class DailyData: Codable {
         return Date(timeIntervalSince1970: Double(wakeTime))
     }
     
+    var bedTimeString: String {
+        guard let bedDate = bedDate else { return "" }
+        return DailyData.timeFormatter.string(from: bedDate)
+    }
+    
+    var wakeTimeString: String {
+        guard let wakeDate = wakeDate else { return "" }
+        return DailyData.timeFormatter.string(from: wakeDate)
+    }
+    
     var dateRangeString: String {
         // TODO: Change this to only display one date if the bedDate and wakeDate are the same
         guard let bedDate = bedDate, let wakeDate = wakeDate else { return "" }
@@ -44,6 +65,7 @@ class DailyData: Codable {
     
     enum CodingKeys: String, CodingKey {
         case userID = "user_id"
+        case identifier = "id"
         case quality = "qos_score"
         case bedTime = "sleeptime"
         case wakeTime = "waketime"

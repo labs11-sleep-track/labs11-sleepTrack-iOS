@@ -11,10 +11,15 @@ import Charts
 
 class StatsViewController: UIViewController {
     var dailyData: DailyData?
-    let dailyDataController = DailyDataController()
-
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var lineChart: LineChartView!
+    @IBOutlet weak var qualityLabel: UILabel!
+    @IBOutlet weak var qualityTitleLabel: UILabel!
+    @IBOutlet weak var bedTimeLabel: UILabel!
+    @IBOutlet weak var bedTimeTitleLabel: UILabel!
+    @IBOutlet weak var wakeTimeLabel: UILabel!
+    @IBOutlet weak var wakeTimeTitleLabel: UILabel!
     @IBOutlet weak var notesLabel: UILabel!
     @IBOutlet weak var notesTextView: UITextView!
     
@@ -29,18 +34,8 @@ class StatsViewController: UIViewController {
         
         // If there is no data, load the sample data
         // if dailyData == nil { loadSampleData() }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        dailyDataController.fetchDailyData {
-            DispatchQueue.main.async {
-                self.dailyData = self.dailyDataController.dailyDatas.last
-                self.updateLineChart()
-                self.updateLabels()
-            }
-        }
+        updateLineChart()
+        updateLabels()
     }
 
     private func loadSampleData() {
@@ -86,7 +81,13 @@ class StatsViewController: UIViewController {
         lineChart.noDataTextColor = .white
         lineChart.noDataFont = UIFont.preferredFont(forTextStyle: .headline)
         
-        // Set up notes label
+        // Set up quality, sleep time, and notes labels
+        qualityLabel.textColor = .customWhite
+        qualityTitleLabel.textColor = .customWhite
+        bedTimeLabel.textColor = .customWhite
+        bedTimeTitleLabel.textColor = .customWhite
+        wakeTimeLabel.textColor = .customWhite
+        wakeTimeTitleLabel.textColor = .customWhite
         notesLabel.textColor = .customWhite
         
         // Set up notes text view
@@ -99,6 +100,10 @@ class StatsViewController: UIViewController {
         guard isViewLoaded, let dailyData = dailyData else { return }
         
         dateLabel.text = dailyData.dateRangeString
+        
+        qualityLabel.text = "\(dailyData.quality ?? -1)%"
+        bedTimeLabel.text = dailyData.bedTimeString
+        wakeTimeLabel.text = dailyData.wakeTimeString
         
         if let notes = dailyData.sleepNotes, !notes.isEmpty {
             notesTextView.text = notes

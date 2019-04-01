@@ -93,7 +93,8 @@ extension DailyData {
         return [
                 "I slept great last night",
                 "I went to sleep feeling exhausted, but now I feel like I'm ready for the day!",
-                "I feel like I could run a marathon"
+                "I feel like I could run a marathon",
+                "I'm ready to take on the world after that night's sleep!"
             ]
     }
     
@@ -101,7 +102,8 @@ extension DailyData {
         return [
                 "I slept alright",
                 "Not really ready to be awake yet, but I don't feel too bad",
-                "Guess I'm done sleeping for today"
+                "Guess I'm done sleeping for today",
+                "I could definitely keep sleeping if I didn't have to get up right now"
             ]
     }
     
@@ -109,7 +111,8 @@ extension DailyData {
         return [
                 "I slept awfully",
                 "I think I feel worse than when I went to sleep",
-                "I never really fell asleep, just tossed and turned all night"
+                "I never really fell asleep, just tossed and turned all night",
+                "Maybe the two coffees I had last night weren't a great idea"
             ]
     }
 }
