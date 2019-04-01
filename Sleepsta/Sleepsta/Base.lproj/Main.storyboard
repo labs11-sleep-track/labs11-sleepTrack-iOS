@@ -59,7 +59,7 @@
         <!--Stats-->
         <scene sceneID="OCB-Ao-e1g">
             <objects>
-                <viewController id="X5P-2D-FcS" customClass="StatsViewController" customModule="Sleepsta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StatsViewController" id="X5P-2D-FcS" customClass="StatsViewController" customModule="Sleepsta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2VY-tn-2YF" customClass="GradientView" customModule="Sleepsta" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -184,7 +184,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4MV-iy-CNE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1071" y="947"/>
+            <point key="canvasLocation" x="1046" y="1623"/>
+        </scene>
+        <!--Stats-->
+        <scene sceneID="wWC-qS-bQ4">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" pageSpacing="8" navigationOrientation="horizontal" spineLocation="none" id="deh-fR-QgB" customClass="StatsPageViewController" customModule="Sleepsta" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Stats" image="bar_chart" id="0sr-cl-kLP"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g0F-bC-V32" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1057" y="946"/>
         </scene>
         <!--Testing-->
         <scene sceneID="okf-5f-zeF">
@@ -340,7 +350,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="lRn-9Q-slw" kind="relationship" relationship="viewControllers" id="bM3-Au-7VB"/>
-                        <segue destination="X5P-2D-FcS" kind="relationship" relationship="viewControllers" id="S8S-Lz-d4w"/>
+                        <segue destination="deh-fR-QgB" kind="relationship" relationship="viewControllers" id="3XD-Oh-wqU"/>
                         <segue destination="RFG-z5-fca" kind="relationship" relationship="viewControllers" id="HRI-MZ-wu3"/>
                     </connections>
                 </tabBarController>

@@ -8,7 +8,11 @@
 
 import Foundation
 
-class DailyData: Codable {
+class DailyData: Codable, Equatable {
+    static func == (lhs: DailyData, rhs: DailyData) -> Bool {
+        return lhs.userID == rhs.userID && lhs.bedTime == rhs.bedTime && lhs.wakeTime == rhs.wakeTime
+    }
+    
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short

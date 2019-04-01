@@ -11,8 +11,7 @@ import Charts
 
 class StatsViewController: UIViewController {
     var dailyData: DailyData?
-    let dailyDataController = DailyDataController()
-
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var lineChart: LineChartView!
     @IBOutlet weak var qualityLabel: UILabel!
@@ -35,18 +34,8 @@ class StatsViewController: UIViewController {
         
         // If there is no data, load the sample data
         // if dailyData == nil { loadSampleData() }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        dailyDataController.fetchDailyData {
-            DispatchQueue.main.async {
-                self.dailyData = self.dailyDataController.dailyDatas.last
-                self.updateLineChart()
-                self.updateLabels()
-            }
-        }
+        updateLineChart()
+        updateLabels()
     }
 
     private func loadSampleData() {
