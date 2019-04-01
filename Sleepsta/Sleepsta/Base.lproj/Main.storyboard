@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-8r-Qp2">
-                                <rect key="frame" x="87.666666666666686" y="386" width="200" height="40"/>
+                                <rect key="frame" x="87.666666666666686" y="538" width="200" height="40"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="sMr-Ff-ntk" customClass="GIDSignInButton">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
@@ -39,10 +39,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="pZa-8r-Qp2" firstAttribute="centerY" secondItem="ZHe-V9-4qD" secondAttribute="centerY" id="2kB-EN-tHD"/>
-                            <constraint firstItem="pZa-8r-Qp2" firstAttribute="centerX" secondItem="ZHe-V9-4qD" secondAttribute="centerX" id="bBF-tc-XP3"/>
+                            <constraint firstItem="6QF-aB-2BW" firstAttribute="bottom" secondItem="pZa-8r-Qp2" secondAttribute="bottom" constant="200" id="3Qz-6r-36U"/>
                             <constraint firstItem="JP9-48-6Nc" firstAttribute="top" secondItem="6QF-aB-2BW" secondAttribute="top" constant="48" id="cR7-6Q-pxn"/>
                             <constraint firstItem="JP9-48-6Nc" firstAttribute="leading" secondItem="6QF-aB-2BW" secondAttribute="leading" constant="24" id="lbR-cV-sJ0"/>
+                            <constraint firstItem="pZa-8r-Qp2" firstAttribute="centerX" secondItem="ZHe-V9-4qD" secondAttribute="centerX" id="swM-vU-iSi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6QF-aB-2BW"/>
                     </view>

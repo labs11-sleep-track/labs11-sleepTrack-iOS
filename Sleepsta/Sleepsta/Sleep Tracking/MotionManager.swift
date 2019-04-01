@@ -67,6 +67,7 @@ class MotionManager {
         readTimer?.invalidate()
         readTimer = nil
         
+        // TODO: Set the date to be the middle of the time period, not the end. (data - intervalTime/2)
         // Add the accumulated data to the array and reset
         let motionData = MotionData(motion: accumulator, timestamp: Int(Date().timeIntervalSince1970))
         motionDataArray.append(motionData)

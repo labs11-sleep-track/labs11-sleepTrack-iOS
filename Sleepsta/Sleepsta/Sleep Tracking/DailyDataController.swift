@@ -12,6 +12,8 @@ import GoogleSignIn
 class DailyDataController {
     static var current: DailyData = DailyData(userID: User.current!.sleepstaID)
     
+    private(set) var dailyDatas: [DailyData] = []
+    
     private let baseURL = URL(string: .baseURLString)!
     
     // MARK: - CRUD Methods
@@ -72,6 +74,38 @@ class DailyDataController {
                 print(String(data: data, encoding: .utf8) ?? "Couldn't turn data into String")
                 self.resetCurrentDailyData()
             }
+        }.resume()
+    }
+    
+    func fetchDailyData(completion: @escaping () -> Void ) {
+        guard let user = User.current else { completion(); return }
+        
+        let requestURL = baseURL.appendingPathComponent("daily")
+            .appendingPathComponent("user")
+            .appendingPathComponent("\(user.sleepstaID)")
+        
+        URLSession.shared.dataTask(with: requestURL) { (data, _, error) in
+            if let error = error {
+                NSLog("Error GETting user's sleep data: \(error)")
+                completion()
+                return
+            }
+            
+            guard let data = data else {
+                NSLog("No data was returned")
+                completion()
+                return
+            }
+            
+            do {
+                let dailyDatas = try JSONDecoder().decode([DailyData].self, from: data)
+                self.dailyDatas = dailyDatas
+            } catch {
+                NSLog("Error decoding daily datas: \(error)")
+            }
+            
+            completion()
+            return
         }.resume()
     }
     
