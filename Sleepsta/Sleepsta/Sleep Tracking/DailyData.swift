@@ -26,6 +26,7 @@ class DailyData: Codable, Equatable {
     }()
     
     var userID: Int
+    var identifier: Int?
     var quality: Int?
     var bedTime: Int?
     var wakeTime: Int?
@@ -64,6 +65,7 @@ class DailyData: Codable, Equatable {
     
     enum CodingKeys: String, CodingKey {
         case userID = "user_id"
+        case identifier = "id"
         case quality = "qos_score"
         case bedTime = "sleeptime"
         case wakeTime = "waketime"
