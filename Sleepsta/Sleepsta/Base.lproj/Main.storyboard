@@ -78,13 +78,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MnP-dK-13K">
-                                <rect key="frame" x="20" y="355.33333333333331" width="51" height="21"/>
+                                <rect key="frame" x="20.000000000000004" y="425.66666666666669" width="50.333333333333343" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="white" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m1z-ID-kXi">
-                                <rect key="frame" x="20" y="384.33333333333331" width="335" height="127.99999999999994"/>
+                                <rect key="frame" x="20" y="454" width="335" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="EMx-Zs-PFC"/>
@@ -93,28 +93,93 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="h07-f2-McU">
+                                <rect key="frame" x="20" y="367.33333333333331" width="335" height="38.333333333333314"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GRA-Yw-JjM">
+                                        <rect key="frame" x="0.0" y="0.0" width="106.33333333333333" height="38.333333333333336"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xa-SX-n4B">
+                                                <rect key="frame" x="0.0" y="0.0" width="106.33333333333333" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quality" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvU-DZ-rgB">
+                                                <rect key="frame" x="0.0" y="20.333333333333371" width="106.33333333333333" height="18"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Rir-lZ-eRo">
+                                        <rect key="frame" x="114.33333333333334" y="0.0" width="106.33333333333334" height="38.333333333333336"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikU-tw-Fga">
+                                                <rect key="frame" x="0.0" y="0.0" width="106.33333333333333" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fell Asleep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hd-r3-u1D">
+                                                <rect key="frame" x="0.0" y="20.333333333333371" width="106.33333333333333" height="18"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IMT-KN-WSU">
+                                        <rect key="frame" x="228.66666666666666" y="0.0" width="106.33333333333334" height="38.333333333333336"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQq-JY-zR5">
+                                                <rect key="frame" x="0.0" y="0.0" width="106.33333333333333" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Woke Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKL-xR-C7O">
+                                                <rect key="frame" x="0.0" y="20.333333333333371" width="106.33333333333333" height="18"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TRr-HF-ZhP" firstAttribute="trailing" secondItem="84k-1b-N6R" secondAttribute="trailing" constant="20" id="0dD-R3-Y85"/>
                             <constraint firstItem="MnP-dK-13K" firstAttribute="leading" secondItem="TRr-HF-ZhP" secondAttribute="leading" constant="20" id="6XR-8W-SDz"/>
-                            <constraint firstItem="MnP-dK-13K" firstAttribute="top" secondItem="84k-1b-N6R" secondAttribute="bottom" constant="8" symbolic="YES" id="BVp-bb-1XV"/>
                             <constraint firstItem="m1z-ID-kXi" firstAttribute="top" secondItem="MnP-dK-13K" secondAttribute="bottom" constant="8" id="J4H-pe-Ei0"/>
                             <constraint firstItem="ux3-oC-XmF" firstAttribute="top" secondItem="TRr-HF-ZhP" secondAttribute="top" constant="20" id="J7m-tj-17W"/>
                             <constraint firstItem="84k-1b-N6R" firstAttribute="top" secondItem="ux3-oC-XmF" secondAttribute="bottom" constant="8" id="Qj8-02-sD0"/>
+                            <constraint firstItem="h07-f2-McU" firstAttribute="top" secondItem="84k-1b-N6R" secondAttribute="bottom" constant="20" id="WpC-JH-dAq"/>
+                            <constraint firstItem="MnP-dK-13K" firstAttribute="top" secondItem="h07-f2-McU" secondAttribute="bottom" constant="20" id="caF-xI-4MA"/>
                             <constraint firstItem="84k-1b-N6R" firstAttribute="leading" secondItem="TRr-HF-ZhP" secondAttribute="leading" constant="20" id="fja-Jz-4ME"/>
+                            <constraint firstItem="h07-f2-McU" firstAttribute="leading" secondItem="TRr-HF-ZhP" secondAttribute="leading" constant="20" id="g37-YM-pIi"/>
                             <constraint firstItem="ux3-oC-XmF" firstAttribute="centerX" secondItem="2VY-tn-2YF" secondAttribute="centerX" id="nVA-i4-zWc"/>
                             <constraint firstItem="m1z-ID-kXi" firstAttribute="leading" secondItem="TRr-HF-ZhP" secondAttribute="leading" constant="20" id="p7o-fh-5T4"/>
+                            <constraint firstItem="TRr-HF-ZhP" firstAttribute="trailing" secondItem="h07-f2-McU" secondAttribute="trailing" constant="20" id="tgd-FZ-geM"/>
                             <constraint firstItem="TRr-HF-ZhP" firstAttribute="trailing" secondItem="m1z-ID-kXi" secondAttribute="trailing" constant="20" id="ugy-4J-LaI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TRr-HF-ZhP"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Stats" image="bar_chart" id="m6h-VL-mtk"/>
                     <connections>
+                        <outlet property="bedTimeLabel" destination="ikU-tw-Fga" id="rs7-Rq-Gqy"/>
+                        <outlet property="bedTimeTitleLabel" destination="7hd-r3-u1D" id="RcI-7E-w2u"/>
                         <outlet property="dateLabel" destination="ux3-oC-XmF" id="QLz-GH-xdA"/>
                         <outlet property="lineChart" destination="84k-1b-N6R" id="5Me-jP-QsT"/>
                         <outlet property="notesLabel" destination="MnP-dK-13K" id="FKc-1H-lk1"/>
                         <outlet property="notesTextView" destination="m1z-ID-kXi" id="E7a-X6-poW"/>
+                        <outlet property="qualityLabel" destination="0Xa-SX-n4B" id="DkI-4D-my2"/>
+                        <outlet property="qualityTitleLabel" destination="ZvU-DZ-rgB" id="weh-Sf-a6f"/>
+                        <outlet property="wakeTimeLabel" destination="HQq-JY-zR5" id="lf5-gI-2aZ"/>
+                        <outlet property="wakeTimeTitleLabel" destination="QKL-xR-C7O" id="oo1-PE-FT2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4MV-iy-CNE" userLabel="First Responder" sceneMemberID="firstResponder"/>

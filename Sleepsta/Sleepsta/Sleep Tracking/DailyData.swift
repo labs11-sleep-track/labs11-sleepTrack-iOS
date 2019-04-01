@@ -15,6 +15,12 @@ class DailyData: Codable {
         return dateFormatter
     }()
     
+    static let timeFormatter: DateFormatter = {
+        let timeFormatter = DateFormatter()
+        timeFormatter.timeStyle = .short
+        return timeFormatter
+    }()
+    
     var userID: Int
     var quality: Int?
     var bedTime: Int?
@@ -34,6 +40,16 @@ class DailyData: Codable {
     var wakeDate: Date? {
         guard let wakeTime = wakeTime else { return nil }
         return Date(timeIntervalSince1970: Double(wakeTime))
+    }
+    
+    var bedTimeString: String {
+        guard let bedDate = bedDate else { return "" }
+        return DailyData.timeFormatter.string(from: bedDate)
+    }
+    
+    var wakeTimeString: String {
+        guard let wakeDate = wakeDate else { return "" }
+        return DailyData.timeFormatter.string(from: wakeDate)
     }
     
     var dateRangeString: String {
