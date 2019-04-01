@@ -27,6 +27,7 @@
 		349947402249722700BE41B2 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499473F2249722700BE41B2 /* MotionManager.swift */; };
 		349947422249725E00BE41B2 /* MotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349947412249725E00BE41B2 /* MotionData.swift */; };
 		34AA417622499DA200366391 /* DailyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AA417522499DA200366391 /* DailyData.swift */; };
+		34C02428225264B90053DCAA /* DailyData+SampleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C02427225264B90053DCAA /* DailyData+SampleGenerator.swift */; };
 		34F89F0D224AA43C0070A5A0 /* DailyDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */; };
 		34F89F0F224AAF900070A5A0 /* String+URLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F89F0E224AAF900070A5A0 /* String+URLS.swift */; };
 		34FD331D224BD9E400A0EFC6 /* UIAlertController+InformationalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FD331C224BD9E400A0EFC6 /* UIAlertController+InformationalAlert.swift */; };
@@ -72,6 +73,7 @@
 		3499473F2249722700BE41B2 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		349947412249725E00BE41B2 /* MotionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionData.swift; sourceTree = "<group>"; };
 		34AA417522499DA200366391 /* DailyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyData.swift; sourceTree = "<group>"; };
+		34C02427225264B90053DCAA /* DailyData+SampleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyData+SampleGenerator.swift"; sourceTree = "<group>"; };
 		34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDataController.swift; sourceTree = "<group>"; };
 		34F89F0E224AAF900070A5A0 /* String+URLS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+URLS.swift"; sourceTree = "<group>"; };
 		34FD331C224BD9E400A0EFC6 /* UIAlertController+InformationalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+InformationalAlert.swift"; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				349947412249725E00BE41B2 /* MotionData.swift */,
 				34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */,
 				34AA417522499DA200366391 /* DailyData.swift */,
+				34C02427225264B90053DCAA /* DailyData+SampleGenerator.swift */,
 			);
 			path = "Sleep Tracking";
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 			files = (
 				345CE0912242CA7B005B5725 /* LoginViewController.swift in Sources */,
 				345CE0972242D107005B5725 /* UIColor+CustomColors.swift in Sources */,
+				34C02428225264B90053DCAA /* DailyData+SampleGenerator.swift in Sources */,
 				34117B67224D633A001DD360 /* MainTabBarController.swift in Sources */,
 				345CE09D2242DAC6005B5725 /* ShiftableViewController.swift in Sources */,
 				34F89F0D224AA43C0070A5A0 /* DailyDataController.swift in Sources */,
