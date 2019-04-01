@@ -8,18 +8,11 @@
 
 import Foundation
 
-//var userID: Int
-//var quality: Int?
-//var bedTime: Int?
-//var wakeTime: Int?
-//var sleepNotes: String?
-//var nightData: NightData
-
 extension DailyData {
     static func generateSample(for date: Date? = nil) -> DailyData {
         let dailyData = DailyData(userID: 504)
         
-        dailyData.bedTime = dailyData.generateBedTime()
+        dailyData.bedTime = dailyData.generateBedTime(for: date)
         dailyData.wakeTime = dailyData.generateWakeTime()
         dailyData.nightData = dailyData.generateNightData()
         dailyData.quality = dailyData.generateQuality()
@@ -50,14 +43,14 @@ extension DailyData {
         var currentTime = bedTime + 300
         // Simulate falling asleep data
         for _ in 1...3 {
-            let motionData = MotionData(motion: Double.random(in: 2...6), timestamp: currentTime)
+            let motionData = MotionData(motion: Double.random(in: 3...6), timestamp: currentTime)
             nightData.motionData.append(motionData)
             currentTime += 600
         }
         
         // Simulate sleeping data
-        while currentTime < wakeTime - 3300 {
-            let motionData = MotionData(motion: Double.random(in: 0.8...2.5), timestamp: currentTime)
+        while currentTime < wakeTime - 4500 {
+            let motionData = MotionData(motion: Double.random(in: 0.8...2), timestamp: currentTime)
             nightData.motionData.append(motionData)
             currentTime += 600
         }

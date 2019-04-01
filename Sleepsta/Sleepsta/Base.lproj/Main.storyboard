@@ -121,6 +121,59 @@
             </objects>
             <point key="canvasLocation" x="1071" y="947"/>
         </scene>
+        <!--Testing-->
+        <scene sceneID="okf-5f-zeF">
+            <objects>
+                <viewController id="RFG-z5-fca" customClass="TestingViewController" customModule="Sleepsta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XUg-5n-7W6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WPy-Cd-Hk2">
+                                <rect key="frame" x="27.666666666666657" y="298" width="320" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="575832173.45772898">
+                                    <!--2019-04-01 17:22:53 +0000-->
+                                </date>
+                            </datePicker>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YZH-wD-b7C">
+                                <rect key="frame" x="20" y="522" width="335" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pO4-wA-JZq">
+                                        <rect key="frame" x="0.0" y="0.0" width="163.66666666666666" height="30"/>
+                                        <state key="normal" title="Generate"/>
+                                        <connections>
+                                            <action selector="generateDailyData:" destination="RFG-z5-fca" eventType="touchUpInside" id="c2h-fv-cnW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34W-hc-CKg">
+                                        <rect key="frame" x="171.66666666666663" y="0.0" width="163.33333333333337" height="30"/>
+                                        <state key="normal" title="Post"/>
+                                        <connections>
+                                            <action selector="postDailyData:" destination="RFG-z5-fca" eventType="touchUpInside" id="CDG-Cf-ulg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WPy-Cd-Hk2" firstAttribute="centerY" secondItem="XUg-5n-7W6" secondAttribute="centerY" id="MXT-Yf-3QH"/>
+                            <constraint firstItem="hsU-w8-s2A" firstAttribute="trailing" secondItem="YZH-wD-b7C" secondAttribute="trailing" constant="20" id="TSi-nq-8NR"/>
+                            <constraint firstItem="YZH-wD-b7C" firstAttribute="top" secondItem="WPy-Cd-Hk2" secondAttribute="bottom" constant="8" id="UAQ-8E-xb6"/>
+                            <constraint firstItem="WPy-Cd-Hk2" firstAttribute="centerX" secondItem="XUg-5n-7W6" secondAttribute="centerX" id="cbW-zL-I5O"/>
+                            <constraint firstItem="YZH-wD-b7C" firstAttribute="leading" secondItem="hsU-w8-s2A" secondAttribute="leading" constant="20" id="eu6-pZ-CUz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hsU-w8-s2A"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Testing" id="D0a-ib-uQt"/>
+                    <connections>
+                        <outlet property="datePicker" destination="WPy-Cd-Hk2" id="Rdd-VD-haR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JhC-MC-MNu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1815" y="947"/>
+        </scene>
         <!--Alarm-->
         <scene sceneID="LDo-8N-m7a">
             <objects>
@@ -223,6 +276,7 @@
                     <connections>
                         <segue destination="lRn-9Q-slw" kind="relationship" relationship="viewControllers" id="bM3-Au-7VB"/>
                         <segue destination="X5P-2D-FcS" kind="relationship" relationship="viewControllers" id="S8S-Lz-d4w"/>
+                        <segue destination="RFG-z5-fca" kind="relationship" relationship="viewControllers" id="HRI-MZ-wu3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eR2-F6-IRM" userLabel="First Responder" sceneMemberID="firstResponder"/>
