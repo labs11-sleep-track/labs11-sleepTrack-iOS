@@ -11,6 +11,7 @@ import Charts
 
 class StatsViewController: UIViewController {
     var dailyData: DailyData?
+    let dailyDataController = DailyDataController()
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var lineChart: LineChartView!
@@ -27,11 +28,19 @@ class StatsViewController: UIViewController {
         setupViews()
         
         // If there is no data, load the sample data
-        if dailyData == nil { loadSampleData() }
+        // if dailyData == nil { loadSampleData() }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        // Update charts and labels
-        updateLineChart()
-        updateLabels()
+        dailyDataController.fetchDailyData {
+            DispatchQueue.main.async {
+                self.dailyData = self.dailyDataController.dailyDatas.last
+                self.updateLineChart()
+                self.updateLabels()
+            }
+        }
     }
 
     private func loadSampleData() {
@@ -83,6 +92,7 @@ class StatsViewController: UIViewController {
         // Set up notes text view
         notesTextView.textColor = .customWhite
         notesTextView.backgroundColor = .clear
+        notesTextView.text = ""
     }
     
     private func updateLabels() {
@@ -98,7 +108,7 @@ class StatsViewController: UIViewController {
     }
     
     private func updateLineChart() {
-        guard let motionData = dailyData?.motionData, !motionData.isEmpty else { return }
+        guard let motionData = dailyData?.nightData.motionData, !motionData.isEmpty else { return }
         var entries: [ChartDataEntry] = []
         for dataPoint in motionData {
             let entry = ChartDataEntry(x: Double(dataPoint.timestamp), y: dataPoint.motion)

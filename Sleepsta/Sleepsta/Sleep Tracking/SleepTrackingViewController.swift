@@ -10,7 +10,7 @@ import UIKit
 import MediaPlayer
 
 
-class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
+class SleepTrackingViewController: UIViewController, MotionManagerDelegate, SLDatePickerViewDelegate {
 
     // MARK: - Properties
     
@@ -22,6 +22,7 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var userIDLabel: UILabel!
     
+    @IBOutlet weak var hourMinuteLabel: UILabel!
     @IBOutlet weak var alarmTimePicker: SLDatePickerView!
     @IBOutlet weak var goToSleepButton: UIButton!
     @IBOutlet weak var wakeUpButton: UIButton!
@@ -42,13 +43,14 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
         motionManager.startTracking()
         dailyDataController.addBedTime()
         alarmManager.setAlarm(for: alarmTimePicker.date)
+        alarmTimePicker.isEnabled = false
     }
     
     @IBAction func wakeUp(_ sender: Any) {
         alarmManager.turnOffAlarm()
         motionManager.stopTracking()
         dailyDataController.addWakeTime()
-        
+        alarmTimePicker.isEnabled = true
     }
     
     @IBAction func postData(_ sender: Any) {
@@ -59,6 +61,11 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
     // MARK: - Motion Manager Delegate
     func motionManager(_ motionManager: MotionManager, didChangeTrackingTo: Bool) {
         updateButtons()
+    }
+    
+    // MARK: - SL Date Picker View Delegate
+    func datePicker(_ datePicker: SLDatePickerView, didChangeDate: Bool) {
+        updateHourMinuteLabel()
     }
     
     // MARK: - Utility Methods
@@ -74,6 +81,8 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
         userIDLabel.textColor = .customWhite
         userIDLabel.text = "\(User.current?.email ?? "")"
         
+        hourMinuteLabel.textColor = .customWhite
+        
         goToSleepButton.setTitleColor(.accentColor, for: .normal)
         wakeUpButton.setTitleColor(.accentColor, for: .normal)
         
@@ -82,7 +91,9 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
         volumeControl.tintColor = .accentColor
         volumeControlContainer.addSubview(volumeControl)
         
+        alarmTimePicker.datePickerDelegate = self
         alarmTimePicker.setDateTo(8, component: .hour)
+        updateHourMinuteLabel()
         updateButtons()
         
     }
@@ -91,5 +102,9 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate {
         let tracking = motionManager.isTracking
         goToSleepButton.isHidden = tracking
         wakeUpButton.isHidden = !tracking
+    }
+    
+    private func updateHourMinuteLabel() {
+        hourMinuteLabel.text = "\(alarmTimePicker.hoursFromNow) hours and \(alarmTimePicker.minutesFromNow)ish minutes"
     }
 }

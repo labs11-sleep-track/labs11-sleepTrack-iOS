@@ -12,6 +12,8 @@ import GoogleSignIn
 class DailyDataController {
     static var current: DailyData = DailyData(userID: User.current!.sleepstaID)
     
+    private(set) var dailyDatas: [DailyData] = []
+    
     private let baseURL = URL(string: .baseURLString)!
     
     // MARK: - CRUD Methods
@@ -23,7 +25,7 @@ class DailyDataController {
     /// Method to add the time the user wakes up to an instance of DailyData. Defaults to the instance currently being built and the current time. Eventually, it will set the motion data too (if that is the route we go)
     func addWakeTime(to dailyData: DailyData = DailyDataController.current, wakeTime: Date = Date() ) {
         if dailyData.wakeTime == nil { dailyData.wakeTime = Int(wakeTime.timeIntervalSince1970) }
-//        if dailyData.motionData.isEmpty { dailyData.motionData = MotionManager.shared.motionDataArray }
+        if dailyData.nightData.motionData.isEmpty { dailyData.nightData.motionData = MotionManager.shared.motionDataArray }
     }
     
     /// Method to add the user's sleep notes to an instance of DailyData. Defaults to the instance currently being built and an empty string. Also calculates the sleep quality and sets that.
@@ -72,6 +74,38 @@ class DailyDataController {
                 print(String(data: data, encoding: .utf8) ?? "Couldn't turn data into String")
                 self.resetCurrentDailyData()
             }
+        }.resume()
+    }
+    
+    func fetchDailyData(completion: @escaping () -> Void ) {
+        guard let user = User.current else { completion(); return }
+        
+        let requestURL = baseURL.appendingPathComponent("daily")
+            .appendingPathComponent("user")
+            .appendingPathComponent("\(user.sleepstaID)")
+        
+        URLSession.shared.dataTask(with: requestURL) { (data, _, error) in
+            if let error = error {
+                NSLog("Error GETting user's sleep data: \(error)")
+                completion()
+                return
+            }
+            
+            guard let data = data else {
+                NSLog("No data was returned")
+                completion()
+                return
+            }
+            
+            do {
+                let dailyDatas = try JSONDecoder().decode([DailyData].self, from: data)
+                self.dailyDatas = dailyDatas.sorted(by: { ($0.bedTime ?? 0) < ($1.bedTime ?? 1) })
+            } catch {
+                NSLog("Error decoding daily datas: \(error)")
+            }
+            
+            completion()
+            return
         }.resume()
     }
     
