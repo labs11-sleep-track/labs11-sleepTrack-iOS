@@ -84,6 +84,14 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         componentsToDate(date)
     }
     
+    func setHour(to hour: Int) {
+        setHourComponent(to: hour)
+    }
+    
+    func setMinute(to minute: Int) {
+        setMinuteComponent(to: minute)
+    }
+    
     // MARK: - Picker View Data Source
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
@@ -145,13 +153,15 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
     }
     
     private func componentsToDate(_ date: Date) {
-        // Get the components from the date
         let components = calendar.dateComponents([.hour, .minute], from: date)
-        guard var hour = components.hour, var minute = components.minute else { return }
-        
-        // Make adjustments
-        minute = roundMinute(minute)
-        
+        guard let hour = components.hour, let minute = components.minute else { return }
+
+        setHourComponent(to: hour)
+        setMinuteComponent(to: minute)
+    }
+    
+    private func setHourComponent(to hour: Int, animated: Bool = true) {
+        var hour = hour
         let modifierIndex: Int
         if hour < 12 {
             modifierIndex = 0
@@ -159,17 +169,20 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
             hour -= 12
             modifierIndex = 1
         }
-        
-        // Turn them into strings and get their indexes
         let hourString = String(hour)
+        
+        guard let hourIndex = hours.index(of: hourString) else { return }
+        selectRow(hourIndex, inComponent: 0, animated: animated)
+        selectRow(modifierIndex, inComponent: 2, animated: animated)
+        self.date = dateFromComponents()
+    }
+    
+    private func setMinuteComponent(to minute: Int, animated: Bool = true) {
+        let minute = roundMinute(minute)
         let minuteString = String(minute)
         
-        guard let hourIndex = hours.index(of: hourString), let minuteIndex = minutes.index(of: minuteString) else { return }
-        
-        // Select the right rows and set the date
-        selectRow(hourIndex, inComponent: 0, animated: true)
-        selectRow(minuteIndex, inComponent: 1, animated: true)
-        selectRow(modifierIndex, inComponent: 2, animated: true)
+        guard let minuteIndex = minutes.index(of: minuteString) else { return }
+        selectRow(minuteIndex, inComponent: 1, animated: animated)
         self.date = dateFromComponents()
     }
     

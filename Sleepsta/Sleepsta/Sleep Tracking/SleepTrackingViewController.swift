@@ -18,6 +18,8 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate, SLDa
     let dailyDataController = DailyDataController()
     let alarmManager = AlarmManager()
     
+    @IBOutlet weak var settingsButton: UIButton!
+    
     // These labels are mostly to show that I am getting data, won't be a part of the final design.
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var userIDLabel: UILabel!
@@ -74,6 +76,8 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate, SLDa
         gradientView.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)
         
         motionManager.delegate = self
+        
+        settingsButton.tintColor = .accentColor
         
         welcomeLabel.textColor = .customWhite
         welcomeLabel.text = "Welcome \(User.current?.firstName ?? "")!"
