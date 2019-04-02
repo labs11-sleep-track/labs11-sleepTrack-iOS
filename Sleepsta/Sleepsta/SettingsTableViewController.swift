@@ -17,9 +17,16 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
+    private let noNotificationText = "No reminder set (tap to set one)"
+    
+    private let notificationIndexPath = IndexPath(row: 0, section: 0)
+    private let datePickerIndexPath = IndexPath(row: 1, section: 0)
+    private let cancelButtonIndexPath = IndexPath(row: 2, section: 0)
+    
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var notificationLabel: UILabel!
     @IBOutlet weak var notificationTimePicker: SLDatePickerView!
+    @IBOutlet weak var cancelReminderLabel: UILabel!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -38,13 +45,17 @@ class SettingsTableViewController: UITableViewController {
     
     // MARK: - Table View Delegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let datePickerIndexPath = IndexPath(row: 1, section: 0)
-        if indexPath == datePickerIndexPath {
+        
+        switch indexPath {
+        case datePickerIndexPath:
             let height = isEditingNotification ? notificationTimePicker.frame.height : 0
             return height
-        } else {
-            return 44
+        case cancelButtonIndexPath:
+            if notificationLabel.text == noNotificationText { return 0 }
+        default:
+            break
         }
+        return 44
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -59,15 +70,19 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let notificationIndexPath = IndexPath(row: 0, section: 0)
-        if indexPath == notificationIndexPath {
-            if isEditingNotification {
-                LocalNotificationHelper.shared.scheduleDailySleepReminderNotification(date: notificationTimePicker.date)
-                updateLabels()
-            } else {
-                LocalNotificationHelper.shared.requestAuthorization { _ in }
-            }
+        
+        switch indexPath {
+        case notificationIndexPath:
+            if isEditingNotification { LocalNotificationHelper.shared.scheduleDailySleepReminderNotification(date: notificationTimePicker.date) }
+            updateLabels()
             isEditingNotification.toggle()
+        case datePickerIndexPath:
+            LocalNotificationHelper.shared.requestAuthorization { _ in }
+            isEditingNotification.toggle()
+        case cancelButtonIndexPath:
+            cancelReminder()
+        default:
+            break
         }
     }
     
@@ -81,6 +96,7 @@ class SettingsTableViewController: UITableViewController {
         tableView.separatorColor = .darkBlue
         
         notificationLabel.textColor = .customWhite
+        cancelReminderLabel.textColor = .pink
         
         doneButton.tintColor = .accentColor
         
@@ -92,7 +108,14 @@ class SettingsTableViewController: UITableViewController {
         if let text = LocalNotificationHelper.shared.stringRepresentation() {
             notificationLabel.text = "Reminder set for: \(text)"
         } else {
-            notificationLabel.text = "No reminder set (tap to set one)"
+            notificationLabel.text = noNotificationText
         }
+    }
+    
+    private func cancelReminder() {
+        LocalNotificationHelper.shared.cancelCurrentNotifications()
+        updateLabels()
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 }

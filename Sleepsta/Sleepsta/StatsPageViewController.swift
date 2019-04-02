@@ -10,7 +10,6 @@ import UIKit
 
 class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
-
     let dailyDataController = DailyDataController()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -49,7 +48,6 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
         return nil
     }
 
-
     private func statsViewController(_ index: Int) -> StatsViewController? {
         guard index < dailyDataController.dailyDatas.count, index >= 0, let storyboard = storyboard, let page = storyboard.instantiateViewController(withIdentifier: "StatsViewController") as? StatsViewController else {
             return nil
@@ -58,7 +56,4 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
         page.dailyData = dailyDataController.dailyDatas[index]
         return page
     }
-    
-    
-
 }

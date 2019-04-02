@@ -318,6 +318,27 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="S1U-Bq-1Yc">
+                                        <rect key="frame" x="0.0" y="303.33333333333337" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S1U-Bq-1Yc" id="M2C-IN-Of1">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbE-ZJ-3px">
+                                                    <rect key="frame" x="122" y="11.333333333333336" width="131" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="DbE-ZJ-3px" firstAttribute="centerX" secondItem="M2C-IN-Of1" secondAttribute="centerX" id="c2p-Tf-yEI"/>
+                                                <constraint firstItem="DbE-ZJ-3px" firstAttribute="centerY" secondItem="M2C-IN-Of1" secondAttribute="centerY" id="gP8-2N-Vkx"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -327,6 +348,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="cancelReminderLabel" destination="DbE-ZJ-3px" id="qBW-8x-2cc"/>
                         <outlet property="doneButton" destination="Sma-Ui-nsk" id="pen-X4-S22"/>
                         <outlet property="notificationLabel" destination="izG-Qa-GlW" id="5U2-fb-NqE"/>
                         <outlet property="notificationTimePicker" destination="eqb-1V-Ydo" id="Xlz-z7-eoT"/>
@@ -367,13 +389,13 @@
                                 <rect key="frame" x="27.666666666666657" y="298" width="320" height="216"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWK-hg-D7k">
-                                <rect key="frame" x="24.000000000000014" y="92" width="254.33333333333337" height="43"/>
+                                <rect key="frame" x="24.000000000000014" y="100" width="254.33333333333337" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UID Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpa-la-1sb">
-                                <rect key="frame" x="24" y="135" width="74.333333333333329" height="20.333333333333343"/>
+                                <rect key="frame" x="24" y="143" width="74.333333333333329" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -406,12 +428,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="YWK-hg-D7k" firstAttribute="top" secondItem="1Z3-mH-yhh" secondAttribute="top" constant="48" id="7aP-oi-Y5m"/>
                             <constraint firstItem="9e4-8Q-jFA" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="A0Z-S5-JQr"/>
                             <constraint firstItem="1Z3-mH-yhh" firstAttribute="trailing" secondItem="gie-Jf-sXY" secondAttribute="trailing" constant="20" id="ISf-eL-w4e"/>
                             <constraint firstItem="YWK-hg-D7k" firstAttribute="leading" secondItem="1Z3-mH-yhh" secondAttribute="leading" constant="24" id="Sa0-Bh-jXu"/>
                             <constraint firstItem="IrZ-0I-LuO" firstAttribute="leading" secondItem="1Z3-mH-yhh" secondAttribute="leading" constant="16" id="Wc1-ji-MJb"/>
                             <constraint firstItem="1Z3-mH-yhh" firstAttribute="bottom" secondItem="9e4-8Q-jFA" secondAttribute="bottom" constant="20" id="Yji-iT-FvX"/>
+                            <constraint firstItem="YWK-hg-D7k" firstAttribute="top" secondItem="IrZ-0I-LuO" secondAttribute="bottom" constant="8" symbolic="YES" id="bKe-dq-wE0"/>
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="centerY" secondItem="B7m-vi-VIW" secondAttribute="centerY" id="byb-qc-Kv8"/>
                             <constraint firstItem="wpa-la-1sb" firstAttribute="leading" secondItem="YWK-hg-D7k" secondAttribute="leading" id="cXx-YB-4yd"/>
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="top" secondItem="gie-Jf-sXY" secondAttribute="bottom" constant="8" symbolic="YES" id="e9P-cv-82c"/>

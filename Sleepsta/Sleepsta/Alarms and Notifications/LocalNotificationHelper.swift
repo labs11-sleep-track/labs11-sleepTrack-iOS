@@ -43,7 +43,7 @@ class LocalNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         
         let content = UNMutableNotificationContent()
         content.title = "Go to sleep!"
-        content.body = "You asked me to remind you to go to sleep. This is it."
+        content.body = "You asked me to remind you to go to sleep. This is it. The rest is up to you."
         content.sound = .default
         
         var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: date)
@@ -58,19 +58,12 @@ class LocalNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         let request = UNNotificationRequest(identifier: reminderIdentifier, content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        printCurrentNotifictions()
     }
     
     func cancelCurrentNotifications() {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [reminderIdentifier])
         UserDefaults.standard.removeObject(forKey: "NotificationHour")
         UserDefaults.standard.removeObject(forKey: "NotificationMinute")
-    }
-    
-    func printCurrentNotifictions() {
-        UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
-            print(requests)
-        }
     }
     
     func stringRepresentation() -> String? {
