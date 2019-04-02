@@ -10,6 +10,7 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
+    // MARK: - Properties
     private var isEditingNotification: Bool = false {
         didSet {
             tableView.beginUpdates()
@@ -32,6 +33,7 @@ class SettingsTableViewController: UITableViewController {
         return .lightContent
     }
     
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +41,7 @@ class SettingsTableViewController: UITableViewController {
 
     }
 
+    // MARK: - UI Actions
     @IBAction func dismissView(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -83,7 +86,7 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - Utility Views
+    // MARK: - Utility Methods
     private func setupViews() {
         
         let gradientView = GradientView()

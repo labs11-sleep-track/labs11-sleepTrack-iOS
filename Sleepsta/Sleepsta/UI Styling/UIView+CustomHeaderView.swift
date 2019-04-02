@@ -9,6 +9,8 @@
 import UIKit
 
 extension UIView {
+    
+    /// Returns a view suitable for being the header view of a table view section with the given string and color.
     static func customHeaderView(with title: String, with color: UIColor = .customWhite) -> UIView {
         let view = UIView()
         let label = UILabel()
