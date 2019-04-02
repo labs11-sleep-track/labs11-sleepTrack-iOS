@@ -31,7 +31,7 @@ class DailyData: Codable, Equatable {
     var bedTime: Int?
     var wakeTime: Int?
     var sleepNotes: String?
-    var nightData: NightData
+    var nightData: [MotionData] = []
     
     var hasRequiredValues: Bool {
         return quality != nil && bedTime != nil && wakeTime != nil && sleepNotes != nil
@@ -75,7 +75,30 @@ class DailyData: Codable, Equatable {
     
     init(userID: Int) {
         self.userID = userID
-        self.nightData = NightData()
+    }
+    
+//    required init(from decoder: Decoder) throws {
+//        let container = decoder.container(keyedBy: CodingKeys.self)
+//        
+//        let userID = try container.decode(Int.self, forKey: .userID)
+//        let identifier = try container.decode(Int.self, forKey: .)
+//    }
+    
+    func encode (to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        guard let quality = quality else { throw NSError() }
+        guard let bedTime = bedTime else { throw NSError() }
+        guard let wakeTime = wakeTime else { throw NSError() }
+        
+        try container.encode(userID, forKey: .userID)
+        try container.encode(quality, forKey: .quality)
+        try container.encode(bedTime, forKey: .bedTime)
+        try container.encode(wakeTime, forKey: .wakeTime)
+        try container.encodeIfPresent(sleepNotes, forKey: .sleepNotes)
+        let motionData = try JSONEncoder().encode(nightData)
+        let motionDataString = String(data: motionData, encoding: .utf8)
+        try container.encodeIfPresent(motionDataString, forKey: .nightData)
     }
 }
 
