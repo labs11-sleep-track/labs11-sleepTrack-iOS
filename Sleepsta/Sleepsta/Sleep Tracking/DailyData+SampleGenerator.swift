@@ -10,7 +10,7 @@ import Foundation
 
 extension DailyData {
     static func generateSample(for date: Date? = nil) -> DailyData {
-        let dailyData = DailyData(userID: 504)
+        let dailyData = DailyData(userID: User.current?.sleepstaID ?? 1)
         
         dailyData.bedTime = dailyData.generateBedTime(for: date)
         dailyData.wakeTime = dailyData.generateWakeTime()
@@ -36,30 +36,34 @@ extension DailyData {
         return bedTime + sleepTime
     }
     
-    fileprivate func generateNightData() -> NightData {
-        let nightData = NightData()
+    fileprivate func generateNightData() -> [MotionData] {
+        var nightData: [MotionData] = []
         
         guard let bedTime = bedTime, let wakeTime = wakeTime else { return nightData }
         var currentTime = bedTime + 300
         // Simulate falling asleep data
-        for _ in 1...3 {
-            let motionData = MotionData(motion: Double.random(in: 3...6), timestamp: currentTime)
-            nightData.motionData.append(motionData)
+        for i in 1...5 {
+            let range = Double(6-i)...Double(8-i)
+            let motionData = MotionData(motion: Double.random(in: range), timestamp: currentTime)
+            nightData.append(motionData)
             currentTime += 600
         }
         
         // Simulate sleeping data
-        while currentTime < wakeTime - 4500 {
+        while currentTime < wakeTime - 5700 {
             let motionData = MotionData(motion: Double.random(in: 0.8...2), timestamp: currentTime)
-            nightData.motionData.append(motionData)
+            nightData.append(motionData)
             currentTime += 600
         }
         
         // Simulate waking up data
+        var modifier = 0.5
         while currentTime < wakeTime - 300 {
-            let motionData = MotionData(motion: Double.random(in: 4...8), timestamp: currentTime)
-            nightData.motionData.append(motionData)
+            let range = Double(1.5+modifier)...Double(2+2*modifier)
+            let motionData = MotionData(motion: Double.random(in: range), timestamp: currentTime)
+            nightData.append(motionData)
             currentTime += 600
+            modifier += 0.5
         }
         
         return nightData
