@@ -61,10 +61,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0:
-            let label = UILabel()
-            label.text = "Notifications"
-            label.textColor = .customWhite
-            return label
+            return UIView.customHeaderView(with: "Notifications")
         default: return nil
         }
     }
