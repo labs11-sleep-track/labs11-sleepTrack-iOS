@@ -95,6 +95,10 @@ class SettingsTableViewController: UITableViewController {
         notificationLabel.textColor = .customWhite
         cancelReminderLabel.textColor = .pink
         
+        let hour = UserDefaults.standard.object(forKey: .notificationHour) as? Int ?? 20
+        notificationTimePicker.setHour(to: hour)
+        notificationTimePicker.setMinute(to: 0)
+        
         doneButton.tintColor = .accentColor
         
         updateLabels()
