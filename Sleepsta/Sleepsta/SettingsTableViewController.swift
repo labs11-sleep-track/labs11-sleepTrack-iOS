@@ -61,6 +61,12 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let notificationIndexPath = IndexPath(row: 0, section: 0)
         if indexPath == notificationIndexPath {
+            if isEditingNotification {
+                LocalNotificationHelper.shared.scheduleDailySleepReminderNotification(date: notificationTimePicker.date)
+                updateLabels()
+            } else {
+                LocalNotificationHelper.shared.requestAuthorization { _ in }
+            }
             isEditingNotification.toggle()
         }
     }
@@ -78,5 +84,15 @@ class SettingsTableViewController: UITableViewController {
         
         doneButton.tintColor = .accentColor
         
+        updateLabels()
+        
+    }
+    
+    private func updateLabels() {
+        if let text = LocalNotificationHelper.shared.stringRepresentation() {
+            notificationLabel.text = "Reminder set for: \(text)"
+        } else {
+            notificationLabel.text = "No reminder set (tap to set one)"
+        }
     }
 }
