@@ -16,4 +16,9 @@ struct MotionData: Codable {
     var date: Date {
         return Date(timeIntervalSince1970: Double(timestamp))
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case motion = "y"
+        case timestamp = "x"
+    }
 }
