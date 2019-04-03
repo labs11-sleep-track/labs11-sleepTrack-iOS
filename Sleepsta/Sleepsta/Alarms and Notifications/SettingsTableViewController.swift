@@ -100,7 +100,8 @@ class SettingsTableViewController: UITableViewController {
         
         let hour = UserDefaults.standard.object(forKey: .notificationHour) as? Int ?? 20
         notificationTimePicker.setHour(to: hour)
-        notificationTimePicker.setMinute(to: 0)
+        let minute = UserDefaults.standard.object(forKey: .notificationMinute) as? Int ?? 0
+        notificationTimePicker.setMinute(to: minute)
         
         doneButton.tintColor = .accentColor
         
