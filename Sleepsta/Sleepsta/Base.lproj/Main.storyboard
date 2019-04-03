@@ -425,10 +425,15 @@
                                     <segue destination="rY5-lG-0VR" kind="presentation" id="2nf-5n-ufp"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="62" translatesAutoresizingMaskIntoConstraints="NO" id="BrS-O9-uqn" customClass="SLSlideControl" customModule="Sleepsta" customModuleProvider="target">
+                                <rect key="frame" x="67.666666666666686" y="560" width="240" height="62"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9e4-8Q-jFA" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="A0Z-S5-JQr"/>
+                            <constraint firstItem="BrS-O9-uqn" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="IPK-3c-hF1"/>
                             <constraint firstItem="1Z3-mH-yhh" firstAttribute="trailing" secondItem="gie-Jf-sXY" secondAttribute="trailing" constant="20" id="ISf-eL-w4e"/>
                             <constraint firstItem="YWK-hg-D7k" firstAttribute="leading" secondItem="1Z3-mH-yhh" secondAttribute="leading" constant="24" id="Sa0-Bh-jXu"/>
                             <constraint firstItem="IrZ-0I-LuO" firstAttribute="leading" secondItem="1Z3-mH-yhh" secondAttribute="leading" constant="16" id="Wc1-ji-MJb"/>
@@ -442,6 +447,7 @@
                             <constraint firstItem="BmG-9W-wzY" firstAttribute="top" secondItem="XKw-GN-L2t" secondAttribute="bottom" constant="8" symbolic="YES" id="sh3-za-iuP"/>
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="sj4-uA-15J"/>
                             <constraint firstItem="IrZ-0I-LuO" firstAttribute="top" secondItem="1Z3-mH-yhh" secondAttribute="top" constant="8" id="uNZ-fA-Eec"/>
+                            <constraint firstItem="BrS-O9-uqn" firstAttribute="top" secondItem="BmG-9W-wzY" secondAttribute="bottom" constant="8" id="vi1-qw-6z6"/>
                             <constraint firstItem="wpa-la-1sb" firstAttribute="top" secondItem="YWK-hg-D7k" secondAttribute="bottom" id="wTH-Eg-TpG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Z3-mH-yhh"/>
