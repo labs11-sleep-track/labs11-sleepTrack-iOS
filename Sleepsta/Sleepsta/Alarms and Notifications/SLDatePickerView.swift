@@ -178,11 +178,15 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
     }
     
     private func setMinuteComponent(to minute: Int, animated: Bool = true) {
-        let minute = roundMinute(minute)
-        let minuteString = String(minute)
+        let roundedMinute = roundMinute(minute)
+        let minuteString = String(roundedMinute) + (roundedMinute < 10 ? "0" : "")
         
         guard let minuteIndex = minutes.index(of: minuteString) else { return }
         selectRow(minuteIndex, inComponent: 1, animated: animated)
+        if roundedMinute < minute {
+            let hourIndex = selectedRow(inComponent: 0)
+            selectRow(hourIndex+1, inComponent: 0, animated: animated)
+        }
         self.date = dateFromComponents()
     }
     

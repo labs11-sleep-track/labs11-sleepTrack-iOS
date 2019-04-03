@@ -72,6 +72,8 @@ class SLSlideControl: UIControl {
             let endPoint = barView.bounds.width - thumb.bounds.width - 6
             if thumb.frame.origin.x != endPoint {
                 slideThumb(to: endPoint) { _ in self.sendActions(for: .valueChanged) }
+            } else {
+                sendActions(for: .valueChanged)
             }
         } else {
             // Otherwise, reset it.
@@ -108,7 +110,7 @@ class SLSlideControl: UIControl {
         
         // Set up the label
         instructionLabel = UILabel(frame: barView.bounds)
-        instructionLabel.text = "Slide to unlock"
+        instructionLabel.text = "Slide to cancel"
         instructionLabel.textAlignment = .center
         instructionLabel.textColor = .lighterBackgroundColor
         instructionLabel.font = UIFont.preferredFont(forTextStyle: .headline)
@@ -119,8 +121,6 @@ class SLSlideControl: UIControl {
         barView.addSubview(thumb)
         thumb.backgroundColor = .customWhite
         thumb.layer.cornerRadius = thumb.bounds.height/2
-//        thumb.layer.borderColor = UIColor.accentColor.cgColor
-//        thumb.layer.borderWidth = 2
         thumb.isUserInteractionEnabled = false
     }
     

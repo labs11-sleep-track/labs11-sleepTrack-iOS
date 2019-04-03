@@ -9,11 +9,19 @@
 import Foundation
 import MediaPlayer
 
+protocol AlarmManagerDelegate: class {
+    func alarmManager(_ alarmManager: AlarmManager, didSoundAlarm: Bool)
+}
+
 class AlarmManager: AudioPlayerDelegate {
 
+    weak var delegate: AlarmManagerDelegate?
+    
     private let player = AudioPlayer()
     private var timer: Timer?
-    private var isAlarmSounding: Bool = false
+    private(set) var isAlarmSounding: Bool = false {
+        didSet { delegate?.alarmManager(self, didSoundAlarm: isAlarmSounding)}
+    }
     
     init() {
         player.delegate = self

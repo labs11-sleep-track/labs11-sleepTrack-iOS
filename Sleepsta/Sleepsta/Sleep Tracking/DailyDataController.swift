@@ -34,6 +34,10 @@ class DailyDataController {
         dailyData.quality = calculateSleepQuality()
     }
     
+    func resetCurrent() {
+        resetCurrentDailyData()
+    }
+    
     // MARK: - Networking
     
     func postDailyData() {
