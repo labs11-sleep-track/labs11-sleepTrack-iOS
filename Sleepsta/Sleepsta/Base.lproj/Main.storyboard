@@ -428,6 +428,9 @@
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="62" translatesAutoresizingMaskIntoConstraints="NO" id="BrS-O9-uqn" customClass="SLSlideControl" customModule="Sleepsta" customModuleProvider="target">
                                 <rect key="frame" x="67.666666666666686" y="560" width="240" height="62"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="cancelAlarm:" destination="lRn-9Q-slw" eventType="valueChanged" id="PjL-vh-QeE"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -455,6 +458,7 @@
                     <tabBarItem key="tabBarItem" title="Alarm" image="alarm_clock" id="2a3-0O-lVu"/>
                     <connections>
                         <outlet property="alarmTimePicker" destination="XKw-GN-L2t" id="Alj-Qz-pYG"/>
+                        <outlet property="cancelSlider" destination="BrS-O9-uqn" id="4va-C3-RjS"/>
                         <outlet property="goToSleepButton" destination="NeO-U5-Xhc" id="ELj-dH-fZF"/>
                         <outlet property="hourMinuteLabel" destination="gie-Jf-sXY" id="cYi-pz-q2h"/>
                         <outlet property="settingsButton" destination="IrZ-0I-LuO" id="5o6-yM-Hrh"/>
@@ -480,7 +484,6 @@
                     <connections>
                         <segue destination="lRn-9Q-slw" kind="relationship" relationship="viewControllers" id="bM3-Au-7VB"/>
                         <segue destination="deh-fR-QgB" kind="relationship" relationship="viewControllers" id="3XD-Oh-wqU"/>
-                        <segue destination="RFG-z5-fca" kind="relationship" relationship="viewControllers" id="HRI-MZ-wu3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eR2-F6-IRM" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -20,17 +20,11 @@ class SLSlideControl: UIControl {
     // MARK: - Public API
     /// Resets the lock control back to its original state.
     func reset() {
-        slideThumb(to: 6)
+        if thumb != nil { slideThumb(to: 6) }
         isUnlocked = false
     }
     
-    // MARK: - Initializers
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-//        setupControl()
-    }
-    
+    // MARK: - Lifecycle Methods
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -75,9 +69,10 @@ class SLSlideControl: UIControl {
         if percentage > 0.8 {
             // If it is more than 80 percent, unlock the control, update the image and send the action.
             isUnlocked = true
-            sendActions(for: .valueChanged)
             let endPoint = barView.bounds.width - thumb.bounds.width - 6
-            if thumb.frame.origin.x != endPoint { slideThumb(to: endPoint) }
+            if thumb.frame.origin.x != endPoint {
+                slideThumb(to: endPoint) { _ in self.sendActions(for: .valueChanged) }
+            }
         } else {
             // Otherwise, reset it.
             reset()
@@ -147,9 +142,8 @@ class SLSlideControl: UIControl {
     }
     
     /// Animates the thumb sliding to the given point.
-    private func slideThumb(to point: CGFloat) {
-        UIView.animate(withDuration: 0.3) {
-            self.thumb.frame = self.thumbOffset(by: point)
-        }
+    private func slideThumb(to point: CGFloat, completion: @escaping (Bool) -> Void = { _ in }) {
+        let animations = { self.thumb.frame = self.thumbOffset(by: point) }
+        UIView.animate(withDuration: 0.3, animations: animations, completion: completion)
     }
 }

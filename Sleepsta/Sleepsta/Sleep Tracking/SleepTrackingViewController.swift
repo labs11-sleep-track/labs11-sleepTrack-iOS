@@ -28,6 +28,7 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate, SLDa
     @IBOutlet weak var alarmTimePicker: SLDatePickerView!
     @IBOutlet weak var goToSleepButton: UIButton!
     @IBOutlet weak var wakeUpButton: UIButton!
+    @IBOutlet weak var cancelSlider: SLSlideControl!
     @IBOutlet weak var volumeControlContainer: UIView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -52,6 +53,12 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate, SLDa
         alarmManager.turnOffAlarm()
         motionManager.stopTracking()
         dailyDataController.addWakeTime()
+        alarmTimePicker.isEnabled = true
+    }
+    
+    @IBAction func cancelAlarm(_ sender: Any) {
+        alarmManager.turnOffAlarm()
+        motionManager.stopTracking()
         alarmTimePicker.isEnabled = true
     }
     
@@ -83,7 +90,7 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate, SLDa
         welcomeLabel.text = "Welcome \(User.current?.firstName ?? "")!"
         
         userIDLabel.textColor = .customWhite
-        userIDLabel.text = "\(User.current?.email ?? "")"
+        userIDLabel.text = "" //\(User.current?.email ?? "")"
         
         hourMinuteLabel.textColor = .customWhite
         
@@ -106,6 +113,9 @@ class SleepTrackingViewController: UIViewController, MotionManagerDelegate, SLDa
         let tracking = motionManager.isTracking
         goToSleepButton.isHidden = tracking
         wakeUpButton.isHidden = !tracking
+        cancelSlider.reset()
+        cancelSlider.isHidden = !tracking
+        volumeControlContainer.isHidden = tracking
     }
     
     private func updateHourMinuteLabel() {
