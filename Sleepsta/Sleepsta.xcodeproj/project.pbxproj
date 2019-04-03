@@ -34,6 +34,7 @@
 		34C02428225264B90053DCAA /* DailyData+SampleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C02427225264B90053DCAA /* DailyData+SampleGenerator.swift */; };
 		34C0242A2252804E0053DCAA /* TestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C024292252804E0053DCAA /* TestingViewController.swift */; };
 		34C0242C2252B40B0053DCAA /* StatsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0242B2252B40B0053DCAA /* StatsPageViewController.swift */; };
+		34EC9C86225508AA00ECB553 /* SLSlideControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EC9C85225508AA00ECB553 /* SLSlideControl.swift */; };
 		34F89F0D224AA43C0070A5A0 /* DailyDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */; };
 		34F89F0F224AAF900070A5A0 /* String+URLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F89F0E224AAF900070A5A0 /* String+URLS.swift */; };
 		34FD331D224BD9E400A0EFC6 /* UIAlertController+InformationalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FD331C224BD9E400A0EFC6 /* UIAlertController+InformationalAlert.swift */; };
@@ -86,6 +87,7 @@
 		34C02427225264B90053DCAA /* DailyData+SampleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyData+SampleGenerator.swift"; sourceTree = "<group>"; };
 		34C024292252804E0053DCAA /* TestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingViewController.swift; sourceTree = "<group>"; };
 		34C0242B2252B40B0053DCAA /* StatsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsPageViewController.swift; sourceTree = "<group>"; };
+		34EC9C85225508AA00ECB553 /* SLSlideControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSlideControl.swift; sourceTree = "<group>"; };
 		34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDataController.swift; sourceTree = "<group>"; };
 		34F89F0E224AAF900070A5A0 /* String+URLS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+URLS.swift"; sourceTree = "<group>"; };
 		34FD331C224BD9E400A0EFC6 /* UIAlertController+InformationalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+InformationalAlert.swift"; sourceTree = "<group>"; };
@@ -146,15 +148,10 @@
 				34FD3324224BE88D00A0EFC6 /* shipBell.wav */,
 				343534722242B3CB00CCB1C5 /* Main.storyboard */,
 				345CE0902242CA7B005B5725 /* LoginViewController.swift */,
-				345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */,
 				345CE0A32242F80C005B5725 /* User.swift */,
-				348671F4224D30100092A2E8 /* StatsViewController.swift */,
-				34C0242B2252B40B0053DCAA /* StatsPageViewController.swift */,
-				34C024292252804E0053DCAA /* TestingViewController.swift */,
-				347967D52253F222007D72FB /* SettingsTableViewController.swift */,
-				34FD331C224BD9E400A0EFC6 /* UIAlertController+InformationalAlert.swift */,
 				34117B66224D633A001DD360 /* MainTabBarController.swift */,
 				348671F6224D307C0092A2E8 /* sample-data.json */,
+				34EC9C842255050A00ECB553 /* Stats */,
 				34FD331B224BD92200A0EFC6 /* Alarms and Notifications */,
 				34F89F10224AB5270070A5A0 /* Sleep Tracking */,
 				345CE09E2242E0C2005B5725 /* UI Styling */,
@@ -176,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				34F89F0E224AAF900070A5A0 /* String+URLS.swift */,
+				347967DB22541B4F007D72FB /* String+Keys.swift */,
 				3435346E2242B3CB00CCB1C5 /* AppDelegate.swift */,
 				343534752242B3CC00CCB1C5 /* Assets.xcassets */,
 				343534772242B3CC00CCB1C5 /* LaunchScreen.storyboard */,
@@ -191,8 +189,20 @@
 				345CE0942242D0B4005B5725 /* GradientView.swift */,
 				345CE09A2242D3BD005B5725 /* SLTextField.swift */,
 				347967D9225416AB007D72FB /* UIView+CustomHeaderView.swift */,
+				34FD331C224BD9E400A0EFC6 /* UIAlertController+InformationalAlert.swift */,
+				345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */,
 			);
 			path = "UI Styling";
+			sourceTree = "<group>";
+		};
+		34EC9C842255050A00ECB553 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				348671F4224D30100092A2E8 /* StatsViewController.swift */,
+				34C0242B2252B40B0053DCAA /* StatsPageViewController.swift */,
+				34C024292252804E0053DCAA /* TestingViewController.swift */,
+			);
+			path = Stats;
 			sourceTree = "<group>";
 		};
 		34F89F10224AB5270070A5A0 /* Sleep Tracking */ = {
@@ -204,6 +214,7 @@
 				34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */,
 				34AA417522499DA200366391 /* DailyData.swift */,
 				34C02427225264B90053DCAA /* DailyData+SampleGenerator.swift */,
+				34EC9C85225508AA00ECB553 /* SLSlideControl.swift */,
 			);
 			path = "Sleep Tracking";
 			sourceTree = "<group>";
@@ -216,7 +227,7 @@
 				34FD331E224BDB4B00A0EFC6 /* AVSessionHelper.swift */,
 				34FD3320224BE31000A0EFC6 /* AudioPlayer.swift */,
 				347967D72253FFF3007D72FB /* LocalNotificationHelper.swift */,
-				347967DB22541B4F007D72FB /* String+Keys.swift */,
+				347967D52253F222007D72FB /* SettingsTableViewController.swift */,
 			);
 			path = "Alarms and Notifications";
 			sourceTree = "<group>";
@@ -474,6 +485,7 @@
 				34117B67224D633A001DD360 /* MainTabBarController.swift in Sources */,
 				345CE09D2242DAC6005B5725 /* ShiftableViewController.swift in Sources */,
 				34F89F0D224AA43C0070A5A0 /* DailyDataController.swift in Sources */,
+				34EC9C86225508AA00ECB553 /* SLSlideControl.swift in Sources */,
 				345CE09B2242D3BD005B5725 /* SLTextField.swift in Sources */,
 				34C0242A2252804E0053DCAA /* TestingViewController.swift in Sources */,
 				34F89F0F224AAF900070A5A0 /* String+URLS.swift in Sources */,
