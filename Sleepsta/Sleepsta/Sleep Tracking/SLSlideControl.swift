@@ -119,8 +119,10 @@ class SLSlideControl: UIControl {
         // Set up the view for the thumb
         thumb = UIView(frame: thumbOffset(by: 6))
         barView.addSubview(thumb)
-        thumb.backgroundColor = .customWhite
+        thumb.backgroundColor = .lighterBackgroundColor
         thumb.layer.cornerRadius = thumb.bounds.height/2
+        thumb.layer.borderWidth = 2
+        thumb.layer.borderColor = UIColor.accentColor.cgColor
         thumb.isUserInteractionEnabled = false
     }
     

@@ -15,6 +15,7 @@ protocol AlarmManagerDelegate: class {
 
 class AlarmManager: AudioPlayerDelegate {
 
+    // MARK: - Properties
     weak var delegate: AlarmManagerDelegate?
     
     private let player = AudioPlayer()
@@ -23,10 +24,16 @@ class AlarmManager: AudioPlayerDelegate {
         didSet { delegate?.alarmManager(self, didSoundAlarm: isAlarmSounding)}
     }
     
+    // MARK: - Initializers
     init() {
         player.delegate = self
     }
     
+    deinit {
+        turnOffAlarm()
+    }
+    
+    // MARK: - Public API
     func setAlarm(for date: Date) {
         // Get rid of existing alarm
         turnOffAlarm()
@@ -74,9 +81,5 @@ class AlarmManager: AudioPlayerDelegate {
         
         isAlarmSounding = true
         player.play()
-    }
-    
-    private func playSound() {
-        
     }
 }
