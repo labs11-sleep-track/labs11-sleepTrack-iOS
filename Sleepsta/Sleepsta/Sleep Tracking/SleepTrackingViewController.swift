@@ -2,145 +2,117 @@
 //  SleepTrackingViewController.swift
 //  Sleepsta
 //
-//  Created by Dillon McElhinney on 3/20/19.
+//  Created by Dillon McElhinney on 4/4/19.
 //  Copyright © 2019 Dillon McElhinney. All rights reserved.
 //
 
 import UIKit
-import MediaPlayer
 
+protocol SleepTrackingViewControllerDelegate: class {
+    var alarmManager: AlarmManager { get }
+    func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didCancel: Bool)
+    func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didTurnOffAlarm: Bool)
+    func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didSnoozeAlarm: Bool)
+}
 
-class SleepTrackingViewController: UIViewController, MotionManagerDelegate, SLDatePickerViewDelegate, AlarmManagerDelegate {
+class SleepTrackingViewController: UIViewController {
 
     // MARK: - Properties
+    weak var delegate: SleepTrackingViewControllerDelegate?
     
-    let motionManager = MotionManager.shared
-    let dailyDataController = DailyDataController()
-    let alarmManager = AlarmManager()
-    
-    @IBOutlet weak var settingsButton: UIButton!
-    
-    // These labels are mostly to show that I am getting data, won't be a part of the final design.
-    @IBOutlet weak var welcomeLabel: UILabel!
-    @IBOutlet weak var userIDLabel: UILabel!
-    
-    @IBOutlet weak var hourMinuteLabel: UILabel!
-    @IBOutlet weak var alarmTimePicker: SLDatePickerView!
-    @IBOutlet weak var goToSleepButton: UIButton!
-    @IBOutlet weak var wakeUpButton: UIButton!
-    @IBOutlet weak var snoozeButton: UIButton!
-    @IBOutlet weak var cancelSlider: SLSlideControl!
-    @IBOutlet weak var volumeControlContainer: UIView!
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+    private var cancelSlider: SLSlideControl?
+    private var stackView: UIStackView?
+    private var titleLabel: UILabel?
+    private var subtitleLabel: UILabel?
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        configureLabels()
+        configureViewForSleeping()
+    }
+    
+    // MARK: - Public API
+    func configureLabels() {
         
-        setupViews()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        if titleLabel == nil {
+            titleLabel = UILabel.titleLabel(with: "Sleep Tracking", and: .darkBlue)
+            titleLabel!.constrainToSuperView(view, top: 16, leading: 24)
+            titleLabel?.alpha = 0.5
+        }
         
-        alarmTimePicker.setDateTo(8, component: .hour)
-    }
-    
-    // MARK: - UI Actions
-    @IBAction func goToSleep(_ sender: Any) {
-        motionManager.startTracking()
-        dailyDataController.addBedTime()
-        alarmManager.setAlarm(for: alarmTimePicker.date)
-        alarmTimePicker.isEnabled = false
-    }
-    
-    @IBAction func wakeUp(_ sender: Any) {
-        alarmManager.turnOffAlarm()
-        motionManager.stopTracking()
-        dailyDataController.addWakeTime()
-        alarmTimePicker.isEnabled = true
-    }
-    
-    @IBAction func cancelAlarm(_ sender: Any) {
-        dailyDataController.resetCurrent()
-        alarmManager.turnOffAlarm()
-        motionManager.stopTracking()
-        alarmTimePicker.isEnabled = true
-    }
-    
-    @IBAction func snoozeAlarm(_ sender: Any) {
-        alarmManager.snoozeAlarm()
-        alarmTimePicker.setDateTo(5, component: .minute)
-    }
-    
-    @IBAction func postData(_ sender: Any) {
-        dailyDataController.addSleepNotes(notes: "I guess I slept pretty well.")
-        dailyDataController.postDailyData()
-    }
-    
-    // MARK: - Motion Manager Delegate
-    func motionManager(_ motionManager: MotionManager, didChangeTrackingTo: Bool) {
-        updateButtons()
-    }
-    
-    // MARK: - SL Date Picker View Delegate
-    func datePicker(_ datePicker: SLDatePickerView, didChangeDate: Bool) {
-        updateHourMinuteLabel()
-    }
-    
-    // MARK: - Alarm Manager Delegate
-    func alarmManager(_ alarmManager: AlarmManager, didSoundAlarm: Bool) {
-        updateButtons()
-    }
-    
-    // MARK: - Utility Methods
-    private func setupViews() {
-        let gradientView = view as! GradientView
-        gradientView.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)
+        guard let alarmTime = delegate?.alarmManager.timeString else { return }
+        let subtitleString = "Alarm set for: \(alarmTime)"
         
-        motionManager.delegate = self
-        alarmManager.delegate = self
+        if let subtitleLabel = subtitleLabel {
+            subtitleLabel.text = subtitleString
+        } else {
+            subtitleLabel = UILabel.subtitleLabel(with: subtitleString, and: .darkBlue)
+            subtitleLabel!.alpha = 0.5
+            subtitleLabel!.textAlignment = .center
+            subtitleLabel!.constrainToCenterIn(view)
+        }
+    }
+    
+    func configureViewForAlarmSounding() {
+        cancelSlider?.removeFromSuperview()
         
-        settingsButton.tintColor = .accentColor
+        if let stackView = stackView {
+            stackView.constrainToCenterIn(view)
+        } else {
+            setupStackView()
+        }
         
-        welcomeLabel.textColor = .customWhite
-        welcomeLabel.text = "Welcome \(User.current?.firstName ?? "")!"
+    }
+    
+    func configureViewForSleeping() {
+        stackView?.removeFromSuperview()
         
-        userIDLabel.textColor = .customWhite
-        userIDLabel.text = "" //\(User.current?.email ?? "")"
+        if let cancelSlider = cancelSlider {
+            cancelSlider.constrainToSuperView(view, bottom: 20, centerX: 0)
+        } else {
+            setupCancelSlider()
+        }
+    }
+    
+    // MARK: - Actions
+    @objc private func cancelAlarm() {
+        delegate?.sleepTrackingVC(self, didCancel: true)
+    }
+    
+    @objc private func turnOffAlarm() {
+        delegate?.sleepTrackingVC(self, didTurnOffAlarm: true)
+    }
+    
+    @objc private func snoozeAlarm() {
+        delegate?.sleepTrackingVC(self, didSnoozeAlarm: true)
+    }
+    
+    // MARK: - UI Layout
+    private func setupCancelSlider() {
+        cancelSlider = SLSlideControl()
+        cancelSlider!.addTarget(self, action: #selector(cancelAlarm), for: .valueChanged)
+        cancelSlider!.constrainToSuperView(view, bottom: 32, centerX: 0)
+    }
+    
+    private func setupStackView() {
+        stackView = UIStackView()
+        stackView!.axis = .vertical
+        stackView!.spacing = 48
+        stackView!.constrainToCenterIn(view)
         
-        hourMinuteLabel.textColor = .customWhite
-        
-        goToSleepButton.setTitleColor(.accentColor, for: .normal)
-        wakeUpButton.setTitleColor(.accentColor, for: .normal)
+        let snoozeButton = UIButton()
+        snoozeButton.setTitle("Keep Sleeping", for: .normal)
         snoozeButton.setTitleColor(.pink, for: .normal)
+        snoozeButton.addTarget(self, action: #selector(snoozeAlarm), for: .touchUpInside)
+        stackView?.addArrangedSubview(snoozeButton)
         
-        let volumeControl = MPVolumeView(frame: volumeControlContainer.bounds)
-        volumeControl.showsRouteButton = false
-        volumeControl.tintColor = .accentColor
-        volumeControlContainer.addSubview(volumeControl)
-        
-        alarmTimePicker.datePickerDelegate = self
-        alarmTimePicker.setDateTo(8, component: .hour)
-        updateButtons()
-        
+        let wakeUpButton = UIButton()
+        wakeUpButton.setTitle("Wake Up!", for: .normal)
+        wakeUpButton.setTitleColor(.accentColor, for: .normal)
+        wakeUpButton.addTarget(self, action: #selector(turnOffAlarm), for: .touchUpInside)
+        stackView?.addArrangedSubview(wakeUpButton)
     }
-    
-    private func updateButtons() {
-        let tracking = motionManager.isTracking
-        goToSleepButton.isHidden = tracking
-        wakeUpButton.isHidden = !alarmManager.isAlarmSounding
-        snoozeButton.isHidden = !alarmManager.isAlarmSounding
-        cancelSlider.reset()
-        cancelSlider.isHidden = !tracking || alarmManager.isAlarmSounding
-        volumeControlContainer.isHidden = tracking
-        
-    }
-    
-    private func updateHourMinuteLabel() {
-        hourMinuteLabel.text = "\(alarmTimePicker.hoursFromNow) hours and \(alarmTimePicker.minutesFromNow)ish minutes"
-    }
+
 }
