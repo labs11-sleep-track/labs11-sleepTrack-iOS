@@ -60,10 +60,10 @@ class AlarmSetupViewController: UIViewController, MotionManagerDelegate, SLDateP
     }
     
     @IBAction func wakeUp(_ sender: Any) {
-        alarmManager.turnOffAlarm()
-        motionManager.stopTracking()
-        dailyDataController.addWakeTime()
-        alarmTimePicker.isEnabled = true
+//        alarmManager.turnOffAlarm()
+//        motionManager.stopTracking()
+//        dailyDataController.addWakeTime()
+//        alarmTimePicker.isEnabled = true
     }
     
     @IBAction func cancelAlarm(_ sender: Any) {
@@ -74,8 +74,8 @@ class AlarmSetupViewController: UIViewController, MotionManagerDelegate, SLDateP
     }
     
     @IBAction func snoozeAlarm(_ sender: Any) {
-        alarmManager.snoozeAlarm()
-        alarmTimePicker.setDateTo(5, component: .minute)
+//        alarmManager.snoozeAlarm()
+//        alarmTimePicker.setDateTo(5, component: .minute)
     }
     
     @IBAction func postData(_ sender: Any) {
@@ -120,10 +120,7 @@ class AlarmSetupViewController: UIViewController, MotionManagerDelegate, SLDateP
         wakeUpButton.setTitleColor(.accentColor, for: .normal)
         snoozeButton.setTitleColor(.pink, for: .normal)
         
-        var frame = volumeControlContainer.bounds //CGRect(origin: volumeControlContainer.bounds.origin, size: volumeControlContainer.bounds.size)
-        frame.size.height -= 24
-        frame.origin.y += 24
-        let volumeControl = MPVolumeView(frame: frame)
+        let volumeControl = MPVolumeView(frame: volumeControlContainer.bounds)
         volumeControl.showsRouteButton = false
         volumeControl.tintColor = .accentColor
         volumeControlContainer.addSubview(volumeControl)

@@ -12,6 +12,7 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
 
     let motionManager = MotionManager.shared
     let alarmManager = AlarmManager()
+    let dailyDataController = DailyDataController()
     
     var preVC: PreBedSurveyViewController?
     var sleepTrackingVC: SleepTrackingViewController?
@@ -43,22 +44,27 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
     
     // MARK: - Sleep Tracking View Controller Delegate
     func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didCancel: Bool) {
+        motionManager.stopTracking()
         dismiss(animated: true)
     }
     
     func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didTurnOffAlarm: Bool) {
         alarmManager.turnOffAlarm()
+        motionManager.stopTracking()
+        dailyDataController.addWakeTime()
         transitionToPostSurvey()
     }
     
     func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didSnoozeAlarm: Bool) {
         alarmManager.snoozeAlarm()
         sleepTrackingVC.configureViewForSleeping()
+        sleepTrackingVC.configureLabels()
     }
     
     // MARK: - Utility Methods
     private func presentSleepTrackingVC() {
-        //motionManager.startTracking()
+        dailyDataController.addBedTime()
+        motionManager.startTracking()
         sleepTrackingVC = SleepTrackingViewController()
         sleepTrackingVC?.delegate = self
         addChild(sleepTrackingVC!)
@@ -68,12 +74,12 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
     private func transitionToPostSurvey() {
         if let sleepTrackingVC = sleepTrackingVC {
             let animations = { sleepTrackingVC.view.alpha = 0 }
-            UIView.animate(withDuration: 0.5, animations: animations) { (_) in
+            let completion: (Bool) -> Void = { _ in
                 sleepTrackingVC.removeFromParent()
                 self.sleepTrackingVC = nil
                 self.dismiss(animated: true)
             }
-            
+            UIView.animate(withDuration: 0.5, animations: animations, completion: completion)
         }
     }
     

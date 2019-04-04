@@ -61,6 +61,54 @@ extension UIView {
         
     }
     
+    /// Constrains the view it is called on to the given view by with the non nil anchors and the given offsets. **Must be siblings in the view hierarchy. It is possible to define conflicting constraints, beware.**
+    func constrainToSiblingView(_ view: UIView, top: CGFloat? = nil, bottom: CGFloat? = nil, leading: CGFloat? = nil, trailing: CGFloat? = nil, below: CGFloat? = nil, above: CGFloat? = nil, behind: CGFloat? = nil, before: CGFloat? = nil, centerX: CGFloat? = nil, centerY: CGFloat? = nil) {
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        if let top = top {
+            self.topAnchor.constraint(equalTo: view.topAnchor, constant: top).isActive = true
+        }
+        
+        if let bottom = bottom {
+            view.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: bottom).isActive = true
+        }
+        
+        if let leading = leading {
+            self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leading).isActive = true
+        }
+        
+        if let trailing = trailing {
+            view.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: trailing).isActive = true
+        }
+        
+        if let below = below {
+            self.topAnchor.constraint(equalTo: view.bottomAnchor, constant: below).isActive = true
+        }
+        
+        if let above = above {
+            view.topAnchor.constraint(equalTo: self.bottomAnchor, constant: above).isActive = true
+        }
+        
+        if let behind = behind {
+            self.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: behind).isActive = true
+        }
+        
+        if let before = before {
+            view.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: before).isActive = true
+        }
+        
+        if let centerX = centerX {
+            self.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: centerX).isActive = true
+        }
+        
+        if let centerY = centerY {
+            self.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: centerY).isActive = true
+        }
+        
+    }
+    
     /// Adds the view it is called on as a subview of the given view and constrains it to the center, with optional offsets.
     func constrainToCenterIn(_ view: UIView, xOffset: CGFloat = 0, yOffset: CGFloat = 0) {
         

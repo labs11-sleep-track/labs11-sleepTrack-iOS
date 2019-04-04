@@ -9,6 +9,7 @@
 import UIKit
 
 protocol SleepTrackingViewControllerDelegate: class {
+    var alarmManager: AlarmManager { get }
     func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didCancel: Bool)
     func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didTurnOffAlarm: Bool)
     func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didSnoozeAlarm: Bool)
@@ -21,21 +22,39 @@ class SleepTrackingViewController: UIViewController {
     
     private var cancelSlider: SLSlideControl?
     private var stackView: UIStackView?
+    private var titleLabel: UILabel?
+    private var subtitleLabel: UILabel?
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let titleLabel = UILabel()
-        titleLabel.text = "Sleep Tracking"
-        titleLabel.textColor = .customWhite
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        titleLabel.constrainToSuperView(view, top: 16, leading: 24)
-        
+        configureLabels()
         configureViewForSleeping()
     }
     
     // MARK: - Public API
+    func configureLabels() {
+        
+        if titleLabel == nil {
+            titleLabel = UILabel.titleLabel(with: "Sleep Tracking", and: .darkBlue)
+            titleLabel!.constrainToSuperView(view, top: 16, leading: 24)
+            titleLabel?.alpha = 0.5
+        }
+        
+        guard let alarmTime = delegate?.alarmManager.timeString else { return }
+        let subtitleString = "Alarm set for: \(alarmTime)"
+        
+        if let subtitleLabel = subtitleLabel {
+            subtitleLabel.text = subtitleString
+        } else {
+            subtitleLabel = UILabel.subtitleLabel(with: subtitleString, and: .darkBlue)
+            subtitleLabel!.alpha = 0.5
+            subtitleLabel!.textAlignment = .center
+            subtitleLabel!.constrainToCenterIn(view)
+        }
+    }
+    
     func configureViewForAlarmSounding() {
         cancelSlider?.removeFromSuperview()
         
@@ -74,26 +93,26 @@ class SleepTrackingViewController: UIViewController {
     private func setupCancelSlider() {
         cancelSlider = SLSlideControl()
         cancelSlider!.addTarget(self, action: #selector(cancelAlarm), for: .valueChanged)
-        cancelSlider!.constrainToSuperView(view, bottom: 20, centerX: 0)
+        cancelSlider!.constrainToSuperView(view, bottom: 32, centerX: 0)
     }
     
     private func setupStackView() {
         stackView = UIStackView()
         stackView!.axis = .vertical
-        stackView!.spacing = 20
+        stackView!.spacing = 48
         stackView!.constrainToCenterIn(view)
-        
-        let wakeUpButton = UIButton()
-        wakeUpButton.setTitle("Wake Up!", for: .normal)
-        wakeUpButton.setTitleColor(.accentColor, for: .normal)
-        wakeUpButton.addTarget(self, action: #selector(turnOffAlarm), for: .touchUpInside)
-        stackView?.addArrangedSubview(wakeUpButton)
         
         let snoozeButton = UIButton()
         snoozeButton.setTitle("Keep Sleeping", for: .normal)
         snoozeButton.setTitleColor(.pink, for: .normal)
         snoozeButton.addTarget(self, action: #selector(snoozeAlarm), for: .touchUpInside)
         stackView?.addArrangedSubview(snoozeButton)
+        
+        let wakeUpButton = UIButton()
+        wakeUpButton.setTitle("Wake Up!", for: .normal)
+        wakeUpButton.setTitleColor(.accentColor, for: .normal)
+        wakeUpButton.addTarget(self, action: #selector(turnOffAlarm), for: .touchUpInside)
+        stackView?.addArrangedSubview(wakeUpButton)
     }
 
 }

@@ -33,6 +33,7 @@
 		34A01EB922565722004CFD30 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A01EB822565722004CFD30 /* UIView+Constraints.swift */; };
 		34A01EBB225658B0004CFD30 /* SleepTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A01EBA225658B0004CFD30 /* SleepTrackingViewController.swift */; };
 		34AA417622499DA200366391 /* DailyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AA417522499DA200366391 /* DailyData.swift */; };
+		34AD1CCB22568B3600382891 /* UILabel+CustomLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AD1CCA22568B3600382891 /* UILabel+CustomLabels.swift */; };
 		34C02428225264B90053DCAA /* DailyData+SampleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C02427225264B90053DCAA /* DailyData+SampleGenerator.swift */; };
 		34C0242A2252804E0053DCAA /* TestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C024292252804E0053DCAA /* TestingViewController.swift */; };
 		34C0242C2252B40B0053DCAA /* StatsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0242B2252B40B0053DCAA /* StatsPageViewController.swift */; };
@@ -91,6 +92,7 @@
 		34A01EB822565722004CFD30 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		34A01EBA225658B0004CFD30 /* SleepTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepTrackingViewController.swift; sourceTree = "<group>"; };
 		34AA417522499DA200366391 /* DailyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyData.swift; sourceTree = "<group>"; };
+		34AD1CCA22568B3600382891 /* UILabel+CustomLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+CustomLabels.swift"; sourceTree = "<group>"; };
 		34C02427225264B90053DCAA /* DailyData+SampleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyData+SampleGenerator.swift"; sourceTree = "<group>"; };
 		34C024292252804E0053DCAA /* TestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingViewController.swift; sourceTree = "<group>"; };
 		34C0242B2252B40B0053DCAA /* StatsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsPageViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				345CE09A2242D3BD005B5725 /* SLTextField.swift */,
 				347967D9225416AB007D72FB /* UIView+CustomHeaderView.swift */,
 				34A01EB822565722004CFD30 /* UIView+Constraints.swift */,
+				34AD1CCA22568B3600382891 /* UILabel+CustomLabels.swift */,
 				34FD331C224BD9E400A0EFC6 /* UIAlertController+InformationalAlert.swift */,
 				345CE09C2242DAC6005B5725 /* ShiftableViewController.swift */,
 				34EC9C8922555AD100ECB553 /* SLViewController.swift */,
@@ -500,6 +503,7 @@
 				34FD331F224BDB4B00A0EFC6 /* AVSessionHelper.swift in Sources */,
 				345CE0A22242E9D2005B5725 /* SLDatePickerView.swift in Sources */,
 				345CE0952242D0B4005B5725 /* GradientView.swift in Sources */,
+				34AD1CCB22568B3600382891 /* UILabel+CustomLabels.swift in Sources */,
 				347967D62253F222007D72FB /* SettingsTableViewController.swift in Sources */,
 				345CE0A42242F80C005B5725 /* User.swift in Sources */,
 				3435346F2242B3CB00CCB1C5 /* AppDelegate.swift in Sources */,
