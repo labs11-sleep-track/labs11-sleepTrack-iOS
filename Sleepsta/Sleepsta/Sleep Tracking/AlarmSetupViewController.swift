@@ -10,12 +10,10 @@ import UIKit
 import MediaPlayer
 
 
-class AlarmSetupViewController: UIViewController, MotionManagerDelegate, SLDatePickerViewDelegate, AlarmManagerDelegate {
+class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
 
     // MARK: - Properties
-    let motionManager = MotionManager.shared
     let dailyDataController = DailyDataController()
-    let alarmManager = AlarmManager()
     
     @IBOutlet weak var settingsButton: UIButton!
     
@@ -26,14 +24,7 @@ class AlarmSetupViewController: UIViewController, MotionManagerDelegate, SLDateP
     @IBOutlet weak var hourMinuteLabel: UILabel!
     @IBOutlet weak var alarmTimePicker: SLDatePickerView!
     @IBOutlet weak var goToSleepButton: UIButton!
-    @IBOutlet weak var wakeUpButton: UIButton!
-    @IBOutlet weak var snoozeButton: UIButton!
-    @IBOutlet weak var cancelSlider: SLSlideControl!
     @IBOutlet weak var volumeControlContainer: UIView!
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -53,39 +44,12 @@ class AlarmSetupViewController: UIViewController, MotionManagerDelegate, SLDateP
         let sleepTrackingPresentationVC = SLSleepTrackingPresentationViewController()
         sleepTrackingPresentationVC.alarmManager.setAlarm(for: alarmTimePicker.date)
         present(sleepTrackingPresentationVC, animated: true)
-//        motionManager.startTracking()
-//        dailyDataController.addBedTime()
-//        alarmManager.setAlarm(for: alarmTimePicker.date)
-//        alarmTimePicker.isEnabled = false
     }
     
-    @IBAction func wakeUp(_ sender: Any) {
-//        alarmManager.turnOffAlarm()
-//        motionManager.stopTracking()
-//        dailyDataController.addWakeTime()
-//        alarmTimePicker.isEnabled = true
-    }
-    
-    @IBAction func cancelAlarm(_ sender: Any) {
-        dailyDataController.resetCurrent()
-        alarmManager.turnOffAlarm()
-        motionManager.stopTracking()
-        alarmTimePicker.isEnabled = true
-    }
-    
-    @IBAction func snoozeAlarm(_ sender: Any) {
-//        alarmManager.snoozeAlarm()
-//        alarmTimePicker.setDateTo(5, component: .minute)
-    }
     
     @IBAction func postData(_ sender: Any) {
         dailyDataController.addSleepNotes(notes: "I guess I slept pretty well.")
         dailyDataController.postDailyData()
-    }
-    
-    // MARK: - Motion Manager Delegate
-    func motionManager(_ motionManager: MotionManager, didChangeTrackingTo: Bool) {
-        updateButtons()
     }
     
     // MARK: - SL Date Picker View Delegate
@@ -93,19 +57,8 @@ class AlarmSetupViewController: UIViewController, MotionManagerDelegate, SLDateP
         updateHourMinuteLabel()
     }
     
-    // MARK: - Alarm Manager Delegate
-    func alarmManager(_ alarmManager: AlarmManager, didSoundAlarm: Bool) {
-        updateButtons()
-    }
-    
     // MARK: - Utility Methods
-    private func setupViews() {
-        let gradientView = view as! GradientView
-        gradientView.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)
-        
-        motionManager.delegate = self
-        alarmManager.delegate = self
-        
+    private func setupViews() {        
         settingsButton.tintColor = .accentColor
         
         welcomeLabel.textColor = .customWhite
@@ -117,8 +70,6 @@ class AlarmSetupViewController: UIViewController, MotionManagerDelegate, SLDateP
         hourMinuteLabel.textColor = .customWhite
         
         goToSleepButton.setTitleColor(.accentColor, for: .normal)
-        wakeUpButton.setTitleColor(.accentColor, for: .normal)
-        snoozeButton.setTitleColor(.pink, for: .normal)
         
         let volumeControl = MPVolumeView(frame: volumeControlContainer.bounds)
         volumeControl.showsRouteButton = false
@@ -127,18 +78,7 @@ class AlarmSetupViewController: UIViewController, MotionManagerDelegate, SLDateP
         
         alarmTimePicker.datePickerDelegate = self
         alarmTimePicker.setDateTo(8, component: .hour)
-        updateButtons()
         
-    }
-    
-    private func updateButtons() {
-        let tracking = motionManager.isTracking
-        goToSleepButton.isHidden = tracking
-        wakeUpButton.isHidden = !alarmManager.isAlarmSounding
-        snoozeButton.isHidden = !alarmManager.isAlarmSounding
-        cancelSlider.reset()
-        cancelSlider.isHidden = !tracking || alarmManager.isAlarmSounding
-        volumeControlContainer?.isHidden = tracking
     }
     
     private func updateHourMinuteLabel() {

@@ -22,9 +22,13 @@ class SLViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let gradientView = GradientView()
-        gradientView.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)
-        view = gradientView
+        if let view = view as? GradientView {
+            view.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)
+        } else {
+            let gradientView = GradientView()
+            gradientView.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)
+            view = gradientView
+        }
     }
 
 }

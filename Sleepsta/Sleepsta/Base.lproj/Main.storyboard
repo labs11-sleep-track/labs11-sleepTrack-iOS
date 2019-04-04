@@ -399,10 +399,10 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mvT-bD-iQD">
-                                <rect key="frame" x="87" y="564" width="240" height="138"/>
+                                <rect key="frame" x="165.5" y="564" width="83" height="30"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BmG-9W-wzY">
-                                        <rect key="frame" x="33" y="0.0" width="174" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="83" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NeO-U5-Xhc">
                                                 <rect key="frame" x="0.0" y="0.0" width="83" height="30"/>
@@ -411,29 +411,8 @@
                                                     <action selector="goToSleep:" destination="lRn-9Q-slw" eventType="touchUpInside" id="heA-a8-d0V"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYY-OB-cTB">
-                                                <rect key="frame" x="91" y="0.0" width="83" height="30"/>
-                                                <state key="normal" title="Wake Up"/>
-                                                <connections>
-                                                    <action selector="wakeUp:" destination="lRn-9Q-slw" eventType="touchUpInside" id="1OY-fr-VLr"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5U6-Xj-gWY">
-                                        <rect key="frame" x="94.5" y="38" width="51" height="30"/>
-                                        <state key="normal" title="Snooze"/>
-                                        <connections>
-                                            <action selector="snoozeAlarm:" destination="lRn-9Q-slw" eventType="touchUpInside" id="fLX-uI-NKl"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="62" translatesAutoresizingMaskIntoConstraints="NO" id="BrS-O9-uqn" customClass="SLSlideControl" customModule="Sleepsta" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="76" width="240" height="62"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <action selector="cancelAlarm:" destination="lRn-9Q-slw" eventType="valueChanged" id="PjL-vh-QeE"/>
-                                        </connections>
-                                    </view>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9e4-8Q-jFA">
@@ -468,14 +447,11 @@
                     <tabBarItem key="tabBarItem" title="Alarm" image="alarm_clock" id="2a3-0O-lVu"/>
                     <connections>
                         <outlet property="alarmTimePicker" destination="XKw-GN-L2t" id="Alj-Qz-pYG"/>
-                        <outlet property="cancelSlider" destination="BrS-O9-uqn" id="4va-C3-RjS"/>
                         <outlet property="goToSleepButton" destination="NeO-U5-Xhc" id="ELj-dH-fZF"/>
                         <outlet property="hourMinuteLabel" destination="gie-Jf-sXY" id="cYi-pz-q2h"/>
                         <outlet property="settingsButton" destination="IrZ-0I-LuO" id="5o6-yM-Hrh"/>
-                        <outlet property="snoozeButton" destination="5U6-Xj-gWY" id="FHx-Ch-RTi"/>
                         <outlet property="userIDLabel" destination="wpa-la-1sb" id="3dW-fb-YwD"/>
                         <outlet property="volumeControlContainer" destination="9e4-8Q-jFA" id="5o4-6Z-Oyt"/>
-                        <outlet property="wakeUpButton" destination="rYY-OB-cTB" id="hNL-tB-NPD"/>
                         <outlet property="welcomeLabel" destination="YWK-hg-D7k" id="y1U-Um-Xb9"/>
                     </connections>
                 </viewController>
