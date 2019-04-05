@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerDelegate, PreBedSurveyViewControllerDelegate, SleepTrackingViewControllerDelegate {
+class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerDelegate, PreBedSurveyViewControllerDelegate, SleepTrackingViewControllerDelegate, PostBedSurveyViewControllerDelegate {
 
     let motionManager = MotionManager.shared
     let alarmManager = AlarmManager()
@@ -16,6 +16,7 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
     
     var preVC: PreBedSurveyViewController?
     var sleepTrackingVC: SleepTrackingViewController?
+    var postBedSurveyVC: PostBedSurveyViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +62,13 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
         sleepTrackingVC.configureLabels()
     }
     
+    // MARK: Post Bed Survey View Controller Delegate
+    func postBecSurveyVC(_ postBedSurveryVC: PostBedSurveyViewController, didSubmitSurvey: Bool, with notes: String) {
+        dailyDataController.addSleepNotes(notes: notes)
+        dailyDataController.postDailyData()
+        dismiss(animated: true)
+    }
+    
     // MARK: - Utility Methods
     private func presentSleepTrackingVC() {
         dailyDataController.addBedTime()
@@ -77,10 +85,17 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
             let completion: (Bool) -> Void = { _ in
                 sleepTrackingVC.removeFromParent()
                 self.sleepTrackingVC = nil
-                self.dismiss(animated: true)
+                self.presentPostSleepSurvey()
             }
             UIView.animate(withDuration: 0.5, animations: animations, completion: completion)
         }
+    }
+    
+    private func presentPostSleepSurvey() {
+        postBedSurveyVC = PostBedSurveyViewController()
+        postBedSurveyVC?.delegate = self
+        addChild(postBedSurveyVC!)
+        postBedSurveyVC!.view.constrainToFill(view)
     }
     
 }

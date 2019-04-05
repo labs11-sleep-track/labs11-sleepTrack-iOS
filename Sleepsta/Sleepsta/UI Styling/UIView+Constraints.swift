@@ -27,7 +27,7 @@ extension UIView {
     }
     
     /// Adds the view it is called on to the given view and optionally constrains it to each anchor that is given a value, with an option to use the view's safe area. **It is possible to define conflicting constraints, beware.**
-    func constrainToSuperView(_ view: UIView, safeArea: Bool = true, top: CGFloat? = nil, bottom: CGFloat? = nil, leading: CGFloat? = nil, trailing: CGFloat? = nil, centerX: CGFloat? = nil, centerY: CGFloat? = nil) {
+    func constrainToSuperView(_ view: UIView, safeArea: Bool = true, top: CGFloat? = nil, bottom: CGFloat? = nil, leading: CGFloat? = nil, trailing: CGFloat? = nil, centerX: CGFloat? = nil, centerY: CGFloat? = nil, height: CGFloat? = nil, width: CGFloat? = nil) {
         
         addAsSubviewWithConstraintsOf(view)
         
@@ -59,10 +59,18 @@ extension UIView {
             self.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: centerY).isActive = true
         }
         
+        if let width = width {
+            self.widthAnchor.constraint(equalToConstant: width).isActive = true
+        }
+        
+        if let height = height {
+            self.heightAnchor.constraint(equalToConstant: height).isActive = true
+        }
+        
     }
     
     /// Constrains the view it is called on to the given view by with the non nil anchors and the given offsets. **Must be siblings in the view hierarchy. It is possible to define conflicting constraints, beware.**
-    func constrainToSiblingView(_ view: UIView, top: CGFloat? = nil, bottom: CGFloat? = nil, leading: CGFloat? = nil, trailing: CGFloat? = nil, below: CGFloat? = nil, above: CGFloat? = nil, behind: CGFloat? = nil, before: CGFloat? = nil, centerX: CGFloat? = nil, centerY: CGFloat? = nil) {
+    func constrainToSiblingView(_ view: UIView, top: CGFloat? = nil, bottom: CGFloat? = nil, leading: CGFloat? = nil, trailing: CGFloat? = nil, below: CGFloat? = nil, above: CGFloat? = nil, behind: CGFloat? = nil, before: CGFloat? = nil, centerX: CGFloat? = nil, centerY: CGFloat? = nil, height: CGFloat? = nil, width: CGFloat? = nil) {
         
         self.translatesAutoresizingMaskIntoConstraints = false
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -105,6 +113,14 @@ extension UIView {
         
         if let centerY = centerY {
             self.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: centerY).isActive = true
+        }
+        
+        if let width = width {
+            self.widthAnchor.constraint(equalToConstant: width).isActive = true
+        }
+        
+        if let height = height {
+            self.heightAnchor.constraint(equalToConstant: height).isActive = true
         }
         
     }
