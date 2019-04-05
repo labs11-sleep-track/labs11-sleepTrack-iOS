@@ -39,7 +39,6 @@ class SleepTrackingViewController: UIViewController {
         if titleLabel == nil {
             titleLabel = UILabel.titleLabel(with: "Sleep Tracking", and: .darkBlue)
             titleLabel!.constrainToSuperView(view, top: 16, leading: 24)
-            titleLabel?.alpha = 0.5
         }
         
         guard let alarmTime = delegate?.alarmManager.timeString else { return }
@@ -49,7 +48,6 @@ class SleepTrackingViewController: UIViewController {
             subtitleLabel.text = subtitleString
         } else {
             subtitleLabel = UILabel.subtitleLabel(with: subtitleString, and: .darkBlue)
-            subtitleLabel!.alpha = 0.5
             subtitleLabel!.textAlignment = .center
             subtitleLabel!.constrainToCenterIn(view)
         }

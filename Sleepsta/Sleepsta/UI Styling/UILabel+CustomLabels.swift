@@ -10,18 +10,21 @@ import UIKit
 
 extension UILabel {
     static func titleLabel(with title: String, and color: UIColor = .customWhite) -> UILabel {
-        let titleLabel = UILabel()
-        titleLabel.text = title
-        titleLabel.textColor = color
+        let titleLabel = UILabel.customLabel(with: title, and: color)
         titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         return titleLabel
     }
     
     static func subtitleLabel(with title: String, and color: UIColor = .customWhite) -> UILabel {
+        let titleLabel = UILabel.customLabel(with: title, and: color)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .title2)
+        return titleLabel
+    }
+    
+    static func customLabel(with title: String, and color: UIColor = .customWhite) -> UILabel {
         let titleLabel = UILabel()
         titleLabel.text = title
         titleLabel.textColor = color
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .title2)
         return titleLabel
     }
 }
