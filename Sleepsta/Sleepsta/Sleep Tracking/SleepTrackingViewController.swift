@@ -35,22 +35,7 @@ class SleepTrackingViewController: UIViewController {
     
     // MARK: - Public API
     func configureLabels() {
-        
-        if titleLabel == nil {
-            titleLabel = UILabel.titleLabel(with: "Sleep Tracking", and: .darkBlue)
-            titleLabel!.constrainToSuperView(view, top: 16, leading: 24)
-        }
-        
-        guard let alarmTime = delegate?.alarmManager.timeString else { return }
-        let subtitleString = "Alarm set for: \(alarmTime)"
-        
-        if let subtitleLabel = subtitleLabel {
-            subtitleLabel.text = subtitleString
-        } else {
-            subtitleLabel = UILabel.subtitleLabel(with: subtitleString, and: .darkBlue)
-            subtitleLabel!.textAlignment = .center
-            subtitleLabel!.constrainToCenterIn(view)
-        }
+        setupLabels()
     }
     
     func configureViewForAlarmSounding() {
@@ -88,6 +73,24 @@ class SleepTrackingViewController: UIViewController {
     }
     
     // MARK: - UI Layout
+    private func setupLabels() {
+        if titleLabel == nil {
+            titleLabel = UILabel.titleLabel(with: "Sleep Tracking", and: .darkBlue)
+            titleLabel!.constrainToSuperView(view, top: 16, leading: 24)
+        }
+        
+        guard let alarmTime = delegate?.alarmManager.timeString else { return }
+        let subtitleString = "Alarm set for: \(alarmTime)"
+        
+        if let subtitleLabel = subtitleLabel {
+            subtitleLabel.text = subtitleString
+        } else {
+            subtitleLabel = UILabel.subtitleLabel(with: subtitleString, and: .darkBlue)
+            subtitleLabel!.textAlignment = .center
+            subtitleLabel!.constrainToCenterIn(view)
+        }
+    }
+    
     private func setupCancelSlider() {
         cancelSlider = SLSlideControl()
         cancelSlider!.addTarget(self, action: #selector(cancelAlarm), for: .valueChanged)
@@ -100,15 +103,11 @@ class SleepTrackingViewController: UIViewController {
         stackView!.spacing = 48
         stackView!.constrainToCenterIn(view)
         
-        let snoozeButton = UIButton()
-        snoozeButton.setTitle("Keep Sleeping", for: .normal)
-        snoozeButton.setTitleColor(.pink, for: .normal)
+        let snoozeButton = UIButton.customButton(with: "Keep Sleeping", with: .negative)
         snoozeButton.addTarget(self, action: #selector(snoozeAlarm), for: .touchUpInside)
         stackView?.addArrangedSubview(snoozeButton)
         
-        let wakeUpButton = UIButton()
-        wakeUpButton.setTitle("Wake Up!", for: .normal)
-        wakeUpButton.setTitleColor(.accentColor, for: .normal)
+        let wakeUpButton = UIButton.customButton(with: "Wake Up!")
         wakeUpButton.addTarget(self, action: #selector(turnOffAlarm), for: .touchUpInside)
         stackView?.addArrangedSubview(wakeUpButton)
     }

@@ -23,8 +23,7 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
         
         alarmManager.delegate = self
         
-//        presentSleepTrackingVC()
-        presentPostSleepSurvey()
+        presentSleepTrackingVC()
     }
     
     // MARK: - Alarm Manager Delegate
@@ -65,6 +64,8 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
     
     // MARK: Post Bed Survey View Controller Delegate
     func postBecSurveyVC(_ postBedSurveryVC: PostBedSurveyViewController, didSubmitSurvey: Bool, with notes: String) {
+        dailyDataController.addSleepNotes(notes: notes)
+        dailyDataController.postDailyData()
         dismiss(animated: true)
     }
     
@@ -84,7 +85,7 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
             let completion: (Bool) -> Void = { _ in
                 sleepTrackingVC.removeFromParent()
                 self.sleepTrackingVC = nil
-                self.dismiss(animated: true)
+                self.presentPostSleepSurvey()
             }
             UIView.animate(withDuration: 0.5, animations: animations, completion: completion)
         }
