@@ -26,7 +26,6 @@ class SettingsTableViewController: UITableViewController {
     private let cancelButtonIndexPath = IndexPath(row: 2, section: 0)
     private let logoutIndexPath = IndexPath(row: 1, section: 1)
     
-    @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var notificationLabel: UILabel!
     @IBOutlet weak var notificationTimePicker: SLDatePickerView!
     @IBOutlet weak var cancelReminderLabel: UILabel!
@@ -45,11 +44,6 @@ class SettingsTableViewController: UITableViewController {
         
         setupViews()
 
-    }
-
-    // MARK: - UI Actions
-    @IBAction func dismissView(_ sender: Any) {
-        self.dismiss(animated: true)
     }
     
     // MARK: - Table View Delegate
@@ -113,8 +107,6 @@ class SettingsTableViewController: UITableViewController {
         let minute = UserDefaults.standard.object(forKey: .notificationMinute) as? Int ?? 0
         notificationTimePicker.setMinute(to: minute)
         
-        doneButton.tintColor = .accentColor
-        
         accountLabel.textColor = .customWhite
         logoutLabel.textColor = .pink
         
@@ -145,6 +137,6 @@ class SettingsTableViewController: UITableViewController {
         GIDSignIn.sharedInstance()?.disconnect()
         User.current = nil
         LocalNotificationHelper.shared.cancelCurrentNotifications()
-        dismissView(self)
+        dismiss(animated: true)
     }
 }

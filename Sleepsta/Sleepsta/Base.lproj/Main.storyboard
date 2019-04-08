@@ -261,20 +261,7 @@
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Kzz-tl-32S">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sma-Ui-nsk">
-                                    <rect key="frame" x="357" y="7" width="37" height="30"/>
-                                    <state key="normal" title="Done"/>
-                                    <connections>
-                                        <action selector="dismissView:" destination="rY5-lG-0VR" eventType="touchUpInside" id="IOO-A5-VUb"/>
-                                    </connections>
-                                </button>
-                            </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="Sma-Ui-nsk" firstAttribute="centerY" secondItem="Kzz-tl-32S" secondAttribute="centerY" id="URF-CC-Tux"/>
-                                <constraint firstAttribute="trailing" secondItem="Sma-Ui-nsk" secondAttribute="trailing" constant="20" id="ceD-7h-V4U"/>
-                            </constraints>
                         </view>
                         <sections>
                             <tableViewSection headerTitle="Notifications" id="O32-e9-4x1">
@@ -397,7 +384,6 @@
                     <connections>
                         <outlet property="accountLabel" destination="zVy-Xd-qi4" id="bZP-s9-9Xc"/>
                         <outlet property="cancelReminderLabel" destination="DbE-ZJ-3px" id="qBW-8x-2cc"/>
-                        <outlet property="doneButton" destination="Sma-Ui-nsk" id="pen-X4-S22"/>
                         <outlet property="logoutLabel" destination="zVx-Z2-ALt" id="C25-Ac-eDD"/>
                         <outlet property="notificationLabel" destination="izG-Qa-GlW" id="5U2-fb-NqE"/>
                         <outlet property="notificationTimePicker" destination="eqb-1V-Ydo" id="Xlz-z7-eoT"/>
