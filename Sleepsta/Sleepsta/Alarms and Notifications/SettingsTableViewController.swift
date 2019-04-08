@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class SettingsTableViewController: UITableViewController {
 
@@ -23,11 +24,16 @@ class SettingsTableViewController: UITableViewController {
     private let notificationIndexPath = IndexPath(row: 0, section: 0)
     private let datePickerIndexPath = IndexPath(row: 1, section: 0)
     private let cancelButtonIndexPath = IndexPath(row: 2, section: 0)
+    private let logoutIndexPath = IndexPath(row: 1, section: 1)
     
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var notificationLabel: UILabel!
     @IBOutlet weak var notificationTimePicker: SLDatePickerView!
     @IBOutlet weak var cancelReminderLabel: UILabel!
+    
+    @IBOutlet weak var accountLabel: UILabel!
+    @IBOutlet weak var logoutLabel: UILabel!
+    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -65,6 +71,8 @@ class SettingsTableViewController: UITableViewController {
         switch section {
         case 0:
             return UIView.customHeaderView(with: "Notifications")
+        case 1:
+            return UIView.customHeaderView(with: "Account")
         default: return nil
         }
     }
@@ -81,6 +89,8 @@ class SettingsTableViewController: UITableViewController {
             isEditingNotification.toggle()
         case cancelButtonIndexPath:
             cancelReminder()
+        case logoutIndexPath:
+            logout()
         default:
             break
         }
@@ -105,6 +115,9 @@ class SettingsTableViewController: UITableViewController {
         
         doneButton.tintColor = .accentColor
         
+        accountLabel.textColor = .customWhite
+        logoutLabel.textColor = .pink
+        
         updateLabels()
         
     }
@@ -115,6 +128,10 @@ class SettingsTableViewController: UITableViewController {
         } else {
             notificationLabel.text = noNotificationText
         }
+        
+        if let currentUser = User.current {
+            accountLabel.text = "Signed in as \(currentUser.firstName ?? "") \(currentUser.lastName ?? "")"
+        }
     }
     
     private func cancelReminder() {
@@ -122,5 +139,12 @@ class SettingsTableViewController: UITableViewController {
         updateLabels()
         tableView.beginUpdates()
         tableView.endUpdates()
+    }
+    
+    private func logout() {
+        GIDSignIn.sharedInstance()?.disconnect()
+        User.current = nil
+        LocalNotificationHelper.shared.cancelCurrentNotifications()
+        dismissView(self)
     }
 }

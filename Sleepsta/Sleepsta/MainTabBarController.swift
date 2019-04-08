@@ -14,7 +14,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
 
         tabBar.tintColor = .accentColor
-        
+        selectedIndex = 1
     }
     
     
