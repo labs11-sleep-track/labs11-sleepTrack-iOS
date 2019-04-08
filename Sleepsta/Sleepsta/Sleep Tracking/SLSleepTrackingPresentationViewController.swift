@@ -18,18 +18,33 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
     var sleepTrackingVC: SleepTrackingViewController?
     var postBedSurveyVC: PostBedSurveyViewController?
     
+    private var cancelButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         alarmManager.delegate = self
         
+        setupCancelButton()
+        
         presentSleepTrackingVC()
+        
+    }
+    
+    deinit {
+        alarmManager.turnOffAlarm()
+    }
+    
+    // MAR: - Actions
+    @objc private func cancelAlarm() {
+        motionManager.stopTracking()
+        dismiss(animated: true)
     }
     
     // MARK: - Alarm Manager Delegate
     func alarmManager(_ alarmManager: AlarmManager, didSoundAlarm: Bool) {
         if let sleepTrackingVC = sleepTrackingVC {
-            sleepTrackingVC.configureViewForAlarmSounding()
+            sleepTrackingVC.configureViewForShowingOptions(true)
         } else {
             alarmManager.turnOffAlarm()
         }
@@ -45,8 +60,17 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
     
     // MARK: - Sleep Tracking View Controller Delegate
     func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didCancel: Bool) {
-        motionManager.stopTracking()
-        dismiss(animated: true)
+
+    }
+    
+    func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didChangeShowButtonsTo: Bool) {
+        if didChangeShowButtonsTo {
+            sleepTrackingVC.configureViewForShowingOptions(false)
+            cancelButton.isHidden = false
+        } else {
+            sleepTrackingVC.configureViewForSleeping()
+            cancelButton.isHidden = true
+        }
     }
     
     func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didTurnOffAlarm: Bool) {
@@ -60,6 +84,7 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
         alarmManager.snoozeAlarm()
         sleepTrackingVC.configureViewForSleeping()
         sleepTrackingVC.configureLabels()
+        cancelButton.isHidden = true
     }
     
     // MARK: Post Bed Survey View Controller Delegate
@@ -70,13 +95,22 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
     }
     
     // MARK: - Utility Methods
+    private func setupCancelButton() {
+        cancelButton = UIButton.customButton(with: "", with: .negative)
+        cancelButton.setImage(UIImage(named: "cancel")!, for: .normal)
+        cancelButton.constrainToSuperView(view, safeArea: true, top: 24, trailing: 20)
+        cancelButton.addTarget(self, action: #selector(cancelAlarm), for: .touchUpInside)
+    }
+    
     private func presentSleepTrackingVC() {
+        cancelButton.isHidden = true
         dailyDataController.addBedTime()
         motionManager.startTracking()
         sleepTrackingVC = SleepTrackingViewController()
         sleepTrackingVC?.delegate = self
         addChild(sleepTrackingVC!)
         sleepTrackingVC!.view.constrainToFill(view)
+        view.sendSubviewToBack(sleepTrackingVC!.view)
     }
     
     private func transitionToPostSurvey() {
@@ -96,6 +130,8 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
         postBedSurveyVC?.delegate = self
         addChild(postBedSurveyVC!)
         postBedSurveyVC!.view.constrainToFill(view)
+        view.sendSubviewToBack(postBedSurveyVC!.view)
+        cancelButton.isHidden = false
     }
     
 }

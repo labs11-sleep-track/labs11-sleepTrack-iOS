@@ -40,7 +40,7 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
     // MARK: - UI Actions
     @IBAction func goToSleep(_ sender: Any) {
         let sleepTrackingPresentationVC = SLSleepTrackingPresentationViewController()
-        sleepTrackingPresentationVC.alarmManager.setAlarm(for: Date(timeIntervalSinceNow: 5))
+        sleepTrackingPresentationVC.alarmManager.setAlarm(for: alarmTimePicker.date)
         present(sleepTrackingPresentationVC, animated: true)
     }
     

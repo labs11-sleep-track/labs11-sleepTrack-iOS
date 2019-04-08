@@ -110,7 +110,7 @@ class SLSlideControl: UIControl {
         
         // Set up the label
         instructionLabel = UILabel(frame: barView.bounds)
-        instructionLabel.text = "Slide to cancel"
+        instructionLabel.text = "Slide to Show Options"
         instructionLabel.textAlignment = .center
         instructionLabel.textColor = .lighterBackgroundColor
         instructionLabel.font = UIFont.preferredFont(forTextStyle: .headline)
