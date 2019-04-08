@@ -58,6 +58,9 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
         }
         
         page.dailyData = dailyDataController.dailyDatas[index]
+        
+        if index != dailyDataController.dailyDatas.count-1 { page.isLast = false }
+        if index != 0 { page.isFirst = false }
         return page
     }
 }

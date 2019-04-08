@@ -11,6 +11,8 @@ import Charts
 
 class StatsViewController: UIViewController {
     var dailyData: DailyData?
+    var isLast: Bool = true
+    var isFirst: Bool = true
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var lineChart: LineChartView!
@@ -99,7 +101,10 @@ class StatsViewController: UIViewController {
     private func updateLabels() {
         guard isViewLoaded, let dailyData = dailyData else { return }
         
-        dateLabel.text = dailyData.dateRangeString
+        var dateLabelText = dailyData.dateRangeString
+        if !isFirst { dateLabelText = "← " + dateLabelText }
+        if !isLast { dateLabelText = dateLabelText + " →" }
+        dateLabel.text = dateLabelText
         
         qualityLabel.text = "\(dailyData.quality ?? -1)%"
         bedTimeLabel.text = dailyData.bedTimeString
