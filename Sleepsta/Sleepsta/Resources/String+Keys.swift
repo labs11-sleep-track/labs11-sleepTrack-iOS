@@ -9,8 +9,11 @@
 import Foundation
 
 extension String {
+    static let loginViewController = "LoginViewController"
+    static let tabBarControlelr = "TabBarController"
+    
     static let sleepstaToken = "SleepstaToken"
-    static let sleepstaID = "SleepstaToken"
+    static let sleepstaID = "SleepstaID"
     static let userFirstName = "UserFirstName"
     static let userLastName = "UserLastName"
     static let userEmail = "UserEmail"

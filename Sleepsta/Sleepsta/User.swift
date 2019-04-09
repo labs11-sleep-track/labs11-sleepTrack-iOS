@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoogleSignIn
 import KeychainSwift
 
 class User: Codable {
@@ -25,6 +26,8 @@ class User: Codable {
         let lastName = UserDefaults.standard.string(forKey: .userLastName)
         
         User.current = User(sleepstaID: sleepstaID, sleepstaToken: sleepstaToken, email: email, accountType: accountType, firstName: firstName, lastName: lastName)
+        
+        User.updateUserData()
         
         return true
     }
@@ -82,6 +85,52 @@ class User: Codable {
             } else {
                 NSLog("Wasn't able to set the current user from jsonDict: \(jsonDict)")
                 completion(NSError())
+            }
+            
+        }.resume()
+    }
+    
+    static func updateUserData() {
+        guard let currentUser = User.current else { return }
+        let requestURL = URL(string: .baseURLString)!.appendingPathComponent("users").appendingPathComponent("\(currentUser.sleepstaID)")
+        
+        var request = URLRequest(url: requestURL)
+        request.addValue("application/json", forHTTPHeaderField: "Content-type")
+        request.addValue(currentUser.sleepstaToken, forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
+            // If an error comes back, it means the token is expired, so log back in with Google
+            if let error = error {
+                print("Error GETting user info: \(error.localizedDescription)")
+                if let bool = GIDSignIn.sharedInstance()?.hasAuthInKeychain(), bool {
+                    GIDSignIn.sharedInstance()?.signInSilently()
+                } else {
+                    GIDSignIn.sharedInstance()?.disconnect()
+                }
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            print(String(data: data, encoding: .utf8)!)
+            
+            do {
+                let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
+                if jsonObject is [String: Any] {
+                    // There's a problem, the token isn't valid.
+                    if GIDSignIn.sharedInstance()!.hasAuthInKeychain() {
+                        DispatchQueue.main.async {
+                            GIDSignIn.sharedInstance()?.signInSilently()
+                        }
+                    } else {
+                        GIDSignIn.sharedInstance()?.disconnect()
+                    }
+                } else {
+                    // TODO: Update any user info that has changed
+                }
+            } catch {
+                NSLog("Error decoding data: \(error.localizedDescription)")
             }
             
         }.resume()
