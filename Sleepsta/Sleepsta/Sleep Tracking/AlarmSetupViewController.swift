@@ -34,6 +34,7 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        
         alarmTimePicker.setDateTo(8, component: .hour)
     }
     
@@ -46,14 +47,13 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
     
     // MARK: - SL Date Picker View Delegate
     func datePicker(_ datePicker: SLDatePickerView, didChangeDate: Bool) {
-        updateHourMinuteLabel()
+        updateLabels()
     }
     
     // MARK: - Utility Methods
     private func setupViews() {
         
         welcomeLabel.textColor = .customWhite
-        welcomeLabel.text = "Welcome \(User.current?.firstName ?? "")!"
         
         userIDLabel.textColor = .customWhite
         userIDLabel.text = "" //\(User.current?.email ?? "")"
@@ -72,7 +72,9 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
         
     }
     
-    private func updateHourMinuteLabel() {
+    private func updateLabels() {
+        welcomeLabel.text = "Welcome \(User.current?.firstName ?? "")!"
+        
         hourMinuteLabel.text = "Sleep for \(alarmTimePicker.hoursFromNow) hours and \(alarmTimePicker.minutesFromNow)ish minutes"
     }
 }

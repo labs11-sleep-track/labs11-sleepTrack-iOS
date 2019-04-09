@@ -6,6 +6,7 @@ target 'Sleepsta' do
   use_frameworks!
 
   # Pods for Sleepsta
+  pod 'KeychainSwift'
   pod 'GoogleSignIn'
   pod 'Charts'
 

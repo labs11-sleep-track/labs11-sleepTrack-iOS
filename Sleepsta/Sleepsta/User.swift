@@ -7,11 +7,29 @@
 //
 
 import Foundation
+import KeychainSwift
 
 class User: Codable {
     static var current: User? = nil
     
-    // Signs the user in to Sleepsta and sets the current use to the result.
+    /// Loads a saved user if one exists and sets the current user to the result
+    @discardableResult static func loadUser() -> Bool {
+        let keychain = KeychainSwift()
+        guard let sleepstaIDString = keychain.get(.sleepstaID),
+            let sleepstaID = Int(sleepstaIDString),
+            let sleepstaToken = keychain.get(.sleepstaToken),
+            let accountType = keychain.get(.userAccountType),
+            let email = UserDefaults.standard.string(forKey: .userEmail) else { return false }
+        
+        let firstName = UserDefaults.standard.string(forKey: .userFirstName)
+        let lastName = UserDefaults.standard.string(forKey: .userLastName)
+        
+        User.current = User(sleepstaID: sleepstaID, sleepstaToken: sleepstaToken, email: email, accountType: accountType, firstName: firstName, lastName: lastName)
+        
+        return true
+    }
+    
+    /// Signs the user in to Sleepsta and sets the current user to the result.
     static func sleepstaSignIn(_ idToken: String, completion: @escaping (Error?) -> Void) {
         // Build the request
         let requestURL = URL(string: .authURLString)!.appendingPathComponent("google").appendingPathComponent("tokenSignIn")
@@ -57,7 +75,7 @@ class User: Codable {
             }
             
             // Set the current user to a User made from the data returned from the network request
-            User.current = User(jsonDict: jsonDict, idToken: idToken)
+            User.current = User(jsonDict: jsonDict)
             
             if User.current != nil {
                 completion(nil)
@@ -69,25 +87,42 @@ class User: Codable {
         }.resume()
     }
     
+    static func removeUser() {
+        let keychain = KeychainSwift()
+        keychain.clear()
+        UserDefaults.standard.removeObject(forKey: .userEmail)
+        UserDefaults.standard.removeObject(forKey: .userFirstName)
+        UserDefaults.standard.removeObject(forKey: .userLastName)
+        LocalNotificationHelper.shared.cancelCurrentNotifications()
+        User.current = nil
+    }
+    
     let sleepstaID: Int
     let firstName: String?
     let lastName: String?
     let email: String
-    let idToken: String
     let sleepstaToken: String
     let accountType: String
     
-    init(sleepstaID: Int, sleepstaToken: String, email: String, idToken: String, accountType: String, firstName: String? = nil, lastName: String? = nil) {
+    init(sleepstaID: Int, sleepstaToken: String, email: String, accountType: String, firstName: String? = nil, lastName: String? = nil) {
         self.sleepstaID = sleepstaID
         self.sleepstaToken = sleepstaToken
         self.email = email
-        self.idToken = idToken
         self.accountType = accountType
         self.firstName = firstName
         self.lastName = lastName
+        
+        let keychain = KeychainSwift()
+        keychain.set(sleepstaToken, forKey: .sleepstaToken)
+        keychain.set("\(sleepstaID)", forKey: .sleepstaID)
+        keychain.set(accountType, forKey: .userAccountType)
+        
+        UserDefaults.standard.set(firstName, forKey: .userFirstName)
+        UserDefaults.standard.set(lastName, forKey: .userLastName)
+        UserDefaults.standard.set(email, forKey: .userEmail)
     }
     
-    convenience init?(jsonDict: [String: Any], idToken: String) {
+    convenience init?(jsonDict: [String: Any]) {
         guard let user = jsonDict["user"] as? [String: Any],
             let firstName = user["f_name"] as? String,
             let lastName = user["l_name"] as? String,
@@ -96,7 +131,7 @@ class User: Codable {
             let accountType = user["account_type"] as? String,
             let sleepstaToken = jsonDict["token"] as? String else { return nil }
         
-        self.init(sleepstaID: sleepstaID, sleepstaToken: sleepstaToken, email: email, idToken: idToken, accountType: accountType, firstName: firstName, lastName: lastName)
+        self.init(sleepstaID: sleepstaID, sleepstaToken: sleepstaToken, email: email, accountType: accountType, firstName: firstName, lastName: lastName)
     }
     
 }

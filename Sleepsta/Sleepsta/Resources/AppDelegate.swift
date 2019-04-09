@@ -22,8 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         signIn?.clientID = "923724344364-hani6pf71d8u9msnnbkab3egh5j9n8gm.apps.googleusercontent.com"
         signIn?.delegate = self
         
-        if signIn!.hasAuthInKeychain() {
-            signIn?.signInSilently()
+        if User.loadUser() {
+            presentLoggedInVC()
+        } else {
+            presentLoginVC()
         }
 
         return true
@@ -45,11 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             User.sleepstaSignIn(idToken) { (error) in
                 if error == nil {
                     DispatchQueue.main.async {
-                        if let rootVC = self.window?.rootViewController {
-                            rootVC.performSegue(withIdentifier: "LoginSegue", sender: self)
-                        } else {
-                            self.presentLoggedInVC()
-                        }
+                        self.presentLoggedInVC()
                     }
                 } else {
                     GIDSignIn.sharedInstance()?.disconnect()
@@ -59,8 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
 
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        User.current = nil
-        LocalNotificationHelper.shared.cancelCurrentNotifications()
+        User.removeUser()
+        presentLoginVC()
     }
     
     // MARK: - Utility Methods
@@ -68,13 +66,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         if User.current != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
-            window?.rootViewController = tabBarController
-            window?.makeKeyAndVisible()
+            setRootViewController(tabBarController)
         }
     }
     
-    private func signInWithSleepsta() {
-       
+    private func presentLoginVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        setRootViewController(tabBarController)
+    }
+    
+    func setRootViewController(_ vc: UIViewController, animated: Bool = true) {
+        guard animated, let window = self.window else {
+            self.window?.rootViewController = vc
+            self.window?.makeKeyAndVisible()
+            return
+        }
+        
+        window.rootViewController = vc
+        window.makeKeyAndVisible()
+        UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromRight, animations: nil, completion: nil)
     }
 }
 
