@@ -15,8 +15,12 @@ class MainTabBarController: UITabBarController {
 
         tabBar.tintColor = .accentColor
         selectedIndex = 1
+        
+        
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+//        if User.current == nil { performSegue(withIdentifier: "ShowLoginSegue", sender: self) }
+    }
 
 }

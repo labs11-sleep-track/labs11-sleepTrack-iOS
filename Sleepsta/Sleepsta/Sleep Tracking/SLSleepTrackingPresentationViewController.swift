@@ -98,7 +98,7 @@ class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerD
     private func setupCancelButton() {
         cancelButton = UIButton.customButton(with: "", with: .negative)
         cancelButton.setImage(UIImage(named: "cancel")!, for: .normal)
-        cancelButton.constrainToSuperView(view, safeArea: true, top: 24, trailing: 20)
+        cancelButton.constrainToSuperView(view, safeArea: true, top: 20, trailing: 20)
         cancelButton.addTarget(self, action: #selector(cancelAlarm), for: .touchUpInside)
     }
     

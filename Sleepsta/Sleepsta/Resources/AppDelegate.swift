@@ -20,10 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         let signIn = GIDSignIn.sharedInstance()
         signIn?.clientID = "923724344364-hani6pf71d8u9msnnbkab3egh5j9n8gm.apps.googleusercontent.com"
-        signIn?.shouldFetchBasicProfile = true
         signIn?.delegate = self
-//        signIn?.disconnect()
-        signIn?.signInSilently()
+        
+        if User.loadUser() {
+            presentLoggedInVC(animated: false)
+        } else {
+            presentLoginVC(animated: false)
+        }
 
         return true
     }
@@ -37,42 +40,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     // MARK: - GID Sign In Delegate
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
-            print("Error signing in: \(error.localizedDescription)")
+            print("Error signing in: \(error)")
         } else {
             let idToken = user.authentication.idToken!
+            let needToRefresh = User.current == nil
             
             User.sleepstaSignIn(idToken) { (error) in
-                if error == nil {
-                    DispatchQueue.main.async {
-                        if let rootVC = self.window?.rootViewController {
-                            rootVC.performSegue(withIdentifier: "LoginSegue", sender: self)
-                        } else {
+                DispatchQueue.main.async {
+                    if error == nil {
+                        if needToRefresh {
                             self.presentLoggedInVC()
                         }
+                    } else {
+                        GIDSignIn.sharedInstance()?.disconnect()
                     }
-                } else {
-                    GIDSignIn.sharedInstance()?.disconnect()
                 }
             }
         }
     }
 
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        User.current = nil
+        User.removeUser()
+        presentLoginVC()
     }
     
     // MARK: - Utility Methods
-    private func presentLoggedInVC() {
+    private func presentLoggedInVC(animated: Bool = true) {
         if User.current != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
-            window?.rootViewController = tabBarController
-            window?.makeKeyAndVisible()
+            let tabBarController = storyboard.instantiateViewController(withIdentifier: .tabBarControlelr)
+            setRootViewController(tabBarController, animated: animated)
         }
     }
     
-    private func signInWithSleepsta() {
-       
+    private func presentLoginVC(animated: Bool = true) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: .loginViewController)
+        setRootViewController(loginViewController, animated: animated)
+    }
+    
+    func setRootViewController(_ vc: UIViewController, animated: Bool = true) {
+        guard animated, let window = self.window else {
+            self.window?.rootViewController = vc
+            self.window?.makeKeyAndVisible()
+            return
+        }
+        
+        DispatchQueue.main.async {
+            window.rootViewController = vc
+            window.makeKeyAndVisible()
+            UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromRight, animations: nil, completion: nil)
+        }
     }
 }
 

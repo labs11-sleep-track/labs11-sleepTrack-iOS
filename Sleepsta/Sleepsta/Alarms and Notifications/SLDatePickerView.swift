@@ -185,6 +185,8 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         
         guard let minuteIndex = minutes.index(of: minuteString) else { return }
         selectRow(minuteIndex, inComponent: 1, animated: animated)
+        
+        // Special logic for if we are at the end of an hour
         if roundedMinute < minute {
             let hourIndex = selectedRow(inComponent: 0)
             let modifierIndex = selectedRow(inComponent: 2)
@@ -200,6 +202,8 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
             }
             setHourComponent(to: hour)
         }
+        
+        // Update the date
         self.date = dateFromComponents()
     }
     

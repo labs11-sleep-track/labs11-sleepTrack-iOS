@@ -33,7 +33,7 @@ class MotionManager {
     weak var delegate: MotionManagerDelegate?
     // Chunk data into 10 minute intervals by default
     var intervalTime: TimeInterval = 60.0 * 10
-    var readTime: TimeInterval = 1.0
+    var readTime: TimeInterval = 0.5
     
     var isTracking: Bool { return intervalTimer != nil }
     
@@ -46,7 +46,6 @@ class MotionManager {
     }
     
     func stopTracking() {
-        // TODO: Get fire date and figure out interval to find the factor to multiply the current accumulator by to approximate the data
         intervalTimer?.invalidate()
         intervalTimer = nil
         saveToPersistentStore()
