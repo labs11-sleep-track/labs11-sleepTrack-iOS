@@ -9,16 +9,12 @@
 import UIKit
 import GoogleSignIn
 
-class LoginViewController: ShiftableViewController, GIDSignInUIDelegate {
+class LoginViewController: SLViewController, GIDSignInUIDelegate {
 
     // MARK: - Properties
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var signInButton: GIDSignInButton!
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+    var signInButton: GIDSignInButton!
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -27,20 +23,14 @@ class LoginViewController: ShiftableViewController, GIDSignInUIDelegate {
         setupViews()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-//        if User.current != nil { performSegue(withIdentifier: "LoginSegue", sender: self)}
+    @IBAction func signInWithGoogle(_ sender: Any) {
+        GIDSignIn.sharedInstance()?.signIn()
     }
     
-
     // MARK: - Utility Methods
     private func setupViews() {
         GIDSignIn.sharedInstance()?.uiDelegate = self
         
         titleLabel.textColor = .customWhite
-        
-        signInButton.colorScheme = .dark
-        
-        let gradientView = view as! GradientView
-        gradientView.setupGradient(startColor: .darkerBackgroundColor, endColor: .lighterBackgroundColor)
     }
 }

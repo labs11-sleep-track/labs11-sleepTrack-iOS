@@ -135,8 +135,6 @@ class SettingsTableViewController: UITableViewController {
     
     private func logout() {
         GIDSignIn.sharedInstance()?.disconnect()
-        User.current = nil
-        LocalNotificationHelper.shared.cancelCurrentNotifications()
         dismiss(animated: true)
     }
 }

@@ -20,16 +20,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-8r-Qp2">
-                                <rect key="frame" x="107" y="622" width="200" height="40"/>
+                                <rect key="frame" x="87" y="614" width="240" height="48"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="sMr-Ff-ntk" customClass="GIDSignInButton">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4SP-Cy-uN0">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="48"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="contentEdgeInsets" minX="39" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Sign in with Google" backgroundImage="btn_google_signin_dark_normal_ios"/>
+                                        <connections>
+                                            <action selector="signInWithGoogle:" destination="6V9-Jv-vbd" eventType="touchUpInside" id="0bf-Mc-jBh"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="8XB-5N-ou5"/>
+                                    <constraint firstAttribute="width" constant="240" id="8XB-5N-ou5"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="sMr-Ff-ntk"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sleepsta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JP9-48-6Nc">
                                 <rect key="frame" x="24" y="92" width="194.5" height="57.5"/>
@@ -47,7 +62,6 @@
                         <viewLayoutGuide key="safeArea" id="6QF-aB-2BW"/>
                     </view>
                     <connections>
-                        <outlet property="signInButton" destination="sMr-Ff-ntk" id="uZ8-BE-nLt"/>
                         <outlet property="titleLabel" destination="JP9-48-6Nc" id="zcY-lY-jar"/>
                         <segue destination="GMP-50-I8A" kind="presentation" identifier="LoginSegue" id="ZnX-Me-DnF"/>
                     </connections>
@@ -503,6 +517,7 @@
     <resources>
         <image name="alarm_clock" width="30" height="30"/>
         <image name="bar_chart" width="30" height="30"/>
+        <image name="btn_google_signin_dark_normal_ios" width="49.5" height="48"/>
         <image name="settings" width="30" height="30"/>
     </resources>
 </document>

@@ -20,10 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         let signIn = GIDSignIn.sharedInstance()
         signIn?.clientID = "923724344364-hani6pf71d8u9msnnbkab3egh5j9n8gm.apps.googleusercontent.com"
-        signIn?.shouldFetchBasicProfile = true
         signIn?.delegate = self
-//        signIn?.disconnect()
-        signIn?.signInSilently()
+        
+        if signIn!.hasAuthInKeychain() {
+            signIn?.signInSilently()
+        }
 
         return true
     }
@@ -59,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         User.current = nil
+        LocalNotificationHelper.shared.cancelCurrentNotifications()
     }
     
     // MARK: - Utility Methods
