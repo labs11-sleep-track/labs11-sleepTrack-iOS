@@ -58,9 +58,11 @@ class DailyData: Codable, Equatable {
     }
     
     var dateRangeString: String {
-        // TODO: Change this to only display one date if the bedDate and wakeDate are the same
         guard let bedDate = bedDate, let wakeDate = wakeDate else { return "" }
-        return "\(DailyData.dateFormatter.string(from: bedDate)) - \(DailyData.dateFormatter.string(from: wakeDate))"
+        let bedDateString = DailyData.dateFormatter.string(from: bedDate)
+        let wakeDateString = DailyData.dateFormatter.string(from: wakeDate)
+        if bedDateString == wakeDateString { return bedDateString }
+        return "\(bedDateString) - \(wakeDateString)"
     }
     
     enum CodingKeys: String, CodingKey {
@@ -76,13 +78,6 @@ class DailyData: Codable, Equatable {
     init(userID: Int) {
         self.userID = userID
     }
-    
-//    required init(from decoder: Decoder) throws {
-//        let container = decoder.container(keyedBy: CodingKeys.self)
-//        
-//        let userID = try container.decode(Int.self, forKey: .userID)
-//        let identifier = try container.decode(Int.self, forKey: .)
-//    }
     
     func encode (to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

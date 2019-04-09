@@ -169,6 +169,8 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
             hour -= 12
             modifierIndex = 1
         }
+        
+        if hour == 0 { hour = 12 }
         let hourString = String(hour)
         
         guard let hourIndex = hours.index(of: hourString) else { return }
@@ -179,24 +181,33 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
     
     private func setMinuteComponent(to minute: Int, animated: Bool = true) {
         let roundedMinute = roundMinute(minute)
-        let minuteString = String(roundedMinute) + (roundedMinute < 10 ? "0" : "")
+        let minuteString = (roundedMinute < 10 ? "0" : "") + String(roundedMinute)
         
         guard let minuteIndex = minutes.index(of: minuteString) else { return }
         selectRow(minuteIndex, inComponent: 1, animated: animated)
         if roundedMinute < minute {
             let hourIndex = selectedRow(inComponent: 0)
-            selectRow(hourIndex+1, inComponent: 0, animated: animated)
+            let modifierIndex = selectedRow(inComponent: 2)
+            var hour = Int(hours[hourIndex])!
+            if hour == 12 { hour = 0 }
+            if modifierIndex == 1 { hour += 12 }
+            hour += 1
+            if hour == 24 {
+                hour = 0
+                selectRow(0, inComponent: 2, animated: true)
+            } else if hour == 12 {
+                selectRow(1, inComponent: 2, animated: true)
+            }
+            setHourComponent(to: hour)
         }
         self.date = dateFromComponents()
     }
     
     // Rounds a minute (int) up to the nearest multiple of 5
     private func roundMinute(_ minute: Int) -> Int {
-        if minute % 5 == 0 {
-            return minute
-        } else {
-            return minute + (5 - minute % 5)
-        }
+        let roundedMinute = minute + (5 - minute % 5)
+        if roundedMinute == 60 { return 0 }
+        return roundedMinute
     }
     
     private func updateIsEnabled() {

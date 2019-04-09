@@ -11,6 +11,7 @@ import UIKit
 protocol SleepTrackingViewControllerDelegate: class {
     var alarmManager: AlarmManager { get }
     func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didCancel: Bool)
+    func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didChangeShowButtonsTo: Bool)
     func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didTurnOffAlarm: Bool)
     func sleepTrackingVC(_ sleepTrackingVC: SleepTrackingViewController, didSnoozeAlarm: Bool)
 }
@@ -22,6 +23,7 @@ class SleepTrackingViewController: UIViewController {
     
     private var cancelSlider: SLSlideControl?
     private var stackView: UIStackView?
+    private var snoozeButton: UIButton?
     private var titleLabel: UILabel?
     private var subtitleLabel: UILabel?
     
@@ -38,30 +40,36 @@ class SleepTrackingViewController: UIViewController {
         setupLabels()
     }
     
-    func configureViewForAlarmSounding() {
-        cancelSlider?.removeFromSuperview()
+    func configureViewForShowingOptions(_ isAlarmSounding: Bool) {
+        if isAlarmSounding { cancelSlider?.removeFromSuperview() }
         
         if let stackView = stackView {
             stackView.constrainToCenterIn(view)
         } else {
             setupStackView()
         }
-        
+        cancelSlider?.reset()
     }
     
     func configureViewForSleeping() {
         stackView?.removeFromSuperview()
         
         if let cancelSlider = cancelSlider {
-            cancelSlider.constrainToSuperView(view, bottom: 20, centerX: 0)
+            cancelSlider.constrainToSuperView(view, bottom: 32, centerX: 0)
         } else {
             setupCancelSlider()
         }
+        cancelSlider?.reset()
     }
     
     // MARK: - Actions
     @objc private func cancelAlarm() {
         delegate?.sleepTrackingVC(self, didCancel: true)
+    }
+    
+    @objc private func showOptions() {
+        let showButtons = stackView?.superview == nil
+        delegate?.sleepTrackingVC(self, didChangeShowButtonsTo: showButtons)
     }
     
     @objc private func turnOffAlarm() {
@@ -93,7 +101,7 @@ class SleepTrackingViewController: UIViewController {
     
     private func setupCancelSlider() {
         cancelSlider = SLSlideControl()
-        cancelSlider!.addTarget(self, action: #selector(cancelAlarm), for: .valueChanged)
+        cancelSlider!.addTarget(self, action: #selector(showOptions), for: .valueChanged)
         cancelSlider!.constrainToSuperView(view, bottom: 32, centerX: 0)
     }
     
@@ -103,11 +111,11 @@ class SleepTrackingViewController: UIViewController {
         stackView!.spacing = 48
         stackView!.constrainToCenterIn(view)
         
-        let snoozeButton = UIButton.customButton(with: "Keep Sleeping", with: .negative)
-        snoozeButton.addTarget(self, action: #selector(snoozeAlarm), for: .touchUpInside)
-        stackView?.addArrangedSubview(snoozeButton)
+        snoozeButton = UIButton.customButton(with: "Add 5 Min", with: .negative)
+        snoozeButton?.addTarget(self, action: #selector(snoozeAlarm), for: .touchUpInside)
+        stackView?.addArrangedSubview(snoozeButton!)
         
-        let wakeUpButton = UIButton.customButton(with: "Wake Up!")
+        let wakeUpButton = UIButton.customButton(with: "Wake Up Now!")
         wakeUpButton.addTarget(self, action: #selector(turnOffAlarm), for: .touchUpInside)
         stackView?.addArrangedSubview(wakeUpButton)
     }

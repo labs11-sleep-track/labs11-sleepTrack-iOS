@@ -63,7 +63,7 @@ class AlarmManager: AudioPlayerDelegate {
     
     func snoozeAlarm() {
         // Get a new date that is 5 minutes from now
-        let date = Date(timeIntervalSinceNow: 5 * 60)
+        let date = Date(timeInterval: 60 * 5, since: self.date)
         // Set a new alarm with that date
         setAlarm(for: date)
     }

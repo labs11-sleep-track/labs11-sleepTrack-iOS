@@ -15,8 +15,6 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
     // MARK: - Properties
     let dailyDataController = DailyDataController()
     
-    @IBOutlet weak var settingsButton: UIButton!
-    
     // These labels are mostly to show that I am getting data, won't be a part of the final design.
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var userIDLabel: UILabel!
@@ -46,20 +44,13 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
         present(sleepTrackingPresentationVC, animated: true)
     }
     
-    
-    @IBAction func postData(_ sender: Any) {
-        dailyDataController.addSleepNotes(notes: "I guess I slept pretty well.")
-        dailyDataController.postDailyData()
-    }
-    
     // MARK: - SL Date Picker View Delegate
     func datePicker(_ datePicker: SLDatePickerView, didChangeDate: Bool) {
         updateHourMinuteLabel()
     }
     
     // MARK: - Utility Methods
-    private func setupViews() {        
-        settingsButton.tintColor = .accentColor
+    private func setupViews() {
         
         welcomeLabel.textColor = .customWhite
         welcomeLabel.text = "Welcome \(User.current?.firstName ?? "")!"
@@ -82,6 +73,6 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
     }
     
     private func updateHourMinuteLabel() {
-        hourMinuteLabel.text = "\(alarmTimePicker.hoursFromNow) hours and \(alarmTimePicker.minutesFromNow)ish minutes"
+        hourMinuteLabel.text = "Sleep for \(alarmTimePicker.hoursFromNow) hours and \(alarmTimePicker.minutesFromNow)ish minutes"
     }
 }

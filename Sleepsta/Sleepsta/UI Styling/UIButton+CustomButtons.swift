@@ -14,6 +14,7 @@ extension UIButton {
         let button = UIButton()
         button.setTitle(title, for: .normal)
         button.setTitleColor(accentColor.color(), for: .normal)
+        button.tintColor = accentColor.color()
         return button
     }
     

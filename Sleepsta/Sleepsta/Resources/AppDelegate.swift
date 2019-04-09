@@ -50,6 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                             self.presentLoggedInVC()
                         }
                     }
+                } else {
+                    GIDSignIn.sharedInstance()?.disconnect()
                 }
             }
         }
