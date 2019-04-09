@@ -191,6 +191,13 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
             var hour = Int(hours[hourIndex])!
             if hour == 12 { hour = 0 }
             if modifierIndex == 1 { hour += 12 }
+            hour += 1
+            if hour == 24 {
+                hour = 0
+                selectRow(0, inComponent: 2, animated: true)
+            } else if hour == 12 {
+                selectRow(1, inComponent: 2, animated: true)
+            }
             setHourComponent(to: hour)
         }
         self.date = dateFromComponents()
