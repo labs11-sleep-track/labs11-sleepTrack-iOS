@@ -105,7 +105,7 @@ class SettingsTableViewController: UITableViewController {
         let hour = UserDefaults.standard.object(forKey: .notificationHour) as? Int ?? 20
         notificationTimePicker.setHour(to: hour)
         let minute = UserDefaults.standard.object(forKey: .notificationMinute) as? Int ?? 0
-        notificationTimePicker.setMinute(to: minute)
+        notificationTimePicker.setMinute(to: minute, rounding: false)
         
         accountLabel.textColor = .customWhite
         logoutLabel.textColor = .pink
