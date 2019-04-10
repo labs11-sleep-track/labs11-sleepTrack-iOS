@@ -88,8 +88,8 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         setHourComponent(to: hour)
     }
     
-    func setMinute(to minute: Int) {
-        setMinuteComponent(to: minute)
+    func setMinute(to minute: Int, rounding: Bool = true) {
+        setMinuteComponent(to: minute, rounding: rounding)
     }
     
     // MARK: - Picker View Data Source
@@ -179,8 +179,8 @@ class SLDatePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelega
         self.date = dateFromComponents()
     }
     
-    private func setMinuteComponent(to minute: Int, animated: Bool = true) {
-        let roundedMinute = roundMinute(minute)
+    private func setMinuteComponent(to minute: Int, rounding: Bool = true, animated: Bool = true) {
+        let roundedMinute = rounding ? roundMinute(minute) : minute
         let minuteString = (roundedMinute < 10 ? "0" : "") + String(roundedMinute)
         
         guard let minuteIndex = minutes.index(of: minuteString) else { return }
