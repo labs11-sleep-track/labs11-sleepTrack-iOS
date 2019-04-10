@@ -71,7 +71,7 @@ class SLSlideControl: UIControl {
             isUnlocked = true
             let endPoint = barView.bounds.width - thumb.bounds.width - 6
             if thumb.frame.origin.x != endPoint {
-                slideThumb(to: endPoint) { _ in self.sendActions(for: .valueChanged) }
+                slideThumb(to: endPoint, duration: 0.1) { _ in self.sendActions(for: .valueChanged) }
             } else {
                 sendActions(for: .valueChanged)
             }
@@ -144,8 +144,8 @@ class SLSlideControl: UIControl {
     }
     
     /// Animates the thumb sliding to the given point.
-    private func slideThumb(to point: CGFloat, completion: @escaping (Bool) -> Void = { _ in }) {
+    private func slideThumb(to point: CGFloat, duration: TimeInterval = 0.3, completion: @escaping (Bool) -> Void = { _ in }) {
         let animations = { self.thumb.frame = self.thumbOffset(by: point) }
-        UIView.animate(withDuration: 0.3, animations: animations, completion: completion)
+        UIView.animate(withDuration: duration, animations: animations, completion: completion)
     }
 }

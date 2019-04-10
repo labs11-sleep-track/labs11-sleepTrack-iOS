@@ -113,7 +113,7 @@ class User: Codable {
                 return
             }
             
-            print(String(data: data, encoding: .utf8)!)
+//            print(String(data: data, encoding: .utf8)!)
             
             do {
                 let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
@@ -128,6 +128,7 @@ class User: Codable {
                     }
                 } else {
                     // TODO: Update any user info that has changed
+                    print("Validated user")
                 }
             } catch {
                 NSLog("Error decoding data: \(error.localizedDescription)")

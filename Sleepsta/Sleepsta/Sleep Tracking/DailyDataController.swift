@@ -12,9 +12,15 @@ import GoogleSignIn
 class DailyDataController {
     static var current: DailyData = DailyData(userID: User.current!.sleepstaID)
     
-    private(set) var dailyDatas: [DailyData] = []
+    private(set) var dailyDatas: [DailyData] = [] {
+        didSet { saveToPersistentStore() }
+    }
     
     private let baseURL = URL(string: .baseURLString)!
+    
+    init() {
+        loadFromPersistentStore()
+    }
     
     // MARK: - CRUD Methods
     /// Method to add the time the user gets in bed to an instance of DailyData. Defaults to the instance currently being built and the current time.
@@ -125,4 +131,30 @@ class DailyDataController {
         DailyDataController.current = DailyData(userID: currentUser.sleepstaID)
     }
     
+    private let dailyDataURL: URL = {
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let url = documentsDirectory.appendingPathComponent("cached-sleep-data").appendingPathExtension("json")
+        return url
+    }()
+    
+    private func saveToPersistentStore() {
+        do {
+            let data = try JSONEncoder().encode(dailyDatas)
+            try data.write(to: dailyDataURL, options: [.atomic])
+            print("Saved to persistent store")
+        } catch {
+            NSLog("Error encoding or saving data: \(error)")
+        }
+    }
+    
+    private func loadFromPersistentStore() {
+        do {
+            let data = try Data(contentsOf: dailyDataURL)
+            let loadedDailyDatas = try JSONDecoder().decode([DailyData].self, from: data)
+            self.dailyDatas = loadedDailyDatas
+            print("Loaded from persistent store")
+        } catch {
+            NSLog("Error loading or decoding data: \(error)")
+        }
+    }
 }

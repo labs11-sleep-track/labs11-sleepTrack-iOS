@@ -79,6 +79,32 @@ class DailyData: Codable, Equatable {
         self.userID = userID
     }
     
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let userID = try container.decode(Int.self, forKey: .userID)
+        let identifier = try container.decodeIfPresent(Int.self, forKey: .identifier)
+        let quality = try container.decode(Int.self, forKey: .quality)
+        let bedTime = try container.decode(Int.self, forKey: .bedTime)
+        let wakeTime = try container.decode(Int.self, forKey: .wakeTime)
+        let sleepNotes = try container.decodeIfPresent(String.self, forKey: .sleepNotes)
+        
+        let nightData: [MotionData]
+        if let motionDataString = try? container.decode(String.self, forKey: .nightData), let motionDataData = motionDataString.data(using: .utf8) {
+            nightData = try JSONDecoder().decode([MotionData].self, from: motionDataData)
+        } else {
+            nightData = try container.decode([MotionData].self, forKey: .nightData)
+        }
+        
+        self.userID = userID
+        self.identifier = identifier
+        self.quality = quality
+        self.bedTime = bedTime
+        self.wakeTime = wakeTime
+        self.sleepNotes = sleepNotes
+        self.nightData = nightData
+    }
+    
     func encode (to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
