@@ -13,7 +13,6 @@ import MediaPlayer
 class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
 
     // MARK: - Properties
-    let dailyDataController = DailyDataController()
     
     // These labels are mostly to show that I am getting data, won't be a part of the final design.
     @IBOutlet weak var welcomeLabel: UILabel!

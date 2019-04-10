@@ -22,18 +22,21 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
         super.viewDidLoad()
         
         dataSource = self
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         // Fetch the user's data to display on the stats page
         dailyDataController.fetchDailyData {
             DispatchQueue.main.async {
-                if let viewController = self.statsViewController(self.dailyDataController.dailyDatas.count-1) {
-                    let viewControllers = [viewController]
-                    
-                    self.setViewControllers(viewControllers, direction: .forward, animated: false)
+                if self.viewControllers?.count ?? 0 < 1 {
+                    if let viewController = self.statsViewController(self.dailyDataController.dailyDatas.count-1) {
+                        let viewControllers = [viewController]
+                        
+                        self.setViewControllers(viewControllers, direction: .forward, animated: false)
+                    }
                 }
             }
         }
-        
     }
     
     // MARK: - Page View Controller Data Source
