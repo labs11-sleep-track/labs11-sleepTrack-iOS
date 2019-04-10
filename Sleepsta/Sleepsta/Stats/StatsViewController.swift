@@ -16,6 +16,7 @@ class StatsViewController: UIViewController {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var lineChart: LineChartView!
+    @IBOutlet weak var sleepTimeLabel: UILabel!
     @IBOutlet weak var qualityLabel: UILabel!
     @IBOutlet weak var qualityTitleLabel: UILabel!
     @IBOutlet weak var bedTimeLabel: UILabel!
@@ -84,6 +85,7 @@ class StatsViewController: UIViewController {
         lineChart.noDataFont = UIFont.preferredFont(forTextStyle: .headline)
         
         // Set up quality, sleep time, and notes labels
+        sleepTimeLabel.textColor = .customWhite
         qualityLabel.textColor = .customWhite
         qualityTitleLabel.textColor = .customWhite
         bedTimeLabel.textColor = .customWhite
@@ -105,6 +107,8 @@ class StatsViewController: UIViewController {
         if !isFirst { dateLabelText = "← " + dateLabelText }
         if !isLast { dateLabelText = dateLabelText + " →" }
         dateLabel.text = dateLabelText
+        
+        sleepTimeLabel.text = dailyData.sleepTimeString
         
         qualityLabel.text = "\(dailyData.quality ?? -1)%"
         bedTimeLabel.text = dailyData.bedTimeString

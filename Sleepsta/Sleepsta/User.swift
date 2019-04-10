@@ -45,7 +45,7 @@ class User: Codable {
         
         do {
             let requestData = try JSONSerialization.data(withJSONObject: data)
-            print(String(data: requestData, encoding: .utf8)!)
+//            print(String(data: requestData, encoding: .utf8)!)
             request.httpBody = requestData
         } catch {
             NSLog("Unable to encode user: \(data)\nWith error: \(error)")
@@ -69,7 +69,7 @@ class User: Codable {
                 return
             }
             
-            print(String(data: data, encoding: .utf8) ?? "Couldn't turn data into String")
+//            print(String(data: data, encoding: .utf8) ?? "Couldn't turn data into String")
             
             guard let jsonObject = try? JSONSerialization.jsonObject(with: data), let jsonDict = jsonObject as? [String: Any] else {
                 NSLog("Wasn't able to serialize the data")

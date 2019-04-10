@@ -57,6 +57,13 @@ class DailyData: Codable, Equatable {
         return DailyData.timeFormatter.string(from: wakeDate)
     }
     
+    var sleepTimeString: String {
+        guard let bedDate = bedDate, let wakeDate = wakeDate else { return "" }
+        let components = Calendar.current.dateComponents([.hour, .minute], from: bedDate, to: wakeDate)
+        guard let hour = components.hour, let minute = components.minute else { return "" }
+        return "You slept for \(hour) hours and \(minute) minutes"
+    }
+    
     var dateRangeString: String {
         guard let bedDate = bedDate, let wakeDate = wakeDate else { return "" }
         let bedDateString = DailyData.dateFormatter.string(from: bedDate)
