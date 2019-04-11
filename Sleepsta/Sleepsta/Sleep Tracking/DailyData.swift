@@ -9,6 +9,8 @@
 import Foundation
 
 class DailyData: Codable, Equatable {
+    
+    // MARK: - Class Methods and Properties
     static func == (lhs: DailyData, rhs: DailyData) -> Bool {
         return lhs.userID == rhs.userID && lhs.bedTime == rhs.bedTime && lhs.wakeTime == rhs.wakeTime
     }
@@ -25,6 +27,7 @@ class DailyData: Codable, Equatable {
         return timeFormatter
     }()
     
+    // MARK: - Properties
     var userID: Int
     var identifier: Int?
     var quality: Int?
@@ -72,6 +75,12 @@ class DailyData: Codable, Equatable {
         return "\(bedDateString) - \(wakeDateString)"
     }
     
+    
+    init(userID: Int) {
+        self.userID = userID
+    }
+    
+    // MARK: - Codable
     enum CodingKeys: String, CodingKey {
         case userID = "user_id"
         case identifier = "id"
@@ -80,10 +89,6 @@ class DailyData: Codable, Equatable {
         case wakeTime = "waketime"
         case sleepNotes = "sleep_notes"
         case nightData = "night_data"
-    }
-    
-    init(userID: Int) {
-        self.userID = userID
     }
     
     required init(from decoder: Decoder) throws {
@@ -127,6 +132,21 @@ class DailyData: Codable, Equatable {
         let motionData = try JSONEncoder().encode(nightData)
         let motionDataString = String(data: motionData, encoding: .utf8)
         try container.encodeIfPresent(motionDataString, forKey: .nightData)
+    }
+    
+    /// Function to calculate the sleep quality. Right now just calculates the total sleep time divided by 8 hours.
+    func calculateSleepQuality() {
+        
+        guard let wakeTime = wakeTime, let bedTime = bedTime else { return }
+        
+        let sleepTime = wakeTime - bedTime
+        let targetTime = 60 * 60 * 8
+        
+        let sleepPercentage = Double(sleepTime) / Double(targetTime)
+        
+        let sleepQuality = sleepPercentage < 1 ? Int(sleepPercentage * 100) : 100
+        
+        self.quality = sleepQuality
     }
 }
 
