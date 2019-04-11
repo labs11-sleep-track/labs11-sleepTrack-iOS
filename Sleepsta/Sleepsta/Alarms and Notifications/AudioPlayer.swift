@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import MediaPlayer
 
 protocol AudioPlayerDelegate: AnyObject {
     func playerDidChangeState(_ player: AudioPlayer)
