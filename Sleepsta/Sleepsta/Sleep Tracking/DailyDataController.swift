@@ -45,7 +45,7 @@ class DailyDataController {
     /// Method to add the user's sleep notes to an instance of DailyData. Defaults to the instance currently being built and an empty string. Also calculates the sleep quality and sets that.
     func addSleepNotes(to dailyData: DailyData = DailyDataController.current, notes: String = "") {
         dailyData.sleepNotes = notes
-        dailyData.quality = calculateSleepQuality()
+        dailyData.calculateSleepQuality()
     }
     
     func resetCurrent() {
@@ -127,12 +127,6 @@ class DailyDataController {
     }
     
     // Utility Methods
-    /// Function to calculate the sleep quality. Will be implemented later.
-    private func calculateSleepQuality() -> Int {
-        // TODO: Actually calculate the sleep quality
-        return Int.random(in: 85...100)
-    }
-    
     private func resetCurrentDailyData() {
         guard let currentUser = User.current else { return }
         DailyDataController.current = DailyData(userID: currentUser.sleepstaID)
