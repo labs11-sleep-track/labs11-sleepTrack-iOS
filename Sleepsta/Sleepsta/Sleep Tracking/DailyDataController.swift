@@ -12,13 +12,21 @@ import GoogleSignIn
 class DailyDataController {
     static var current: DailyData = DailyData(userID: User.current!.sleepstaID)
     
+    static func clearCache() {
+        clearPersistentStore()
+    }
+    
     private(set) var dailyDatas: [DailyData] = [] {
         didSet { saveToPersistentStore() }
     }
     
     private let baseURL = URL(string: .baseURLString)!
+    let networkLoader: NetworkDataLoader
+    let user: User?
     
-    init() {
+    init(user: User? = User.current, networkLoader: NetworkDataLoader = URLSession.shared) {
+        self.networkLoader = networkLoader
+        self.user = user
         loadFromPersistentStore()
     }
     
@@ -56,7 +64,7 @@ class DailyDataController {
         // Build the request
         let requestURL = baseURL.appendingPathComponent("daily")
         
-        guard let token = User.current?.sleepstaToken else { return }
+        guard let token = user?.sleepstaToken else { return }
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
@@ -73,7 +81,7 @@ class DailyDataController {
         }
         
         // Make a datatask
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        networkLoader.loadData(using: request) { (data, error) in
             // Check for errors
             if let error = error {
                 print(error)
@@ -84,17 +92,17 @@ class DailyDataController {
                 print(String(data: data, encoding: .utf8) ?? "Couldn't turn data into String")
                 self.resetCurrentDailyData()
             }
-        }.resume()
+        }
     }
     
     func fetchDailyData(completion: @escaping () -> Void ) {
-        guard let user = User.current else { completion(); return }
+        guard let user = user else { completion(); return }
         
         let requestURL = baseURL.appendingPathComponent("daily")
             .appendingPathComponent("user")
             .appendingPathComponent("\(user.sleepstaID)")
         
-        URLSession.shared.dataTask(with: requestURL) { (data, _, error) in
+        networkLoader.loadData(using: requestURL) { (data, error) in
             if let error = error {
                 NSLog("Error GETting user's sleep data: \(error)")
                 completion()
@@ -115,8 +123,7 @@ class DailyDataController {
             }
             
             completion()
-            return
-        }.resume()
+        }
     }
     
     // Utility Methods
@@ -131,7 +138,7 @@ class DailyDataController {
         DailyDataController.current = DailyData(userID: currentUser.sleepstaID)
     }
     
-    private let dailyDataURL: URL = {
+    private static let cacheURL: URL = {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let url = documentsDirectory.appendingPathComponent("cached-sleep-data").appendingPathExtension("json")
         return url
@@ -140,21 +147,29 @@ class DailyDataController {
     private func saveToPersistentStore() {
         do {
             let data = try JSONEncoder().encode(dailyDatas)
-            try data.write(to: dailyDataURL, options: [.atomic])
+            try data.write(to: DailyDataController.cacheURL, options: [.atomic])
             print("Saved to persistent store")
         } catch {
-            NSLog("Error encoding or saving data: \(error)")
+            NSLog("Error encoding or saving daily data cache: \(error)")
         }
     }
     
     private func loadFromPersistentStore() {
         do {
-            let data = try Data(contentsOf: dailyDataURL)
+            let data = try Data(contentsOf: DailyDataController.cacheURL)
             let loadedDailyDatas = try JSONDecoder().decode([DailyData].self, from: data)
             self.dailyDatas = loadedDailyDatas
             print("Loaded from persistent store")
         } catch {
-            NSLog("Error loading or decoding data: \(error)")
+            NSLog("Error loading or decoding daily data cache: \(error)")
+        }
+    }
+    
+    private static func clearPersistentStore() {
+        do {
+            try FileManager.default.removeItem(at: cacheURL)
+        } catch {
+            NSLog("Error clearing daily data cache: \(error)")
         }
     }
 }

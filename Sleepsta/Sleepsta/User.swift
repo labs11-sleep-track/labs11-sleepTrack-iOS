@@ -144,6 +144,7 @@ class User: Codable {
         UserDefaults.standard.removeObject(forKey: .userFirstName)
         UserDefaults.standard.removeObject(forKey: .userLastName)
         LocalNotificationHelper.shared.cancelCurrentNotifications()
+        DailyDataController.clearCache()
         User.current = nil
     }
     
