@@ -90,6 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             window.rootViewController = vc
             window.makeKeyAndVisible()
             UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromRight, animations: nil, completion: nil)
+            
         }
     }
 }
