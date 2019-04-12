@@ -97,44 +97,14 @@ class User: Codable {
         var request = URLRequest(url: requestURL)
         request.addValue("application/json", forHTTPHeaderField: "Content-type")
         request.addValue(currentUser.sleepstaToken, forHTTPHeaderField: "Authorization")
+
+        guard let signIn = GIDSignIn.sharedInstance() else { fatalError("Something is very wrong, there is no Google Sign In instance") }
         
-        URLSession.shared.dataTask(with: request) { (data, _, error) in
-            // If an error comes back, it means the token is expired, so log back in with Google
-            if let error = error {
-                print("Error GETting user info: \(error.localizedDescription)")
-                if let bool = GIDSignIn.sharedInstance()?.hasAuthInKeychain(), bool {
-                    GIDSignIn.sharedInstance()?.signInSilently()
-                } else {
-                    GIDSignIn.sharedInstance()?.disconnect()
-                }
-            }
-            
-            guard let data = data else {
-                return
-            }
-            
-//            print(String(data: data, encoding: .utf8)!)
-            
-            do {
-                let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
-                if jsonObject is [String: Any] {
-                    // There's a problem, the token isn't valid.
-                    if GIDSignIn.sharedInstance()!.hasAuthInKeychain() {
-                        DispatchQueue.main.async {
-                            GIDSignIn.sharedInstance()?.signInSilently()
-                        }
-                    } else {
-                        GIDSignIn.sharedInstance()?.disconnect()
-                    }
-                } else {
-                    // TODO: Update any user info that has changed
-                    print("Validated user")
-                }
-            } catch {
-                NSLog("Error decoding data: \(error.localizedDescription)")
-            }
-            
-        }.resume()
+        if signIn.hasAuthInKeychain() {
+            signIn.signInSilently()
+        } else {
+            signIn.disconnect()
+        }
     }
     
     static func removeUser() {
