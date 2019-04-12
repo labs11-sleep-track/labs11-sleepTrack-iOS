@@ -96,6 +96,10 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate, MPMe
         alarmTimePicker.datePickerDelegate = self
         alarmTimePicker.setDateTo(8, component: .hour)
         
+        loadMediaItem()
+        
+        updateMediaItem()
+        
     }
     
     private func updateLabels() {
@@ -105,10 +109,38 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate, MPMe
     }
     
     private func updateMediaItem() {
-        if let mediamTitle = mediaItem?.title {
-            pickSongButton.setTitle("Wake up to \"\(mediamTitle)\"", for: .normal)
+        saveMediaItem()
+        if let mediaItem = mediaItem, let mediaTitle = mediaItem.title {
+            pickSongButton.setTitle("Wake up to \"\(mediaTitle)\"", for: .normal)
         } else {
             pickSongButton.setTitle("Pick a song from your Music Library", for: .normal)
+        }
+    }
+    
+    private func saveMediaItem() {
+        guard let mediaItem = self.mediaItem else { return }
+        UserDefaults.standard.removeObject(forKey: .savedMediaItem)
+        do {
+            let dictionary = ["id" : mediaItem.persistentID]
+            let encodedItemID = try JSONSerialization.data(withJSONObject: dictionary, options: [])
+            UserDefaults.standard.set(encodedItemID, forKey: .savedMediaItem)
+        } catch {
+            NSLog("Error saving media item: \(error)")
+        }
+    }
+    
+    private func loadMediaItem() {
+        guard let data = UserDefaults.standard.object(forKey: .savedMediaItem) as? Data else { return }
+        do {
+            let jsonDict = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+            let mediaID = jsonDict["id"]
+            let predicate = MPMediaPropertyPredicate(value: mediaID, forProperty: MPMediaItemPropertyPersistentID)
+            let query = MPMediaQuery(filterPredicates: [predicate])
+            if let mediaItem = query.items?.first {
+                self.mediaItem = mediaItem
+            }
+        } catch {
+            NSLog("Error loading media item: \(error)")
         }
     }
     

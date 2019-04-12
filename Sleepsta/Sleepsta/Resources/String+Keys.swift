@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     static let loginViewController = "LoginViewController"
-    static let tabBarControlelr = "TabBarController"
+    static let tabBarController = "TabBarController"
     
     static let sleepstaToken = "SleepstaToken"
     static let sleepstaID = "SleepstaID"
@@ -23,4 +23,6 @@ extension String {
     static let notificationMinute = "NotificationMinute"
     
     static let reminderIdentifier = "DailySleepReminder"
+    
+    static let savedMediaItem = "SavedMediaItem"
 }

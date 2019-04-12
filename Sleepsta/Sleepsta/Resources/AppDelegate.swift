@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     private func presentLoggedInVC(animated: Bool = true) {
         if User.current != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tabBarController = storyboard.instantiateViewController(withIdentifier: .tabBarControlelr)
+            let tabBarController = storyboard.instantiateViewController(withIdentifier: .tabBarController)
             setRootViewController(tabBarController, animated: animated)
         }
     }
