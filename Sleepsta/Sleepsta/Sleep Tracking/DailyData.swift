@@ -67,6 +67,11 @@ class DailyData: Codable, Equatable {
         return "You slept for \(hour) hours and \(minute) minutes"
     }
     
+    var sleepTime: Int {
+        guard let bedTime = bedTime, let wakeTime = wakeTime else { return -1 }
+        return wakeTime - bedTime
+    }
+    
     var dateRangeString: String {
         guard let bedDate = bedDate, let wakeDate = wakeDate else { return "" }
         let bedDateString = DailyData.dateFormatter.string(from: bedDate)
