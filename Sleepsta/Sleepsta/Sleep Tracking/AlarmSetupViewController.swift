@@ -79,7 +79,7 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
     }
     
     private func updateLabels() {
-        welcomeLabel.text = "Welcome \(User.current?.firstName ?? "")!"
+        welcomeLabel.text = "Set Alarm"
         
         hourMinuteLabel.text = "Sleep for \(alarmTimePicker.hoursFromNow) hours and \(alarmTimePicker.minutesFromNow)ish minutes"
     }

@@ -36,6 +36,7 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
     
     override func viewWillDisappear(_ animated: Bool) {
         mediaPlayer.pause()
+        updatePlayButton()
     }
     
     
@@ -71,6 +72,10 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
     // MARK: - Utility Methods
     private func setUpViews() {
         view.setupBorder()
+        
+        let headerLabel = UILabel.subtitleLabel(with: "Wake Up To:", and: .darkBlue)
+        headerLabel.constrainToSuperView(view, leading: 0)
+        headerLabel.bottomAnchor.constraint(equalTo: view.topAnchor, constant: -4).isActive = true
         
         stackView = UIStackView()
         stackView.axis = .horizontal

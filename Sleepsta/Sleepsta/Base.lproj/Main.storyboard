@@ -435,7 +435,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gie-Jf-sXY">
-                                <rect key="frame" x="20" y="257.66666666666669" width="335" height="20.333333333333314"/>
+                                <rect key="frame" x="20" y="237.66666666666666" width="335" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -486,7 +486,7 @@
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="centerY" secondItem="B7m-vi-VIW" secondAttribute="centerY" id="byb-qc-Kv8"/>
                             <constraint firstItem="wpa-la-1sb" firstAttribute="leading" secondItem="YWK-hg-D7k" secondAttribute="leading" id="cXx-YB-4yd"/>
                             <constraint firstItem="1Z3-mH-yhh" firstAttribute="bottom" secondItem="aML-MU-m50" secondAttribute="bottom" constant="24" id="dfm-nV-3TO"/>
-                            <constraint firstItem="XKw-GN-L2t" firstAttribute="top" secondItem="gie-Jf-sXY" secondAttribute="bottom" constant="20" id="e9P-cv-82c"/>
+                            <constraint firstItem="XKw-GN-L2t" firstAttribute="top" secondItem="gie-Jf-sXY" secondAttribute="bottom" constant="40" id="e9P-cv-82c"/>
                             <constraint firstItem="aML-MU-m50" firstAttribute="leading" secondItem="1Z3-mH-yhh" secondAttribute="leading" constant="20" id="gwj-HI-dw7"/>
                             <constraint firstItem="gie-Jf-sXY" firstAttribute="leading" secondItem="1Z3-mH-yhh" secondAttribute="leading" constant="20" id="sAy-zc-ime"/>
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="sj4-uA-15J"/>
