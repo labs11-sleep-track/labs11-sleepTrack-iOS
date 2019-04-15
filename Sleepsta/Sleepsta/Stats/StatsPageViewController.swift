@@ -23,6 +23,8 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
         
         dataSource = self
         
+        view.backgroundColor = .black
+        
         loadViewController()
     }
     

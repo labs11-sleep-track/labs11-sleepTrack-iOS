@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     private func presentLoggedInVC(animated: Bool = true) {
         if User.current != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tabBarController = storyboard.instantiateViewController(withIdentifier: .tabBarControlelr)
+            let tabBarController = storyboard.instantiateViewController(withIdentifier: .tabBarController)
             setRootViewController(tabBarController, animated: animated)
         }
     }
@@ -90,6 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             window.rootViewController = vc
             window.makeKeyAndVisible()
             UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromRight, animations: nil, completion: nil)
+            
         }
     }
 }

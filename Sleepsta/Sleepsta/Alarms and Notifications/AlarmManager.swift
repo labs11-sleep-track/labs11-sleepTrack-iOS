@@ -23,6 +23,7 @@ class AlarmManager: AudioPlayerDelegate {
     
     // MARK: - Properties
     weak var delegate: AlarmManagerDelegate?
+    var mediaItem: MPMediaItem?
     
     private let player = AudioPlayer()
     private var timer: Timer?
@@ -92,7 +93,12 @@ class AlarmManager: AudioPlayerDelegate {
     @objc private func soundAlarm() {
         AVSessionHelper.shared.setupSessionForAudioPlayback()
         // Load the audio file
-        let url = Bundle.main.url(forResource: "shipBell", withExtension: "wav")!
+        let url: URL
+        if let mediaURL = mediaItem?.assetURL {
+            url = mediaURL
+        } else {
+            url = Bundle.main.url(forResource: "shipBell", withExtension: "wav")!
+        }
         player.load(file: url)
         
         isAlarmSounding = true
