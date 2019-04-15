@@ -29,7 +29,6 @@ class MotionManager {
     private(set) var motionDataArray: [MotionData] = []
     private let dateFormatter = ISO8601DateFormatter()
     
-    
     weak var delegate: MotionManagerDelegate?
     // Chunk data into 10 minute intervals by default
     var intervalTime: TimeInterval = 60.0 * 10
@@ -37,7 +36,9 @@ class MotionManager {
     
     var isTracking: Bool { return intervalTimer != nil }
     
+    // MARK: - Public API
     func startTracking() {
+        setupMotionManager()
         startTrackingMotion()
         intervalTimer = Timer.scheduledTimer(withTimeInterval: intervalTime, repeats: true, block: { _ in
             self.startNewInterval()
@@ -48,7 +49,7 @@ class MotionManager {
     func stopTracking() {
         intervalTimer?.invalidate()
         intervalTimer = nil
-        saveToPersistentStore()
+        motion.stopDeviceMotionUpdates()
         delegate?.motionManager(self, didChangeTrackingTo: isTracking)
     }
     
@@ -66,7 +67,6 @@ class MotionManager {
         readTimer?.invalidate()
         readTimer = nil
         
-        // TODO: Set the date to be the middle of the time period, not the end. (data - intervalTime/2)
         // Add the accumulated data to the array and reset
         let motionData = MotionData(motion: accumulator, timestamp: Int(Date().timeIntervalSince1970))
         motionDataArray.append(motionData)
@@ -78,28 +78,31 @@ class MotionManager {
     
     private func startTrackingMotion() {
         if motion.isDeviceMotionAvailable {
-            self.motion.deviceMotionUpdateInterval = readTime
-            self.motion.showsDeviceMovementDisplay = true
-            self.motion.startDeviceMotionUpdates(using: .xMagneticNorthZVertical)
             
             // Configure a timer to fetch the motion data.
-            self.readTimer = Timer(fire: Date(), interval: (readTime), repeats: true,
-                                   block: { (timer) in
-                                    if let data = self.motion.deviceMotion {
-                                        
-                                        // Get the acceleration of the phone minus gravity
-                                        let x = data.userAcceleration.x
-                                        let y = data.userAcceleration.y
-                                        let z = data.userAcceleration.z
-                                        
-                                        // Average it out and add it to the accumulator
-                                        let average = abs(x) + abs(y) + abs(z) / 3
-                                        self.accumulator += average
-                                    }
+            self.readTimer = Timer(fire: Date(), interval: (readTime), repeats: true, block: { (timer) in
+                if let data = self.motion.deviceMotion {
+                    
+                    // Get the acceleration of the phone minus gravity
+                    let x = data.userAcceleration.x
+                    let y = data.userAcceleration.y
+                    let z = data.userAcceleration.z
+                    
+                    // Average it out and add it to the accumulator
+                    let average = abs(x) + abs(y) + abs(z) / 3
+                    self.accumulator += average
+                }
             })
             
             // Add the timer to the current run loop.
             RunLoop.current.add(self.readTimer!, forMode: RunLoop.Mode.default)
+        }
+    }
+    
+    private func setupMotionManager() {
+        if motion.isDeviceMotionAvailable {
+            motion.deviceMotionUpdateInterval = readTime
+            motion.startDeviceMotionUpdates(using: .xMagneticNorthZVertical)
         }
     }
     

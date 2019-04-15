@@ -10,12 +10,10 @@ import UIKit
 import MediaPlayer
 
 
-class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate, MPMediaPickerControllerDelegate {
+class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
 
     // MARK: - Properties
-    private var mediaItem: MPMediaItem? {
-        didSet { updateMediaItem() }
-    }
+    private var songSelectVC: SongSelectViewController!
     
     // These labels are mostly to show that I am getting data, won't be a part of the final design.
     @IBOutlet weak var welcomeLabel: UILabel!
@@ -24,7 +22,7 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate, MPMe
     @IBOutlet weak var hourMinuteLabel: UILabel!
     @IBOutlet weak var alarmTimePicker: SLDatePickerView!
     @IBOutlet weak var goToSleepButton: UIButton!
-    @IBOutlet weak var pickSongButton: UIButton!
+    @IBOutlet weak var songSelectContainer: UIView!
     @IBOutlet weak var volumeControlContainer: UIView!
     
     // MARK: - Lifecycle Methods
@@ -43,35 +41,15 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate, MPMe
     
     // MARK: - UI Actions
     @IBAction func goToSleep(_ sender: Any) {
-        let sleepTrackingPresentationVC = SLSleepTrackingPresentationViewController()
-        sleepTrackingPresentationVC.alarmManager.mediaItem = mediaItem
-        sleepTrackingPresentationVC.alarmManager.setAlarm(for: alarmTimePicker.date)
+        let sleepTrackingPresentationVC = SleepTrackingPresentationViewController()
+        sleepTrackingPresentationVC.alarmManager.mediaItem = songSelectVC.mediaItem
+        sleepTrackingPresentationVC.alarmManager.setAlarm(for: Date(timeIntervalSinceNow: 5))
         present(sleepTrackingPresentationVC, animated: true)
-    }
-    
-    @IBAction func pickNewSong(_ sender: UIButton) {
-        switch (MPMediaLibrary.authorizationStatus()) {
-        case .authorized:
-            presentMediaPicker(sender)
-        default:
-            // TODO: Handle not having permission better
-            break
-        }
     }
     
     // MARK: - SL Date Picker View Delegate
     func datePicker(_ datePicker: SLDatePickerView, didChangeDate: Bool) {
         updateLabels()
-    }
-    
-    func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
-        mediaItem = mediaItemCollection.items.first
-        
-        mediaPicker.dismiss(animated: true)
-    }
-    
-    func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
-        mediaPicker.dismiss(animated: true)
     }
     
     // MARK: - Utility Methods
@@ -85,7 +63,6 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate, MPMe
         hourMinuteLabel.textColor = .customWhite
         
         goToSleepButton.setTitleColor(.accentColor, for: .normal)
-        pickSongButton.setTitleColor(.accentColor, for: .normal)
         
         let volumeControl = MPVolumeView(frame: volumeControlContainer.bounds)
         volumeControl.showsRouteButton = false
@@ -96,61 +73,15 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate, MPMe
         alarmTimePicker.datePickerDelegate = self
         alarmTimePicker.setDateTo(8, component: .hour)
         
-        loadMediaItem()
-        
-        updateMediaItem()
+        songSelectVC = SongSelectViewController()
+        add(songSelectVC, toView: songSelectContainer)
         
     }
     
     private func updateLabels() {
-        welcomeLabel.text = "Welcome \(User.current?.firstName ?? "")!"
+        welcomeLabel.text = "Set Alarm"
         
         hourMinuteLabel.text = "Sleep for \(alarmTimePicker.hoursFromNow) hours and \(alarmTimePicker.minutesFromNow)ish minutes"
     }
     
-    private func updateMediaItem() {
-        saveMediaItem()
-        if let mediaItem = mediaItem, let mediaTitle = mediaItem.title {
-            pickSongButton.setTitle("Wake up to \"\(mediaTitle)\"", for: .normal)
-        } else {
-            pickSongButton.setTitle("Pick a song from your Music Library", for: .normal)
-        }
-    }
-    
-    private func saveMediaItem() {
-        guard let mediaItem = self.mediaItem else { return }
-        UserDefaults.standard.removeObject(forKey: .savedMediaItem)
-        do {
-            let dictionary = ["id" : mediaItem.persistentID]
-            let encodedItemID = try JSONSerialization.data(withJSONObject: dictionary, options: [])
-            UserDefaults.standard.set(encodedItemID, forKey: .savedMediaItem)
-        } catch {
-            NSLog("Error saving media item: \(error)")
-        }
-    }
-    
-    private func loadMediaItem() {
-        guard let data = UserDefaults.standard.object(forKey: .savedMediaItem) as? Data else { return }
-        do {
-            let jsonDict = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-            let mediaID = jsonDict["id"]
-            let predicate = MPMediaPropertyPredicate(value: mediaID, forProperty: MPMediaItemPropertyPersistentID)
-            let query = MPMediaQuery(filterPredicates: [predicate])
-            if let mediaItem = query.items?.first {
-                self.mediaItem = mediaItem
-            }
-        } catch {
-            NSLog("Error loading media item: \(error)")
-        }
-    }
-    
-    private func presentMediaPicker(_ sender: UIView) {
-        let mediaPickerVC = MPMediaPickerController(mediaTypes: MPMediaType.music)
-        mediaPickerVC.allowsPickingMultipleItems = false
-        mediaPickerVC.showsCloudItems = false
-        mediaPickerVC.prompt = "Pick a song for your alarm"
-        mediaPickerVC.popoverPresentationController?.sourceView = sender
-        mediaPickerVC.delegate = self
-        self.present(mediaPickerVC, animated: true, completion: nil)
-    }
 }

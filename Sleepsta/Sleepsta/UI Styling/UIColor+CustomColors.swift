@@ -15,6 +15,7 @@ extension UIColor {
     static let darkBlue = UIColor(hexRed: 76, green: 84, blue: 111)
     static let fadedDarkBlue = UIColor(hexRed: 76, green: 84, blue: 111, alpha: 0.5)
     static let customWhite = UIColor(hexRed: 247, green: 247, blue: 255)
+    static let fadedCustomWhite = UIColor(hexRed: 247 * 0.4, green: 247 * 0.4, blue: 255 * 0.4)
     static let lightGreen = UIColor(hexRed: 158, green: 228, blue: 147)
     static let pink = UIColor(hexRed: 227, green: 74, blue: 111)
     static let mintGreen = UIColor(hexRed: 154, green: 210, blue: 203)

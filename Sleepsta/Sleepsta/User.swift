@@ -79,7 +79,7 @@ class User: Codable {
             
             // Set the current user to a User made from the data returned from the network request
             User.current = User(jsonDict: jsonDict)
-            
+            print("Signed user in")
             if User.current != nil {
                 completion(nil)
             } else {
