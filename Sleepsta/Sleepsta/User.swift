@@ -69,7 +69,7 @@ class User: Codable {
                 return
             }
             
-            print(String(data: data, encoding: .utf8) ?? "Couldn't turn data into String")
+//            print(String(data: data, encoding: .utf8) ?? "Couldn't turn data into String")
             
             guard let jsonObject = try? JSONSerialization.jsonObject(with: data), let jsonDict = jsonObject as? [String: Any] else {
                 NSLog("Wasn't able to serialize the data")
