@@ -46,7 +46,17 @@ class PostBedSurveyViewController: ShiftableViewController {
     
     @objc private func submitSurvey() {
         guard let notes = notesTextView?.text else { return }
-        delegate?.postBecSurveyVC(self, didSubmitSurvey: true, with: notes)
+        
+        if DailyDataController.current.sleepTime < 600 {
+            let dismissAction: (UIAlertAction) -> Void = { _ in self.delegate?.postBecSurveyVC(self, didSubmitSurvey: true, with: notes) }
+            
+            let cancelAction: (UIAlertAction) -> Void = { _ in self.dismiss(animated: true) }
+            
+            let alertController = UIAlertController.informationalAlertController(title: "You didn't sleep very long", withCancel: true, message: "You can only save one sleep data per day, and this one is only a few minutes, are you sure you want to post it?", dismissTitle: "Post Anyway", dismissActionCompletion: dismissAction, cancelActionCompletion: cancelAction)
+            present(alertController, animated: true)
+        } else {
+            delegate?.postBecSurveyVC(self, didSubmitSurvey: true, with: notes)
+        }
     }
 
 }

@@ -81,6 +81,7 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.distribution = .fill
+        stackView.spacing = 8
         
         stackView.constrainToSuperView(view, safeArea: false, top: 8, bottom: 8, leading: 8, trailing: 8)
         
