@@ -11,6 +11,7 @@ import MediaPlayer
 
 class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegate {
     
+    // MARK: - Properties
     var mediaItem: MPMediaItem?
     private(set) var state: State?
 
@@ -21,7 +22,9 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
     private var detailLabel: UILabel!
     private var playButton: UIButton!
     
+    private var mediaPlayer: MPMusicPlayerController!
     
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +32,10 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         
         loadStoredMediaItem()
         if state == nil { transitionToState(.none) }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        mediaPlayer.pause()
     }
     
     
@@ -73,7 +80,8 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         stackView.constrainToSuperView(view, safeArea: false, top: 8, bottom: 8, leading: 8, trailing: 8)
         
         imageView = UIImageView()
-        imageView.backgroundColor = .darkBlue
+        imageView.tintColor = .darkBlue
+        imageView.contentMode = .scaleAspectFit
         stackView.addArrangedSubview(imageView)
         
         imageView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 1, constant: 0).isActive = true
@@ -96,6 +104,7 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         
         playButton = UIButton.customButton()
         playButton.setImage(UIImage(named: "play")!, for: .normal)
+        playButton.addTarget(self, action: #selector(playSong), for: .touchUpInside)
         stackView.addArrangedSubview(playButton)
         
         playButton.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 1, constant: 16).isActive = true
@@ -105,6 +114,8 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         gestureRecognizer.numberOfTapsRequired = 1
         
         view.addGestureRecognizer(gestureRecognizer)
+        
+        mediaPlayer = MPMusicPlayerController.applicationMusicPlayer
         
     }
     
@@ -129,6 +140,9 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         detailLabel.text = "Tap to select song"
         detailLabel.textColor = color
         
+        imageView.image = UIImage(named: "musical_notes")
+        
+        playButton.isEnabled = false
     }
     
     private func loadMediaItem(_ mediaItem: MPMediaItem) {
@@ -148,6 +162,8 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         
         detailLabel.text = "Tap to switch songs"
         
+        playButton.isEnabled = true
+        
         saveMediaItem()
         
     }
@@ -160,6 +176,25 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
             // TODO: Handle not having permission better
             break
         }
+    }
+    
+    @objc private func playSong() {
+        if let mediaItem = mediaItem {
+            if mediaPlayer.nowPlayingItem != mediaItem || mediaPlayer.playbackState == .stopped  {
+                mediaPlayer.setQueue(with: MPMediaItemCollection(items: [mediaItem]))
+                mediaPlayer.play()
+            } else {
+                switch mediaPlayer.playbackState {
+                case .playing:
+                    mediaPlayer.pause()
+                case .paused, .interrupted:
+                    mediaPlayer.play()
+                case .seekingForward, .seekingBackward, .stopped:
+                    break
+                }
+            }
+        }
+        updatePlayButton()
     }
     
     private func presentMusicPicker() {
@@ -197,6 +232,16 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         } catch {
             NSLog("Error loading media item: \(error)")
         }
+    }
+    
+    private func updatePlayButton() {
+        let image: UIImage
+        if mediaPlayer.playbackState == .playing {
+            image = UIImage(named: "pause")!
+        } else {
+            image = UIImage(named: "play")!
+        }
+        playButton.setImage(image, for: .normal)
     }
 
 }
