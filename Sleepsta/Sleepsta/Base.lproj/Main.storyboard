@@ -441,10 +441,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mvT-bD-iQD">
-                                <rect key="frame" x="136" y="522" width="103" height="68"/>
+                                <rect key="frame" x="146" y="522" width="83" height="30"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BmG-9W-wzY">
-                                        <rect key="frame" x="10" y="0.0" width="83" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="83" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NeO-U5-Xhc">
                                                 <rect key="frame" x="0.0" y="0.0" width="83" height="30"/>
@@ -455,13 +455,6 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0FB-sT-tWs">
-                                        <rect key="frame" x="0.0" y="38" width="103" height="30"/>
-                                        <state key="normal" title="Pick New Song"/>
-                                        <connections>
-                                            <action selector="pickNewSong:" destination="lRn-9Q-slw" eventType="touchUpInside" id="kE7-04-vmT"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9e4-8Q-jFA">
@@ -473,7 +466,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aML-MU-m50">
-                                <rect key="frame" x="20" y="598" width="335" height="68"/>
+                                <rect key="frame" x="20" y="560" width="335" height="68"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="aML-MU-m50" secondAttribute="height" multiplier="335:68" id="6Gk-Mc-0Zu"/>
@@ -506,7 +499,6 @@
                         <outlet property="alarmTimePicker" destination="XKw-GN-L2t" id="Alj-Qz-pYG"/>
                         <outlet property="goToSleepButton" destination="NeO-U5-Xhc" id="ELj-dH-fZF"/>
                         <outlet property="hourMinuteLabel" destination="gie-Jf-sXY" id="cYi-pz-q2h"/>
-                        <outlet property="pickSongButton" destination="0FB-sT-tWs" id="oqX-15-pIr"/>
                         <outlet property="songSelectContainer" destination="aML-MU-m50" id="4gt-Fu-GQp"/>
                         <outlet property="userIDLabel" destination="wpa-la-1sb" id="3dW-fb-YwD"/>
                         <outlet property="volumeControlContainer" destination="9e4-8Q-jFA" id="5o4-6Z-Oyt"/>

@@ -101,7 +101,7 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         playButton.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 1, constant: 16).isActive = true
         playButton.widthAnchor.constraint(equalTo: playButton.heightAnchor, multiplier: 1, constant: -16).isActive = true
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(presentMusicPicker))
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pickSong))
         gestureRecognizer.numberOfTapsRequired = 1
         
         view.addGestureRecognizer(gestureRecognizer)
@@ -152,7 +152,17 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         
     }
     
-    @objc private func presentMusicPicker() {
+    @objc private func pickSong() {
+        switch (MPMediaLibrary.authorizationStatus()) {
+        case .authorized:
+            presentMusicPicker()
+        default:
+            // TODO: Handle not having permission better
+            break
+        }
+    }
+    
+    private func presentMusicPicker() {
         let mediaPickerVC = MPMediaPickerController(mediaTypes: MPMediaType.music)
         mediaPickerVC.allowsPickingMultipleItems = false
         mediaPickerVC.showsCloudItems = false
