@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2CA149E3D22ACE2F20887BB8 /* Pods_Sleepsta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBFB566A31510DCB703AFC2 /* Pods_Sleepsta.framework */; };
+		3409CBE72262AF3F00E5EF78 /* ContentStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3409CBE62262AF3F00E5EF78 /* ContentStateViewController.swift */; };
+		3409CBE92262B07200E5EF78 /* UIViewController+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3409CBE82262B07200E5EF78 /* UIViewController+Container.swift */; };
 		34117B67224D633A001DD360 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34117B66224D633A001DD360 /* MainTabBarController.swift */; };
 		3435346F2242B3CB00CCB1C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3435346E2242B3CB00CCB1C5 /* AppDelegate.swift */; };
 		343534742242B3CB00CCB1C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 343534722242B3CB00CCB1C5 /* Main.storyboard */; };
@@ -25,7 +27,7 @@
 		346CB54B2256CFA40022CD84 /* UIButton+CustomButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346CB54A2256CFA40022CD84 /* UIButton+CustomButtons.swift */; };
 		347967D62253F222007D72FB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347967D52253F222007D72FB /* SettingsTableViewController.swift */; };
 		347967D82253FFF3007D72FB /* LocalNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347967D72253FFF3007D72FB /* LocalNotificationHelper.swift */; };
-		347967DA225416AB007D72FB /* UIView+CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347967D9225416AB007D72FB /* UIView+CustomHeaderView.swift */; };
+		347967DA225416AB007D72FB /* UIView+CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347967D9225416AB007D72FB /* UIView+CustomViews.swift */; };
 		347967DC22541B4F007D72FB /* String+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347967DB22541B4F007D72FB /* String+Keys.swift */; };
 		348671F5224D30100092A2E8 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348671F4224D30100092A2E8 /* StatsViewController.swift */; };
 		348671F7224D307C0092A2E8 /* sample-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 348671F6224D307C0092A2E8 /* sample-data.json */; };
@@ -37,13 +39,14 @@
 		349FC379225F9BD700A22805 /* DailyDataControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349FC378225F9BD700A22805 /* DailyDataControllerTests.swift */; };
 		34A01EB922565722004CFD30 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A01EB822565722004CFD30 /* UIView+Constraints.swift */; };
 		34A01EBB225658B0004CFD30 /* SleepTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A01EBA225658B0004CFD30 /* SleepTrackingViewController.swift */; };
+		34A45FA42264E416005738B6 /* SelectedSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A45FA32264E416005738B6 /* SelectedSongViewController.swift */; };
 		34AA417622499DA200366391 /* DailyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AA417522499DA200366391 /* DailyData.swift */; };
 		34AD1CCB22568B3600382891 /* UILabel+CustomLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AD1CCA22568B3600382891 /* UILabel+CustomLabels.swift */; };
 		34C02428225264B90053DCAA /* DailyData+SampleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C02427225264B90053DCAA /* DailyData+SampleGenerator.swift */; };
 		34C0242A2252804E0053DCAA /* TestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C024292252804E0053DCAA /* TestingViewController.swift */; };
 		34C0242C2252B40B0053DCAA /* StatsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0242B2252B40B0053DCAA /* StatsPageViewController.swift */; };
 		34EC9C86225508AA00ECB553 /* SLSlideControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EC9C85225508AA00ECB553 /* SLSlideControl.swift */; };
-		34EC9C882255595C00ECB553 /* SLSleepTrackingPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EC9C872255595C00ECB553 /* SLSleepTrackingPresentationViewController.swift */; };
+		34EC9C882255595C00ECB553 /* SleepTrackingPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EC9C872255595C00ECB553 /* SleepTrackingPresentationViewController.swift */; };
 		34EC9C8A22555AD100ECB553 /* SLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EC9C8922555AD100ECB553 /* SLViewController.swift */; };
 		34EC9C8C22555CBB00ECB553 /* PreBedSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EC9C8B22555CBB00ECB553 /* PreBedSurveyViewController.swift */; };
 		34F89F0D224AA43C0070A5A0 /* DailyDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */; };
@@ -68,6 +71,8 @@
 
 /* Begin PBXFileReference section */
 		076225E39480752D124ECCD9 /* Pods_SleepstaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepstaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3409CBE62262AF3F00E5EF78 /* ContentStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewController.swift; sourceTree = "<group>"; };
+		3409CBE82262B07200E5EF78 /* UIViewController+Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Container.swift"; sourceTree = "<group>"; };
 		34117B66224D633A001DD360 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3435346B2242B3CB00CCB1C5 /* Sleepsta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sleepsta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3435346E2242B3CB00CCB1C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +94,7 @@
 		346CB54A2256CFA40022CD84 /* UIButton+CustomButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+CustomButtons.swift"; sourceTree = "<group>"; };
 		347967D52253F222007D72FB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		347967D72253FFF3007D72FB /* LocalNotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationHelper.swift; sourceTree = "<group>"; };
-		347967D9225416AB007D72FB /* UIView+CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CustomHeaderView.swift"; sourceTree = "<group>"; };
+		347967D9225416AB007D72FB /* UIView+CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CustomViews.swift"; sourceTree = "<group>"; };
 		347967DB22541B4F007D72FB /* String+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Keys.swift"; sourceTree = "<group>"; };
 		348671F4224D30100092A2E8 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		348671F6224D307C0092A2E8 /* sample-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sample-data.json"; sourceTree = "<group>"; };
@@ -101,13 +106,14 @@
 		349FC378225F9BD700A22805 /* DailyDataControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDataControllerTests.swift; sourceTree = "<group>"; };
 		34A01EB822565722004CFD30 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		34A01EBA225658B0004CFD30 /* SleepTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepTrackingViewController.swift; sourceTree = "<group>"; };
+		34A45FA32264E416005738B6 /* SelectedSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedSongViewController.swift; sourceTree = "<group>"; };
 		34AA417522499DA200366391 /* DailyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyData.swift; sourceTree = "<group>"; };
 		34AD1CCA22568B3600382891 /* UILabel+CustomLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+CustomLabels.swift"; sourceTree = "<group>"; };
 		34C02427225264B90053DCAA /* DailyData+SampleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyData+SampleGenerator.swift"; sourceTree = "<group>"; };
 		34C024292252804E0053DCAA /* TestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingViewController.swift; sourceTree = "<group>"; };
 		34C0242B2252B40B0053DCAA /* StatsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsPageViewController.swift; sourceTree = "<group>"; };
 		34EC9C85225508AA00ECB553 /* SLSlideControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSlideControl.swift; sourceTree = "<group>"; };
-		34EC9C872255595C00ECB553 /* SLSleepTrackingPresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSleepTrackingPresentationViewController.swift; sourceTree = "<group>"; };
+		34EC9C872255595C00ECB553 /* SleepTrackingPresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepTrackingPresentationViewController.swift; sourceTree = "<group>"; };
 		34EC9C8922555AD100ECB553 /* SLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLViewController.swift; sourceTree = "<group>"; };
 		34EC9C8B22555CBB00ECB553 /* PreBedSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreBedSurveyViewController.swift; sourceTree = "<group>"; };
 		34F89F0C224AA43C0070A5A0 /* DailyDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDataController.swift; sourceTree = "<group>"; };
@@ -210,10 +216,12 @@
 		345CE09E2242E0C2005B5725 /* UI Styling */ = {
 			isa = PBXGroup;
 			children = (
+				3409CBE62262AF3F00E5EF78 /* ContentStateViewController.swift */,
+				3409CBE82262B07200E5EF78 /* UIViewController+Container.swift */,
 				345CE0962242D107005B5725 /* UIColor+CustomColors.swift */,
 				345CE0942242D0B4005B5725 /* GradientView.swift */,
 				345CE09A2242D3BD005B5725 /* SLTextField.swift */,
-				347967D9225416AB007D72FB /* UIView+CustomHeaderView.swift */,
+				347967D9225416AB007D72FB /* UIView+CustomViews.swift */,
 				34A01EB822565722004CFD30 /* UIView+Constraints.swift */,
 				34AD1CCA22568B3600382891 /* UILabel+CustomLabels.swift */,
 				346CB54A2256CFA40022CD84 /* UIButton+CustomButtons.swift */,
@@ -238,7 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				345CE09F2242E568005B5725 /* AlarmSetupViewController.swift */,
-				34EC9C872255595C00ECB553 /* SLSleepTrackingPresentationViewController.swift */,
+				34EC9C872255595C00ECB553 /* SleepTrackingPresentationViewController.swift */,
 				34EC9C8B22555CBB00ECB553 /* PreBedSurveyViewController.swift */,
 				34A01EBA225658B0004CFD30 /* SleepTrackingViewController.swift */,
 				346CB5482256C43A0022CD84 /* PostBedSurveyViewController.swift */,
@@ -261,6 +269,7 @@
 				34FD3320224BE31000A0EFC6 /* AudioPlayer.swift */,
 				347967D72253FFF3007D72FB /* LocalNotificationHelper.swift */,
 				347967D52253F222007D72FB /* SettingsTableViewController.swift */,
+				34A45FA32264E416005738B6 /* SelectedSongViewController.swift */,
 			);
 			path = "Alarms and Notifications";
 			sourceTree = "<group>";
@@ -514,14 +523,17 @@
 				34A01EB922565722004CFD30 /* UIView+Constraints.swift in Sources */,
 				34AA417622499DA200366391 /* DailyData.swift in Sources */,
 				349947402249722700BE41B2 /* MotionManager.swift in Sources */,
+				34A45FA42264E416005738B6 /* SelectedSongViewController.swift in Sources */,
 				345CE0A02242E568005B5725 /* AlarmSetupViewController.swift in Sources */,
 				34A01EBB225658B0004CFD30 /* SleepTrackingViewController.swift in Sources */,
-				347967DA225416AB007D72FB /* UIView+CustomHeaderView.swift in Sources */,
+				347967DA225416AB007D72FB /* UIView+CustomViews.swift in Sources */,
 				34FD3321224BE31000A0EFC6 /* AudioPlayer.swift in Sources */,
 				349947422249725E00BE41B2 /* MotionData.swift in Sources */,
 				34FD331F224BDB4B00A0EFC6 /* AVSessionHelper.swift in Sources */,
 				345CE0A22242E9D2005B5725 /* SLDatePickerView.swift in Sources */,
 				345CE0952242D0B4005B5725 /* GradientView.swift in Sources */,
+				3409CBE92262B07200E5EF78 /* UIViewController+Container.swift in Sources */,
+				3409CBE72262AF3F00E5EF78 /* ContentStateViewController.swift in Sources */,
 				34AD1CCB22568B3600382891 /* UILabel+CustomLabels.swift in Sources */,
 				347967D62253F222007D72FB /* SettingsTableViewController.swift in Sources */,
 				345CE0A42242F80C005B5725 /* User.swift in Sources */,
@@ -529,7 +541,7 @@
 				3435346F2242B3CB00CCB1C5 /* AppDelegate.swift in Sources */,
 				34FD3323224BE37C00A0EFC6 /* AlarmManager.swift in Sources */,
 				34EC9C8A22555AD100ECB553 /* SLViewController.swift in Sources */,
-				34EC9C882255595C00ECB553 /* SLSleepTrackingPresentationViewController.swift in Sources */,
+				34EC9C882255595C00ECB553 /* SleepTrackingPresentationViewController.swift in Sources */,
 				347967D82253FFF3007D72FB /* LocalNotificationHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

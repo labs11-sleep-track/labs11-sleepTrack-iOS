@@ -472,10 +472,18 @@
                                     <constraint firstAttribute="height" constant="20" id="Dxn-GI-lTF"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aML-MU-m50">
+                                <rect key="frame" x="20" y="598" width="335" height="68"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="aML-MU-m50" secondAttribute="height" multiplier="335:68" id="6Gk-Mc-0Zu"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1Z3-mH-yhh" firstAttribute="bottom" secondItem="9e4-8Q-jFA" secondAttribute="bottom" constant="24" id="7QD-L1-Oqq"/>
+                            <constraint firstItem="1Z3-mH-yhh" firstAttribute="trailing" secondItem="aML-MU-m50" secondAttribute="trailing" constant="20" id="93M-GR-ZEK"/>
                             <constraint firstItem="mvT-bD-iQD" firstAttribute="top" secondItem="XKw-GN-L2t" secondAttribute="bottom" constant="8" symbolic="YES" id="CxY-eQ-vKT"/>
                             <constraint firstItem="1Z3-mH-yhh" firstAttribute="trailing" secondItem="gie-Jf-sXY" secondAttribute="trailing" constant="20" id="ISf-eL-w4e"/>
                             <constraint firstItem="mvT-bD-iQD" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="JlQ-Ed-ziQ"/>
@@ -485,8 +493,10 @@
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="centerY" secondItem="B7m-vi-VIW" secondAttribute="centerY" id="byb-qc-Kv8"/>
                             <constraint firstItem="wpa-la-1sb" firstAttribute="leading" secondItem="YWK-hg-D7k" secondAttribute="leading" id="cXx-YB-4yd"/>
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="top" secondItem="gie-Jf-sXY" secondAttribute="bottom" constant="20" id="e9P-cv-82c"/>
+                            <constraint firstItem="aML-MU-m50" firstAttribute="leading" secondItem="1Z3-mH-yhh" secondAttribute="leading" constant="20" id="gwj-HI-dw7"/>
                             <constraint firstItem="gie-Jf-sXY" firstAttribute="leading" secondItem="1Z3-mH-yhh" secondAttribute="leading" constant="20" id="sAy-zc-ime"/>
                             <constraint firstItem="XKw-GN-L2t" firstAttribute="centerX" secondItem="B7m-vi-VIW" secondAttribute="centerX" id="sj4-uA-15J"/>
+                            <constraint firstItem="aML-MU-m50" firstAttribute="top" secondItem="mvT-bD-iQD" secondAttribute="bottom" constant="8" id="udT-ic-LF2"/>
                             <constraint firstItem="wpa-la-1sb" firstAttribute="top" secondItem="YWK-hg-D7k" secondAttribute="bottom" id="wTH-Eg-TpG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Z3-mH-yhh"/>
@@ -497,6 +507,7 @@
                         <outlet property="goToSleepButton" destination="NeO-U5-Xhc" id="ELj-dH-fZF"/>
                         <outlet property="hourMinuteLabel" destination="gie-Jf-sXY" id="cYi-pz-q2h"/>
                         <outlet property="pickSongButton" destination="0FB-sT-tWs" id="oqX-15-pIr"/>
+                        <outlet property="songSelectContainer" destination="aML-MU-m50" id="4gt-Fu-GQp"/>
                         <outlet property="userIDLabel" destination="wpa-la-1sb" id="3dW-fb-YwD"/>
                         <outlet property="volumeControlContainer" destination="9e4-8Q-jFA" id="5o4-6Z-Oyt"/>
                         <outlet property="welcomeLabel" destination="YWK-hg-D7k" id="y1U-Um-Xb9"/>

@@ -25,6 +25,7 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate, MPMe
     @IBOutlet weak var alarmTimePicker: SLDatePickerView!
     @IBOutlet weak var goToSleepButton: UIButton!
     @IBOutlet weak var pickSongButton: UIButton!
+    @IBOutlet weak var songSelectContainer: UIView!
     @IBOutlet weak var volumeControlContainer: UIView!
     
     // MARK: - Lifecycle Methods
@@ -43,7 +44,7 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate, MPMe
     
     // MARK: - UI Actions
     @IBAction func goToSleep(_ sender: Any) {
-        let sleepTrackingPresentationVC = SLSleepTrackingPresentationViewController()
+        let sleepTrackingPresentationVC = SleepTrackingPresentationViewController()
         sleepTrackingPresentationVC.alarmManager.mediaItem = mediaItem
         sleepTrackingPresentationVC.alarmManager.setAlarm(for: alarmTimePicker.date)
         present(sleepTrackingPresentationVC, animated: true)
@@ -95,6 +96,9 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate, MPMe
         
         alarmTimePicker.datePickerDelegate = self
         alarmTimePicker.setDateTo(8, component: .hour)
+        
+        let songSelectVC = SongSelectViewController()
+        add(songSelectVC, toView: songSelectContainer)
         
         loadMediaItem()
         

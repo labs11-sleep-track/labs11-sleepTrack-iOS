@@ -10,9 +10,11 @@ import UIKit
 
 extension UIButton {
     
-    static func customButton(with title: String, with accentColor: AccentColor = .normal) -> UIButton {
+    static func customButton(with title: String? = nil, with accentColor: AccentColor = .normal) -> UIButton {
         let button = UIButton()
-        button.setTitle(title, for: .normal)
+        if let title = title {
+            button.setTitle(title, for: .normal)
+        }
         button.setTitleColor(accentColor.color(), for: .normal)
         button.tintColor = accentColor.color()
         return button

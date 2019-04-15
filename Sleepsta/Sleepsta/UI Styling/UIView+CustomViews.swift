@@ -26,4 +26,10 @@ extension UIView {
         
         return view
     }
+    
+    func setupBorder(color: UIColor = .customWhite) {
+        layer.borderColor = color.cgColor
+        layer.borderWidth = 1
+        layer.cornerRadius = 8
+    }
 }

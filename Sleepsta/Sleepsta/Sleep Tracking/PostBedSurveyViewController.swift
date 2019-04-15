@@ -35,10 +35,7 @@ class PostBedSurveyViewController: ShiftableViewController {
         notesTextView?.font = UIFont.preferredFont(forTextStyle: .body)
         notesTextView?.contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         notesTextView?.delegate = self
-        notesTextView?.layer.borderColor = UIColor.customWhite.cgColor
-        notesTextView?.layer.borderWidth = 1
-        notesTextView?.layer.cornerRadius = 8
-        
+        notesTextView?.setupBorder()
         notesTextView!.constrainToSuperView(view, leading: 20, trailing: 20, height: 240)
         notesTextView!.constrainToSiblingView(notesLabel, below: 8)
         

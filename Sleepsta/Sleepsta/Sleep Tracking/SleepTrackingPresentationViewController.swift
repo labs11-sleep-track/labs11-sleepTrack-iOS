@@ -1,5 +1,5 @@
 //
-//  SLSleepTrackingPresentationViewController.swift
+//  SleepTrackingPresentationViewController.swift
 //  Sleepsta
 //
 //  Created by Dillon McElhinney on 4/3/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SLSleepTrackingPresentationViewController: SLViewController, AlarmManagerDelegate, PreBedSurveyViewControllerDelegate, SleepTrackingViewControllerDelegate, PostBedSurveyViewControllerDelegate {
+class SleepTrackingPresentationViewController: SLViewController, AlarmManagerDelegate, PreBedSurveyViewControllerDelegate, SleepTrackingViewControllerDelegate, PostBedSurveyViewControllerDelegate {
 
     let motionManager = MotionManager.shared
     let alarmManager = AlarmManager()
