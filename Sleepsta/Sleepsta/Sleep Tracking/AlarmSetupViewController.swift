@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MediaPlayer
 
 
 class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
@@ -43,7 +42,7 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
     @IBAction func goToSleep(_ sender: Any) {
         let sleepTrackingPresentationVC = SleepTrackingPresentationViewController()
         sleepTrackingPresentationVC.alarmManager.mediaItem = songSelectVC.mediaItem
-        sleepTrackingPresentationVC.alarmManager.setAlarm(for: Date(timeIntervalSinceNow: 5))
+        sleepTrackingPresentationVC.alarmManager.setAlarm(for: alarmTimePicker.date)
         present(sleepTrackingPresentationVC, animated: true)
     }
     
@@ -64,12 +63,6 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
         
         goToSleepButton.setTitleColor(.accentColor, for: .normal)
         
-        let volumeControl = MPVolumeView(frame: volumeControlContainer.bounds)
-        volumeControl.showsRouteButton = false
-        volumeControl.tintColor = .accentColor
-        volumeControlContainer.addSubview(volumeControl)
-        volumeControlContainer.backgroundColor = .clear
-        
         alarmTimePicker.datePickerDelegate = self
         alarmTimePicker.setDateTo(8, component: .hour)
         
@@ -79,7 +72,7 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
     }
     
     private func updateLabels() {
-        welcomeLabel.text = "Set Alarm"
+        welcomeLabel.text = "Configure Alarm"
         
         hourMinuteLabel.text = "Sleep for \(alarmTimePicker.hoursFromNow) hours and \(alarmTimePicker.minutesFromNow)ish minutes"
     }

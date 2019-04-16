@@ -27,7 +27,7 @@ class SleepTrackingPresentationViewController: SLViewController, AlarmManagerDel
         
         setupCancelButton()
         
-        presentSleepTrackingVC()
+        presentPreSurvey()
         
     }
     
@@ -50,11 +50,12 @@ class SleepTrackingPresentationViewController: SLViewController, AlarmManagerDel
         }
     }
     
+    // MARK: - Pre Bed Survey View Controller Delegate
     func preBedSurveyViewController(_ preBedSurveyViewController: PreBedSurveyViewController, didHitNextButton: Bool) {
         let animations: () -> Void = { self.preVC?.view.alpha = 0 }
         UIView.animate(withDuration: 0.5, animations: animations) { (_) in
-            self.preVC?.removeFromParent()
-            self.preVC = nil
+            self.preVC?.remove()
+            self.presentSleepTrackingVC()
         }
     }
     
@@ -100,6 +101,14 @@ class SleepTrackingPresentationViewController: SLViewController, AlarmManagerDel
         cancelButton.setImage(UIImage(named: "cancel")!, for: .normal)
         cancelButton.constrainToSuperView(view, safeArea: true, top: 20, trailing: 20)
         cancelButton.addTarget(self, action: #selector(cancelAlarm), for: .touchUpInside)
+    }
+    
+    private func presentPreSurvey() {
+        cancelButton.isHidden = true
+        preVC = PreBedSurveyViewController()
+        preVC?.delegate = self
+        add(preVC!)
+        view.sendSubviewToBack(preVC!.view)
     }
     
     private func presentSleepTrackingVC() {
