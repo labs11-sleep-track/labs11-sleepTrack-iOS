@@ -149,9 +149,40 @@ class DailyData: Codable, Equatable {
         
         let sleepPercentage = Double(sleepTime) / Double(targetTime)
         
-        let sleepQuality = sleepPercentage < 1 ? Int(sleepPercentage * 100) : 100
+        let sleepLength = sleepPercentage < 1 ? Int(sleepPercentage * 100) : 100
         
-        self.quality = sleepQuality
+        let sleepDepthPercentage = deepSleepPercentage()
+        
+        let sleepDepth = sleepDepthPercentage < 1 ? Int(sleepDepthPercentage * 100) : 100
+        
+        
+        
+        self.quality = (sleepLength + sleepDepth) / 2
+    }
+    
+    // MARK: - Utility Methods
+    func highestMotion() -> Double {
+        return nightData.max(by: { $0.motion < $1.motion })?.motion ?? 0
+    }
+    
+    func lowestMotion() ->  Double {
+        return nightData.min(by: { $0.motion < $1.motion })?.motion ?? 0
+    }
+    
+    func deepSleepThreshold() -> Double {
+        let highest = highestMotion()
+        let lowest = lowestMotion()
+        
+        return (highest - lowest) / 8 + lowest
+    }
+    
+    func deepSleepPercentage() -> Double {
+        let threshold = deepSleepThreshold()
+        
+        let totalPoints = nightData.count
+        let deepSleepPoints = nightData.filter({ $0.motion < threshold }).count
+        
+        return (Double(deepSleepPoints) / Double(totalPoints)) * 5
     }
 }
 

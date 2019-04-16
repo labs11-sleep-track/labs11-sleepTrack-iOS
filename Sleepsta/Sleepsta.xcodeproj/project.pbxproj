@@ -16,6 +16,8 @@
 		343534762242B3CC00CCB1C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 343534752242B3CC00CCB1C5 /* Assets.xcassets */; };
 		343534792242B3CC00CCB1C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 343534772242B3CC00CCB1C5 /* LaunchScreen.storyboard */; };
 		343F50E4226677460075C075 /* alarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 343F50E3226677460075C075 /* alarm.mp3 */; };
+		343F50E622667F190075C075 /* DailyDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F50E522667F190075C075 /* DailyDataTests.swift */; };
+		343F50E822667F670075C075 /* SampleDailyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F50E722667F670075C075 /* SampleDailyData.swift */; };
 		345CE0912242CA7B005B5725 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0902242CA7B005B5725 /* LoginViewController.swift */; };
 		345CE0952242D0B4005B5725 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0942242D0B4005B5725 /* GradientView.swift */; };
 		345CE0972242D107005B5725 /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CE0962242D107005B5725 /* UIColor+CustomColors.swift */; };
@@ -83,6 +85,8 @@
 		3435347F2242B3CD00CCB1C5 /* SleepstaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SleepstaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		343534852242B3CD00CCB1C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		343F50E3226677460075C075 /* alarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm.mp3; sourceTree = "<group>"; };
+		343F50E522667F190075C075 /* DailyDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDataTests.swift; sourceTree = "<group>"; };
+		343F50E722667F670075C075 /* SampleDailyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleDailyData.swift; sourceTree = "<group>"; };
 		345CE0902242CA7B005B5725 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		345CE0942242D0B4005B5725 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		345CE0962242D107005B5725 /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
@@ -193,6 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				349FC378225F9BD700A22805 /* DailyDataControllerTests.swift */,
+				343F50E522667F190075C075 /* DailyDataTests.swift */,
+				343F50E722667F670075C075 /* SampleDailyData.swift */,
 				349FC374225F95DB00A22805 /* TestJSON.swift */,
 				349FC376225F9B9E00A22805 /* MockLoader.swift */,
 				343534852242B3CD00CCB1C5 /* Info.plist */,
@@ -553,6 +559,8 @@
 				349FC379225F9BD700A22805 /* DailyDataControllerTests.swift in Sources */,
 				349FC375225F95DB00A22805 /* TestJSON.swift in Sources */,
 				349FC377225F9B9E00A22805 /* MockLoader.swift in Sources */,
+				343F50E622667F190075C075 /* DailyDataTests.swift in Sources */,
+				343F50E822667F670075C075 /* SampleDailyData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

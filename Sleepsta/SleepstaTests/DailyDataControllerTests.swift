@@ -12,7 +12,11 @@ import XCTest
 class DailyDataControllerTests: XCTestCase {
 
     let testUser = User(sleepstaID: 1, sleepstaToken: "abcd", email: "test@example.com", accountType: "user")
-
+    
+    override func tearDown() {
+        DailyDataController.clearCache()
+    }
+    
     // Test decoding valid JSON
     func testValidDailyDataJSON() {
         let mockLoader = MockLoader(data: validDailyDataJSON, error: nil)
@@ -36,6 +40,8 @@ class DailyDataControllerTests: XCTestCase {
         let mockLoader = MockLoader(data: invalidDailyDataJSON, error: nil)
         let dailyDataController = DailyDataController(user: testUser, networkLoader: mockLoader)
         let correctURL = URL(string: "https://sleepsta.herokuapp.com/api/daily/user/1")!
+        
+        XCTAssert(dailyDataController.dailyDatas.count == 0, "Found wrong number of daily datas: \(dailyDataController.dailyDatas.count)")
         
         let dailyDataExpectation = expectation(description: "Get Daily Data Expectation")
         dailyDataController.fetchDailyData {
