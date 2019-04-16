@@ -22,6 +22,8 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
     private var detailLabel: UILabel!
     private var playButton: UIButton!
     
+    private let notificationGenerator = UINotificationFeedbackGenerator()
+    
     private var mediaPlayer: MPMusicPlayerController!
     
     // MARK: - Lifecycle Methods
@@ -88,6 +90,8 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         imageView = UIImageView()
         imageView.tintColor = .darkBlue
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 4
+        imageView.layer.masksToBounds = true
         stackView.addArrangedSubview(imageView)
         
         imageView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 1, constant: 0).isActive = true
@@ -122,7 +126,7 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         view.addGestureRecognizer(gestureRecognizer)
         
         let deleteGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(removeSong))
-        deleteGestureRecognizer.minimumPressDuration = 1
+        deleteGestureRecognizer.minimumPressDuration = 0.6
         
         view.addGestureRecognizer(deleteGestureRecognizer)
         
@@ -159,6 +163,7 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
     
     private func loadMediaItem(_ mediaItem: MPMediaItem) {
         self.mediaItem = mediaItem
+        saveMediaItem()
         
         let color = colorFor(state: state!)
         view.layer.borderColor = color.cgColor
@@ -172,11 +177,10 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
             imageView.image = image
         }
         
-        detailLabel.text = "Tap to switch songs"
+        detailLabel.text = "Tap to switch, hold to remove"
         
         playButton.isEnabled = true
         
-        saveMediaItem()
         
     }
     
@@ -191,7 +195,15 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
     }
     
     @objc private func removeSong() {
-        transitionToState(.none)
+        if let state = state {
+            switch state {
+            case .selected(_):
+                transitionToState(.none)
+                notificationGenerator.notificationOccurred(.success)
+            default:
+                break
+            }
+        }
     }
     
     @objc private func playSong() {
