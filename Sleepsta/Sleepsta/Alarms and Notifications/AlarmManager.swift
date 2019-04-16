@@ -97,7 +97,7 @@ class AlarmManager: AudioPlayerDelegate {
         if let mediaURL = mediaItem?.assetURL {
             url = mediaURL
         } else {
-            url = Bundle.main.url(forResource: "shipBell", withExtension: "wav")!
+            url = Bundle.main.url(forResource: "alarm", withExtension: "mp3")!
         }
         player.load(file: url)
         
