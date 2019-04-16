@@ -35,7 +35,7 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        mediaPlayer.pause()
+        mediaPlayer.stop()
         updatePlayButton()
     }
     
@@ -121,6 +121,11 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         
         view.addGestureRecognizer(gestureRecognizer)
         
+        let deleteGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(removeSong))
+        deleteGestureRecognizer.minimumPressDuration = 1
+        
+        view.addGestureRecognizer(deleteGestureRecognizer)
+        
         mediaPlayer = MPMusicPlayerController.applicationMusicPlayer
         
     }
@@ -136,6 +141,7 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
     
     private func loadDefaultSound() {
         self.mediaItem = nil
+        saveMediaItem()
         
         let color = colorFor(state: state!)
         view.layer.borderColor = color.cgColor
@@ -184,6 +190,10 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         }
     }
     
+    @objc private func removeSong() {
+        transitionToState(.none)
+    }
+    
     @objc private func playSong() {
         if let mediaItem = mediaItem {
             if mediaPlayer.nowPlayingItem != mediaItem || mediaPlayer.playbackState == .stopped  {
@@ -214,8 +224,8 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
     }
     
     private func saveMediaItem() {
-        guard let mediaItem = self.mediaItem else { return }
         UserDefaults.standard.removeObject(forKey: .savedMediaItem)
+        guard let mediaItem = self.mediaItem else { return }
         do {
             let dictionary = ["id" : mediaItem.persistentID]
             let encodedItemID = try JSONSerialization.data(withJSONObject: dictionary, options: [])

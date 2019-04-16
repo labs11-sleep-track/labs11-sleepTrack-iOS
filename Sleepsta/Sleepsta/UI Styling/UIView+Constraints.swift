@@ -125,6 +125,21 @@ extension UIView {
         
     }
     
+    /// Constrains the view it is called on to the given height and/or width. **It is possible to define conflicting constraints, beware.**
+    func constrain(height: CGFloat? = nil, width: CGFloat? = nil) {
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        if let width = width {
+            self.widthAnchor.constraint(equalToConstant: width).isActive = true
+        }
+        
+        if let height = height {
+            self.heightAnchor.constraint(equalToConstant: height).isActive = true
+        }
+        
+    }
+    
     /// Adds the view it is called on as a subview of the given view and constrains it to the center, with optional offsets.
     func constrainToCenterIn(_ view: UIView, xOffset: CGFloat = 0, yOffset: CGFloat = 0) {
         
