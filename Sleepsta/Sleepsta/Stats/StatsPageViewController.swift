@@ -8,10 +8,12 @@
 
 import UIKit
 
-class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSource {
+class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSource, StatsViewControllerDelegate {
     
     // MARK: - Properties
     let dailyDataController = DailyDataController()
+    
+    private var currentIndex: Int = 0
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -47,6 +49,17 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
         }
         return nil
     }
+    
+    // MARK: - Stats View Controller Delegate
+    func statsVC(_ statsVC: StatsViewController, didDelete dailyData: DailyData) {
+        dailyDataController.deleteDailyData(dailyData) { (error) in
+            if let error = error {
+                NSLog("Error deleting daily data: \(error)")
+            } else {
+                self.loadViewController()
+            }
+        }
+    }
 
     // MARK: - Utility Methods
     private func statsViewController(_ index: Int) -> StatsViewController? {
@@ -58,6 +71,7 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
         
         if index != dailyDataController.dailyDatas.count-1 { page.isLast = false }
         if index != 0 { page.isFirst = false }
+        currentIndex = index
         return page
     }
     
@@ -68,6 +82,12 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
                     let viewControllers = [viewController]
                     
                     self.setViewControllers(viewControllers, direction: .forward, animated: false)
+                }
+            } else {
+                let viewController = self.statsViewController(self.currentIndex) ?? self.statsViewController(self.currentIndex-1)
+                if let viewController = viewController {
+                    let viewControllers = [viewController]
+                    self.setViewControllers(viewControllers, direction: .forward, animated: true)
                 }
             }
         }

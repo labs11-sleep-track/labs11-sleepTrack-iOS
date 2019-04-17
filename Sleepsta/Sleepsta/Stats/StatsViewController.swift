@@ -9,10 +9,15 @@
 import UIKit
 import Charts
 
+protocol StatsViewControllerDelegate: class {
+    func statsVC(_ statsVC: StatsViewController, didDelete dailyData: DailyData)
+}
+
 class StatsViewController: UIViewController {
     var dailyData: DailyData?
     var isLast: Bool = true
     var isFirst: Bool = true
+    weak var delegate: StatsViewControllerDelegate?
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var lineChart: LineChartView!
