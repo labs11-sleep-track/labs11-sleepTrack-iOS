@@ -73,7 +73,7 @@ class DailyDataController {
         
         do {
             let requestData = try JSONEncoder().encode(dailyData)
-            print(String(data: requestData, encoding: .utf8)!)
+//            print(String(data: requestData, encoding: .utf8)!)
             request.httpBody = requestData
         } catch {
             NSLog("Unable to encode user: \(dailyData)\nWith error: \(error)")
@@ -89,7 +89,7 @@ class DailyDataController {
             
             // Check if any data was returned
             if let data = data {
-                print(String(data: data, encoding: .utf8) ?? "Couldn't turn data into String")
+//                print(String(data: data, encoding: .utf8) ?? "Couldn't turn data into String")
                 self.resetCurrentDailyData()
             }
         }
@@ -123,6 +123,30 @@ class DailyDataController {
             }
             
             completion()
+        }
+    }
+    
+    func deleteDailyData(_ dailyData: DailyData, completion: @escaping (Error?) -> Void) {
+        guard let user = user, let identifier = dailyData.identifier else { completion(NSError()); return }
+        
+        let requestURL = baseURL.appendingPathComponent("daily")
+            .appendingPathComponent("\(identifier)")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "DELETE"
+        request.addValue("\(user.sleepstaToken)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-type")
+        
+        networkLoader.loadData(using: request) { (_, error) in
+            if let error = error {
+                completion(error)
+            } else {
+                if let index = self.dailyDatas.index(of: dailyData) {
+                    self.dailyDatas.remove(at: index)
+                }
+                
+                completion(nil)
+            }
         }
     }
     

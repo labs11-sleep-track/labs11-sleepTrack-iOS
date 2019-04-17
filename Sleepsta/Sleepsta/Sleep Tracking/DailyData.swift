@@ -173,7 +173,7 @@ class DailyData: Codable, Equatable {
         let highest = highestMotion()
         let lowest = lowestMotion()
         
-        return (highest - lowest) / 8 + lowest
+        return (highest - lowest) / 6 + lowest
     }
     
     func deepSleepPercentage() -> Double {

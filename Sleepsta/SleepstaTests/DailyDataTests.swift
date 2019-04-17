@@ -24,12 +24,12 @@ class DailyDataTests: XCTestCase {
     }
     
     func testThreshold() {
-        XCTAssert(dailyData.deepSleepThreshold() == 2.375331831009439, "Didn't find the right threshold: \(dailyData.deepSleepThreshold())")
+        XCTAssert(dailyData.deepSleepThreshold() == 2.6612951954619763, "Didn't find the right threshold: \(dailyData.deepSleepThreshold())")
         XCTAssertFalse(dailyData.hasRequiredValues)
     }
     
     func testDeepSleepPercentage() {
-        XCTAssert(dailyData.deepSleepPercentage() == (Double(13)/Double(41))*5, "Didn't find the right deep sleep percentage found: \(dailyData.deepSleepPercentage())")
+        XCTAssert(dailyData.deepSleepPercentage() == (Double(17)/Double(41))*5, "Didn't find the right deep sleep percentage found: \(dailyData.deepSleepPercentage())")
         XCTAssertFalse(dailyData.hasRequiredValues)
     }
     
