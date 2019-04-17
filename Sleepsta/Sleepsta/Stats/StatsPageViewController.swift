@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSource, StatsViewControllerDelegate {
+class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, StatsViewControllerDelegate {
     
     // MARK: - Properties
     let dailyDataController = DailyDataController()
@@ -23,6 +23,7 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        delegate = self
         dataSource = self
         
         view.backgroundColor = .black
@@ -50,6 +51,15 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
         return nil
     }
     
+    // MARK: Page View Controller Delegate
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        guard let page = pageViewController.viewControllers?[0] as? StatsViewController, let dailyData = page.dailyData, let index = dailyDataController.dailyDatas.index(of: dailyData) else {
+            currentIndex = 0
+            return
+        }
+        currentIndex = index
+    }
+    
     // MARK: - Stats View Controller Delegate
     func statsVC(_ statsVC: StatsViewController, didDelete dailyData: DailyData) {
         dailyDataController.deleteDailyData(dailyData) { (error) in
@@ -63,32 +73,44 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
 
     // MARK: - Utility Methods
     private func statsViewController(_ index: Int) -> StatsViewController? {
-        guard index < dailyDataController.dailyDatas.count, index >= 0, let storyboard = storyboard, let page = storyboard.instantiateViewController(withIdentifier: "StatsViewController") as? StatsViewController else {
+        guard index < dailyDataController.dailyDatas.count,index >= 0, let storyboard = storyboard, let page = storyboard.instantiateViewController(withIdentifier: "StatsViewController") as? StatsViewController else {
             return nil
         }
         
         page.dailyData = dailyDataController.dailyDatas[index]
+        page.delegate = self
         
         if index != dailyDataController.dailyDatas.count-1 { page.isLast = false }
         if index != 0 { page.isFirst = false }
-        currentIndex = index
         return page
     }
     
     private func loadViewController() {
         DispatchQueue.main.async {
             if self.viewControllers?.count ?? 0 < 1 {
-                if let viewController = self.statsViewController(self.dailyDataController.dailyDatas.count-1) {
+                // If there are no view controllers, load the intial one
+                let index = self.dailyDataController.dailyDatas.count-1
+                if let viewController = self.statsViewController(index) {
                     let viewControllers = [viewController]
                     
+                    self.currentIndex = index
                     self.setViewControllers(viewControllers, direction: .forward, animated: false)
+                } else {
+                    // TODO: Load Sample View Controller
                 }
             } else {
-                let viewController = self.statsViewController(self.currentIndex) ?? self.statsViewController(self.currentIndex-1)
-                if let viewController = viewController {
+                // It means the data has changed
+                if let viewController = self.statsViewController(self.currentIndex) {
+                    // If the current index still exists, reload it
                     let viewControllers = [viewController]
-                    self.setViewControllers(viewControllers, direction: .forward, animated: true)
+                    self.setViewControllers(viewControllers, direction: .forward, animated: false)
+                } else if let viewController = self.statsViewController(self.currentIndex-1) {
+                    // Try loading the one below it
+                    let viewControllers = [viewController]
+                    self.setViewControllers(viewControllers, direction: .reverse, animated: true)
+                    if self.currentIndex > 0 { self.currentIndex -= 1 }
                 }
+                // TODO: Load sample view controller
             }
         }
     }

@@ -30,6 +30,7 @@ class StatsViewController: UIViewController {
     @IBOutlet weak var wakeTimeTitleLabel: UILabel!
     @IBOutlet weak var notesLabel: UILabel!
     @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet weak var deleteButton: UIButton!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -45,7 +46,12 @@ class StatsViewController: UIViewController {
         updateLineChart()
         updateLabels()
     }
-
+    
+    @IBAction func deleteDailyData(_ sender: Any) {
+        guard let dailyData = dailyData else { return }
+        delegate?.statsVC(self, didDelete: dailyData)
+    }
+    
     private func loadSampleData() {
         let url = Bundle.main.url(forResource: "sample-data", withExtension: ".json")!
         let data = try! Data(contentsOf: url)
@@ -103,6 +109,8 @@ class StatsViewController: UIViewController {
         notesTextView.textColor = .customWhite
         notesTextView.backgroundColor = .clear
         notesTextView.text = ""
+        
+        deleteButton.setTitleColor(.pink, for: .normal)
     }
     
     private func updateLabels() {

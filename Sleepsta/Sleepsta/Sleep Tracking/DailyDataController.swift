@@ -141,6 +141,10 @@ class DailyDataController {
             if let error = error {
                 completion(error)
             } else {
+                if let index = self.dailyDatas.index(of: dailyData) {
+                    self.dailyDatas.remove(at: index)
+                }
+                
                 completion(nil)
             }
         }
