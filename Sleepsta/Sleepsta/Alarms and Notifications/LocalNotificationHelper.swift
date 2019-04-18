@@ -48,10 +48,12 @@ class LocalNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         
         let request = UNNotificationRequest(identifier: .reminderIdentifier, content: content, trigger: trigger)
         
-        
-        UserDefaults.standard.set(hour, forKey: .notificationHour)
-        UserDefaults.standard.set(minute, forKey: .notificationMinute)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if error == nil {
+                UserDefaults.standard.set(hour, forKey: .notificationHour)
+                UserDefaults.standard.set(minute, forKey: .notificationMinute)
+            }
+        }
     }
     
     func cancelCurrentNotifications() {
