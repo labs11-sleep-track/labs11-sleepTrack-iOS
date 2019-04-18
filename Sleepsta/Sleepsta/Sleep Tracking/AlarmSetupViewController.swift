@@ -13,6 +13,8 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
 
     // MARK: - Properties
     private var songSelectVC: SongSelectViewController!
+    private var pickerTimer: Timer?
+    private var labelTimer: Timer?
     
     // These labels are mostly to show that I am getting data, won't be a part of the final design.
     @IBOutlet weak var welcomeLabel: UILabel!
@@ -34,8 +36,14 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
         alarmTimePicker.setDateTo(8, component: .hour)
+        startTimers()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        stopTimers()
     }
     
     // MARK: - UI Actions
@@ -75,6 +83,24 @@ class AlarmSetupViewController: SLViewController, SLDatePickerViewDelegate {
         welcomeLabel.text = "Configure Alarm"
         
         hourMinuteLabel.text = "Sleep for \(alarmTimePicker.hoursFromNow) hours and \(alarmTimePicker.minutesFromNow)ish minutes"
+    }
+    
+    private func startTimers() {
+        pickerTimer = Timer.scheduledTimer(withTimeInterval: 120, repeats: true, block: { (_) in
+            self.alarmTimePicker.setDateTo(8, component: .hour)
+        })
+        
+        labelTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (_) in
+            self.updateLabels()
+        })
+    }
+    
+    private func stopTimers() {
+        pickerTimer?.invalidate()
+        pickerTimer = nil
+        
+        labelTimer?.invalidate()
+        labelTimer = nil
     }
     
 }
