@@ -73,6 +73,7 @@ class DailyData: Codable, Equatable {
     }
     
     var dateRangeString: String {
+        if userID == -1 { return "SAMPLE DATA" }
         guard let bedDate = bedDate, let wakeDate = wakeDate else { return "" }
         let bedDateString = DailyData.dateFormatter.string(from: bedDate)
         let wakeDateString = DailyData.dateFormatter.string(from: wakeDate)
@@ -180,6 +181,7 @@ class DailyData: Codable, Equatable {
         let threshold = deepSleepThreshold()
         
         let totalPoints = nightData.count
+        if totalPoints < 3 { return 0 }
         let deepSleepPoints = nightData.filter({ $0.motion < threshold }).count
         
         return (Double(deepSleepPoints) / Double(totalPoints)) * 5

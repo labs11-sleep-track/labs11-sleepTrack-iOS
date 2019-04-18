@@ -33,7 +33,7 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
     
     override func viewWillAppear(_ animated: Bool) {
         // Fetch the user's data to display on the stats page
-        dailyDataController.fetchDailyData { self.loadViewController() }
+        dailyDataController.fetchDailyData { if self.dailyDataController.dailyDatas.count > 0 { self.loadViewController() }}
     }
     
     // MARK: - Page View Controller Data Source
@@ -96,7 +96,7 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
                     self.currentIndex = index
                     self.setViewControllers(viewControllers, direction: .forward, animated: false)
                 } else {
-                    // TODO: Load Sample View Controller
+                    self.setViewControllers([self.loadSampleStatsView()], direction: .forward, animated: false)
                 }
             } else {
                 // It means the data has changed
@@ -109,9 +109,22 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
                     let viewControllers = [viewController]
                     self.setViewControllers(viewControllers, direction: .reverse, animated: true)
                     if self.currentIndex > 0 { self.currentIndex -= 1 }
+                } else {
+                    self.setViewControllers([self.loadSampleStatsView()], direction: .forward, animated: true)
                 }
-                // TODO: Load sample view controller
             }
         }
+    }
+    
+    private func loadSampleStatsView() -> StatsViewController {
+        let url = Bundle.main.url(forResource: "sample-data", withExtension: ".json")!
+        let data = try! Data(contentsOf: url)
+        let dailyData = try! JSONDecoder().decode(DailyData.self, from: data)
+        
+        guard let statsViewController = storyboard?.instantiateViewController(withIdentifier: "StatsViewController") as? StatsViewController else { fatalError("Wasn't able to instantiate a sample stats view controller") }
+        
+        statsViewController.dailyData = dailyData
+        
+        return statsViewController
     }
 }

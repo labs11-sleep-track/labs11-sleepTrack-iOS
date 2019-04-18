@@ -166,7 +166,6 @@ class DailyDataController {
         do {
             let data = try JSONEncoder().encode(dailyDatas)
             try data.write(to: DailyDataController.cacheURL, options: [.atomic])
-            print("Saved to persistent store")
         } catch {
             NSLog("Error encoding or saving daily data cache: \(error)")
         }
@@ -177,7 +176,6 @@ class DailyDataController {
             let data = try Data(contentsOf: DailyDataController.cacheURL)
             let loadedDailyDatas = try JSONDecoder().decode([DailyData].self, from: data)
             self.dailyDatas = loadedDailyDatas
-            print("Loaded from persistent store")
         } catch {
             NSLog("Error loading or decoding daily data cache: \(error)")
         }

@@ -40,9 +40,7 @@ class StatsViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-        
-        // If there is no data, load the sample data
-        // if dailyData == nil { loadSampleData() }
+
         updateLineChart()
         updateLabels()
     }
@@ -50,12 +48,6 @@ class StatsViewController: UIViewController {
     @IBAction func deleteDailyData(_ sender: Any) {
         guard let dailyData = dailyData else { return }
         delegate?.statsVC(self, didDelete: dailyData)
-    }
-    
-    private func loadSampleData() {
-        let url = Bundle.main.url(forResource: "sample-data", withExtension: ".json")!
-        let data = try! Data(contentsOf: url)
-        dailyData = try! JSONDecoder().decode(DailyData.self, from: data)
     }
     
     private func setupViews() {
@@ -132,6 +124,8 @@ class StatsViewController: UIViewController {
         } else {
             notesLabel.text = "No notes."
         }
+        
+        if dailyData.userID == -1 { deleteButton.isHidden = true }
     }
     
     private func updateLineChart() {
