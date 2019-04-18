@@ -22,6 +22,7 @@ extension String {
     static let notificationHour = "NotificationHour"
     static let notificationMinute = "NotificationMinute"
     
+    static let hasTouchedNotificationButton = "HasTouchedNotificationButton"
     static let reminderIdentifier = "DailySleepReminder"
     
     static let savedMediaItem = "SavedMediaItem"

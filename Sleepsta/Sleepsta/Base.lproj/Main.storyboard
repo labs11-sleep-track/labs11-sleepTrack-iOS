@@ -331,15 +331,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izG-Qa-GlW">
-                                                    <rect key="frame" x="16" y="11.333333333333336" width="134" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izG-Qa-GlW">
+                                                    <rect key="frame" x="16" y="11" width="343" height="22"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="izG-Qa-GlW" firstAttribute="centerY" secondItem="W01-Xj-E6d" secondAttribute="centerY" id="BZl-ct-iMO"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="izG-Qa-GlW" secondAttribute="trailing" id="1du-E2-w9J"/>
+                                                <constraint firstItem="izG-Qa-GlW" firstAttribute="top" secondItem="W01-Xj-E6d" secondAttribute="topMargin" id="92J-39-hk5"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="izG-Qa-GlW" secondAttribute="bottom" id="K5Q-2k-YYE"/>
                                                 <constraint firstItem="izG-Qa-GlW" firstAttribute="leading" secondItem="W01-Xj-E6d" secondAttribute="leadingMargin" id="qil-zL-UaE"/>
                                             </constraints>
                                         </tableViewCellContentView>
