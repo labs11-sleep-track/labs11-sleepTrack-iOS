@@ -27,6 +27,10 @@ class StatsPageViewController: UIPageViewController, UIPageViewControllerDataSou
         dataSource = self
         
         view.backgroundColor = .black
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [UIColor.darkerBackgroundColor.cgColor, UIColor.lighterBackgroundColor.cgColor]
+        view.layer.insertSublayer(gradientLayer, at: 0)
         
         loadViewController()
     }
