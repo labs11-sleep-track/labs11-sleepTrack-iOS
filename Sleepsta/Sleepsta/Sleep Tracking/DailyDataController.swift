@@ -38,8 +38,8 @@ class DailyDataController {
 
     /// Method to add the time the user wakes up to an instance of DailyData. Defaults to the instance currently being built and the current time. Eventually, it will set the motion data too (if that is the route we go)
     func addWakeTime(to dailyData: DailyData = DailyDataController.current, wakeTime: Date = Date() ) {
-        if dailyData.wakeTime == nil { dailyData.wakeTime = Int(wakeTime.timeIntervalSince1970) }
-        if dailyData.nightData.isEmpty { dailyData.nightData = MotionManager.shared.motionDataArray }
+        dailyData.wakeTime = Int(wakeTime.timeIntervalSince1970)
+        dailyData.nightData = MotionManager.shared.motionDataArray
     }
     
     /// Method to add the user's sleep notes to an instance of DailyData. Defaults to the instance currently being built and an empty string. Also calculates the sleep quality and sets that.
@@ -88,7 +88,7 @@ class DailyDataController {
             }
             
             // Check if any data was returned
-            if let data = data {
+            if data != nil {
 //                print(String(data: data, encoding: .utf8) ?? "Couldn't turn data into String")
                 self.resetCurrentDailyData()
             }

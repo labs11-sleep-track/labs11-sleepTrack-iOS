@@ -17,9 +17,7 @@ class LocalNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     //Helper method to get the authorization status for notifications
     func getAuthorizationStatus(completion: @escaping (UNAuthorizationStatus) -> Void) {
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
-            DispatchQueue.main.async {
-                completion(settings.authorizationStatus)
-            }
+            completion(settings.authorizationStatus)
         }
     }
     
@@ -28,9 +26,7 @@ class LocalNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
             if let error = error { NSLog("Error requesting authorization status for local notifications: \(error)") }
             
-            DispatchQueue.main.async {
-                completion(success)
-            }
+            completion(success)
         }
     }
     
@@ -48,14 +44,16 @@ class LocalNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         let hour = dateComponents.hour
         let minute = dateComponents.minute
         
-        UserDefaults.standard.set(hour, forKey: .notificationHour)
-        UserDefaults.standard.set(minute, forKey: .notificationMinute)
-        
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         
         let request = UNNotificationRequest(identifier: .reminderIdentifier, content: content, trigger: trigger)
         
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if error == nil {
+                UserDefaults.standard.set(hour, forKey: .notificationHour)
+                UserDefaults.standard.set(minute, forKey: .notificationMinute)
+            }
+        }
     }
     
     func cancelCurrentNotifications() {

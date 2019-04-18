@@ -18,8 +18,10 @@ class SettingsTableViewController: UITableViewController {
             tableView.endUpdates()
         }
     }
+    private var notificationsNotAllowed: Bool = false
     
     private let noNotificationText = "No reminder set (tap to set one)"
+    private let notificationNotAllowedText = "Go to settings to give permission to set reminders."
     
     private let notificationIndexPath = IndexPath(row: 0, section: 0)
     private let datePickerIndexPath = IndexPath(row: 1, section: 0)
@@ -46,15 +48,21 @@ class SettingsTableViewController: UITableViewController {
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        checkForNotifications()
+    }
+    
     // MARK: - Table View Delegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch indexPath {
+        case notificationIndexPath:
+            if notificationsNotAllowed { return 60 }
         case datePickerIndexPath:
             let height = isEditingNotification ? notificationTimePicker.frame.height : 0
             return height
         case cancelButtonIndexPath:
-            if notificationLabel.text == noNotificationText { return 0 }
+            if notificationLabel.text == noNotificationText || notificationsNotAllowed { return 0 }
         default:
             break
         }
@@ -75,9 +83,24 @@ class SettingsTableViewController: UITableViewController {
         
         switch indexPath {
         case notificationIndexPath:
-            if isEditingNotification { LocalNotificationHelper.shared.scheduleDailySleepReminderNotification(date: notificationTimePicker.date) }
+            UserDefaults.standard.set(true, forKey: .hasTouchedNotificationButton)
+            if isEditingNotification {
+                LocalNotificationHelper.shared.scheduleDailySleepReminderNotification(date: notificationTimePicker.date)
+                isEditingNotification.toggle()
+            } else {
+                LocalNotificationHelper.shared.requestAuthorization { (granted) in
+                    DispatchQueue.main.async {
+                        if granted {
+                            self.isEditingNotification.toggle()
+                        } else {
+                            self.notificationsNotAllowed = true
+                        }
+                        self.updateLabels()
+                    }
+                }
+            }
             updateLabels()
-            isEditingNotification.toggle()
+            
         case datePickerIndexPath:
             LocalNotificationHelper.shared.requestAuthorization { _ in }
             isEditingNotification.toggle()
@@ -110,12 +133,28 @@ class SettingsTableViewController: UITableViewController {
         accountLabel.textColor = .customWhite
         logoutLabel.textColor = .pink
         
-        updateLabels()
+        checkForNotifications()
         
     }
     
+    private func checkForNotifications() {
+        if UserDefaults.standard.bool(forKey: .hasTouchedNotificationButton) {
+            LocalNotificationHelper.shared.requestAuthorization { (granted) in
+                DispatchQueue.main.async {
+                    self.notificationsNotAllowed = !granted
+                    self.updateLabels()
+                }
+            }
+        } else {
+            updateLabels()
+        }
+    }
+    
     private func updateLabels() {
-        if let text = LocalNotificationHelper.shared.stringRepresentation() {
+        tableView.beginUpdates()
+        if notificationsNotAllowed {
+            notificationLabel.text = notificationNotAllowedText
+        } else if let text = LocalNotificationHelper.shared.stringRepresentation() {
             notificationLabel.text = "Reminder set for: \(text)"
         } else {
             notificationLabel.text = noNotificationText
@@ -124,6 +163,7 @@ class SettingsTableViewController: UITableViewController {
         if let currentUser = User.current {
             accountLabel.text = "Signed in as \(currentUser.firstName ?? "") \(currentUser.lastName ?? "")"
         }
+        tableView.endUpdates()
     }
     
     private func cancelReminder() {
