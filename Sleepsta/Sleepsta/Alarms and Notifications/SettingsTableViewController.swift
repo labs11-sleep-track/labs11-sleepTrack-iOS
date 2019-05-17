@@ -19,6 +19,9 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     private var notificationsNotAllowed: Bool = false
+    private var isNotificationSet: Bool {
+        return LocalNotificationHelper.shared.stringRepresentation() != nil
+    }
     
     private let noNotificationText = "No reminder set (tap to set one)"
     private let notificationNotAllowedText = "Go to settings to give permission to set reminders."
@@ -62,7 +65,10 @@ class SettingsTableViewController: UITableViewController {
             let height = isEditingNotification ? notificationTimePicker.frame.height : 0
             return height
         case cancelButtonIndexPath:
-            if notificationLabel.text == noNotificationText || notificationsNotAllowed { return 0 }
+            if !isNotificationSet {
+                return 0
+                
+            }
         default:
             break
         }
@@ -85,8 +91,12 @@ class SettingsTableViewController: UITableViewController {
         case notificationIndexPath:
             UserDefaults.standard.set(true, forKey: .hasTouchedNotificationButton)
             if isEditingNotification {
-                LocalNotificationHelper.shared.scheduleDailySleepReminderNotification(date: notificationTimePicker.date)
-                isEditingNotification.toggle()
+                LocalNotificationHelper.shared.scheduleDailySleepReminderNotification(date: notificationTimePicker.date) {
+                    DispatchQueue.main.async {
+                        self.updateLabels()
+                        self.isEditingNotification.toggle()
+                    }
+                }
             } else {
                 LocalNotificationHelper.shared.requestAuthorization { (granted) in
                     DispatchQueue.main.async {
@@ -99,10 +109,10 @@ class SettingsTableViewController: UITableViewController {
                     }
                 }
             }
-            updateLabels()
             
         case datePickerIndexPath:
             LocalNotificationHelper.shared.requestAuthorization { _ in }
+            updateLabels()
             isEditingNotification.toggle()
         case cancelButtonIndexPath:
             cancelReminder()
@@ -145,13 +155,12 @@ class SettingsTableViewController: UITableViewController {
                     self.updateLabels()
                 }
             }
-        } else {
-            updateLabels()
         }
+        updateLabels()
     }
     
     private func updateLabels() {
-        tableView.beginUpdates()
+//        tableView.beginUpdates()
         if notificationsNotAllowed {
             notificationLabel.text = notificationNotAllowedText
         } else if let text = LocalNotificationHelper.shared.stringRepresentation() {
@@ -163,7 +172,7 @@ class SettingsTableViewController: UITableViewController {
         if let currentUser = User.current {
             accountLabel.text = "Signed in as \(currentUser.firstName ?? "") \(currentUser.lastName ?? "")"
         }
-        tableView.endUpdates()
+//        tableView.endUpdates()
     }
     
     private func cancelReminder() {

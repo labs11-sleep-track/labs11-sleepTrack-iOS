@@ -31,7 +31,7 @@ class LocalNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     }
     
     //Method to create a daily reminder notification
-    func scheduleDailySleepReminderNotification(date: Date) {
+    func scheduleDailySleepReminderNotification(date: Date, completion: @escaping () -> Void = { }) {
 
         cancelCurrentNotifications()
         
@@ -53,6 +53,7 @@ class LocalNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
                 UserDefaults.standard.set(hour, forKey: .notificationHour)
                 UserDefaults.standard.set(minute, forKey: .notificationMinute)
             }
+            completion()
         }
     }
     
