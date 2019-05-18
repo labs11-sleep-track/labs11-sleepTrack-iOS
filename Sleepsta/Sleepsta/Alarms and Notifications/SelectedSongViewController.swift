@@ -188,6 +188,15 @@ class SongSelectViewController: UIViewController, MPMediaPickerControllerDelegat
         switch (MPMediaLibrary.authorizationStatus()) {
         case .authorized:
             presentMusicPicker()
+            
+        case .notDetermined:
+            MPMediaLibrary.requestAuthorization { (status) in
+                if status == .authorized {
+                    DispatchQueue.main.async {
+                        self.presentMusicPicker()
+                    }
+                }
+            }
         default:
             // TODO: Handle not having permission better
             break
